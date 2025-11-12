@@ -1,2 +1,2 @@
 # website
-Toleiko WEbsite
+Toleiko Website
