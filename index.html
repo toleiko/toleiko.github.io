@@ -10,8 +10,107 @@
   <meta property="og:url" content="https://toleiko.ca">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://toleiko.ca">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Making Sure it works!</h1>
+  <!-- Title Section Container -->
+  <div id="titleSection"></div>
+  
+  <!-- Main Content -->
+  <div class="content">
+    <h2>Toleiko</h2>
+    <p>This is your main content area. You can add more templates and components here!</p>
+    
+    <!-- Navigation Buttons Container -->
+    <div id="navigationButtons"></div>
+    
+    <!-- Individual Button Example -->
+    <div id="singleButton"></div>
+  </div>
+
+  <!-- Load Templates -->
+  <script src="templates.js"></script>
+  <script>
+    // Load the title section with custom data
+    loadTemplate('titleSection', 'titleSection', {
+      title: 'toleiko.ca',
+      searchPlaceholder: 'Search the site...',
+      showSearch: true,
+      showDropdown: true,
+      dropdownItems: [
+        {
+          text: 'About Me',
+          href: 'about.html',
+          icon: '👤'
+        },
+        {
+          text: 'My Projects',
+          href: 'projects.html',
+          icon: '🚀'
+        },
+        {
+          text: 'Blog Posts',
+          href: 'blog.html',
+          icon: '📝'
+        },
+        {
+          text: 'Contact',
+          href: 'contact.html',
+          icon: '📧'
+        },
+        {
+          text: 'GitHub',
+          href: 'https://github.com/toleiko',
+          icon: '💻',
+          target: '_blank'
+        }
+      ]
+    });
+
+    // Load button group for navigation
+    loadTemplate('buttonGroup', 'navigationButtons', {
+      alignment: 'center',
+      spacing: 'normal',
+      buttons: [
+        {
+          text: 'About',
+          href: 'about.html',
+          style: 'primary',
+          size: 'medium',
+          icon: '👤'
+        },
+        {
+          text: 'Projects',
+          href: 'projects.html',
+          style: 'secondary',
+          size: 'medium',
+          icon: '🚀'
+        },
+        {
+          text: 'Blog',
+          href: 'blog.html',
+          style: 'outline',
+          size: 'medium',
+          icon: '📝'
+        },
+        {
+          text: 'Contact',
+          href: 'contact.html',
+          style: 'ghost',
+          size: 'medium',
+          icon: '📧'
+        }
+      ]
+    });
+
+    // Load a single button example
+    loadTemplate('navButton', 'singleButton', {
+      text: 'Get Started',
+      href: 'getting-started.html',
+      style: 'primary',
+      size: 'large',
+      icon: '⭐'
+    });
+  </script>
 </body>
 </html>
