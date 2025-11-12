@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - toleiko</title>
+  <meta name="description" content="About Toleiko - Learn more about me">
+  <meta property="og:title" content="About - toleiko">
+  <meta property="og:description" content="About Toleiko - Learn more about me">
+  <meta property="og:url" content="https://toleiko.ca/about">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://toleiko.ca/about">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Title Section Container -->
+  <div id="titleSection"></div>
+  
+  <!-- Main Content -->
+  <div class="content">
+    <h2>About Me</h2>
+    <p>Welcome to my About page! This section will contain information about who I am, my background, and my interests.</p>
+    
+    <div class="about-content">
+      <h3>Who I Am</h3>
+      <p>I'm Toleiko, and this is where I'll share my story, passions, and what drives me.</p>
+      
+      <h3>What I Do</h3>
+      <p>Here I'll describe my work, skills, and professional interests.</p>
+      
+      <h3>My Journey</h3>
+      <p>This section will cover my background and experiences that have shaped who I am today.</p>
+    </div>
+    
+    <!-- Navigation Back Home -->
+    <div id="backButton"></div>
+  </div>
+
+  <!-- Load Templates -->
+  <script src="../templates.js"></script>
+  <script>
+    // Load the title section with custom data
+    loadTemplate('titleSection', 'titleSection', {
+      title: 'About',
+      searchPlaceholder: 'Search...',
+      showSearch: true,
+      showDropdown: true,
+      dropdownItems: [
+        {
+          text: 'Home',
+          href: 'https://toleiko.ca',
+          icon: '🏠'
+        },
+        {
+          text: 'Projects',
+          href: 'https://toleiko.ca/projects',
+          icon: '🚀'
+        },
+        {
+          text: 'Recipes',
+          href: 'https://toleiko.ca/recipes',
+          icon: '🍲'
+        }
+      ]
+    });
+
+    // Load back to home button
+    loadTemplate('navButton', 'backButton', {
+      text: 'Back to Home',
+      href: 'https://toleiko.ca',
+      style: 'outline',
+      size: 'medium',
+      icon: '← '
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>toleiko/recipes</title>
+  <meta name="description" content="Cooking with Tori and Isaac - Delicious dishes and cooking adventures">
+  <meta property="og:title" content="toleiko - recipes">
+  <meta property="og:description" content="Cooking with Tori and Isaac - Delicious dishes and cooking adventures">
+  <meta property="og:url" content="https://toleiko.ca/recipes">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://toleiko.ca/recipes">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Title Section Container -->
+  <div id="titleSection"></div>
+  
+  <!-- Main Content -->
+  <div class="content">
+    <h2>Our Recipe Collection</h2>
+    <p>Welcome to Isaac and Tori's kitchen! Here you'll find a collection of our favorite recipes, cooking experiments, and culinary adventures.</p>
+    
+    <div class="recipes-grid" id="recipesGrid">
+      <!-- Recipes will be loaded here -->
+    </div>
+    
+    <!-- Navigation Back Home -->
+    <div id="backButton"></div>
+  </div>
+
+  <!-- Load Templates -->
+  <script src="../templates.js"></script>
+  <script>
+    // Load the title section with custom data
+    loadTemplate('titleSection', 'titleSection', {
+      title: 'Recipes',
+      searchPlaceholder: 'Search recipes...',
+      showSearch: true,
+      showDropdown: true,
+      dropdownItems: [
+        {
+          text: 'Home',
+          href: 'https://toleiko.ca',
+          icon: '🏠'
+        },
+        {
+          text: 'About',
+          href: 'https://toleiko.ca/about',
+          icon: '👤'
+        },
+        {
+          text: 'Projects',
+          href: 'https://toleiko.ca/projects',
+          icon: '🚀'
+        }
+      ]
+    });
+
+    // Add recipe cards template
+    function createRecipeCard(recipe) {
+      return `
+        <div class="recipe-card">
+          <div class="recipe-image">
+            ${recipe.emoji}
+          </div>
+          <div class="recipe-content">
+            <h3>${recipe.title}</h3>
+            <p class="recipe-description">${recipe.description}</p>
+            <div class="recipe-meta">
+              <span class="prep-time">⏱️ ${recipe.prepTime}</span>
+              <span class="difficulty ${recipe.difficulty}">${recipe.difficulty}</span>
+            </div>
+            <div class="recipe-tags">
+              ${recipe.tags.map(tag => `<span class="recipe-tag">${tag}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Sample recipes data
+    const recipes = [
+      {
+        title: "Perfect Pasta",
+        description: "A simple yet delicious pasta dish that never fails to impress.",
+        emoji: "🍝",
+        prepTime: "20 min",
+        difficulty: "easy",
+        tags: ["Italian", "Quick", "Comfort Food"]
+      },
+      {
+        title: "Hearty Soup",
+        description: "A warming, nutritious soup perfect for any season.",
+        emoji: "🍲",
+        prepTime: "45 min",
+        difficulty: "medium",
+        tags: ["Healthy", "Soup", "One Pot"]
+      },
+      {
+        title: "Fresh Salad",
+        description: "A crisp, refreshing salad with seasonal vegetables.",
+        emoji: "🥗",
+        prepTime: "15 min",
+        difficulty: "easy",
+        tags: ["Healthy", "Fresh", "Vegetarian"]
+      },
+      {
+        title: "Homemade Bread",
+        description: "Nothing beats the aroma and taste of freshly baked bread.",
+        emoji: "🍞",
+        prepTime: "3 hours",
+        difficulty: "hard",
+        tags: ["Baking", "Homemade", "Traditional"]
+      }
+    ];
+
+    // Load recipes into the grid
+    document.getElementById('recipesGrid').innerHTML = recipes.map(createRecipeCard).join('');
+
+    // Load back to home button
+    loadTemplate('navButton', 'backButton', {
+      text: 'Back to Home',
+      href: 'https://toleiko.ca',
+      style: 'outline',
+      size: 'medium',
+      icon: '← '
+    });
+  </script>
+</body>
+</html>

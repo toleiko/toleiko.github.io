@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects - toleiko</title>
+  <meta name="description" content="Projects by Toleiko - Explore my work and creations">
+  <meta property="og:title" content="Projects - toleiko">
+  <meta property="og:description" content="Projects by Toleiko - Explore my work and creations">
+  <meta property="og:url" content="https://toleiko.ca/projects">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://toleiko.ca/projects">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Title Section Container -->
+  <div id="titleSection"></div>
+  
+  <!-- Main Content -->
+  <div class="content">
+    <h2>My Projects</h2>
+    <p>Welcome to my Projects showcase! Here you'll find a collection of my work, creations, and ongoing endeavors.</p>
+    
+    <div class="projects-grid" id="projectsGrid">
+      <!-- Projects will be loaded here -->
+    </div>
+    
+    <!-- Navigation Back Home -->
+    <div id="backButton"></div>
+  </div>
+
+  <!-- Load Templates -->
+  <script src="../templates.js"></script>
+  <script>
+    // Load the title section with custom data
+    loadTemplate('titleSection', 'titleSection', {
+      title: 'Projects',
+      searchPlaceholder: 'Search projects...',
+      showSearch: true,
+      showDropdown: true,
+      dropdownItems: [
+        {
+          text: 'Home',
+          href: 'https://toleiko.ca',
+          icon: '🏠'
+        },
+        {
+          text: 'About',
+          href: 'https://toleiko.ca/about',
+          icon: '👤'
+        },
+        {
+          text: 'Recipes',
+          href: 'https://toleiko.ca/recipes',
+          icon: '🍲'
+        }
+      ]
+    });
+
+    // Add project cards template
+    function createProjectCard(project) {
+      return `
+        <div class="project-card">
+          <div class="project-header">
+            <h3>${project.title}</h3>
+            <span class="project-status ${project.status}">${project.status}</span>
+          </div>
+          <p class="project-description">${project.description}</p>
+          <div class="project-tech">
+            ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+          </div>
+          ${project.link ? `<a href="${project.link}" class="project-link" target="_blank">View Project →</a>` : ''}
+        </div>
+      `;
+    }
+
+    // Sample projects data
+    const projects = [
+      {
+        title: "Personal Website",
+        description: "A modern, responsive personal website built with custom templates and clean design.",
+        technologies: ["HTML", "CSS", "JavaScript"],
+        status: "completed",
+        link: "https://toleiko.ca"
+      },
+      {
+        title: "Recipe Collection",
+        description: "A curated collection of my favorite recipes with detailed instructions and photos.",
+        technologies: ["Web Design", "Content Creation"],
+        status: "in-progress",
+        link: "https://toleiko.ca/recipes"
+      },
+      {
+        title: "Future Project",
+        description: "Coming soon! This will be an exciting new project I'm working on.",
+        technologies: ["TBD"],
+        status: "planned"
+      }
+    ];
+
+    // Load projects into the grid
+    document.getElementById('projectsGrid').innerHTML = projects.map(createProjectCard).join('');
+
+    // Load back to home button
+    loadTemplate('navButton', 'backButton', {
+      text: 'Back to Home',
+      href: 'https://toleiko.ca',
+      style: 'outline',
+      size: 'medium',
+      icon: '← '
+    });
+  </script>
+</body>
+</html>
