@@ -213,7 +213,7 @@ document.addEventListener('keydown', function(event) {
     if (dropdownMenu) dropdownMenu.classList.remove('show');
     if (toggle) toggle.classList.remove('active');
   }
-}
+});
 
 // Utility function to load templates when DOM is ready
 function loadTemplate(templateName, containerId, data) {

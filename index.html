@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>toleiko.ca</title>
+  <title>toleiko</title>
   <meta name="description" content="Official website of Toleiko">
   <meta property="og:title" content="Toleiko">
   <meta property="og:description" content="Official website of Toleiko">
@@ -23,9 +23,6 @@
     
     <!-- Navigation Buttons Container -->
     <div id="navigationButtons"></div>
-    
-    <!-- Individual Button Example -->
-    <div id="singleButton"></div>
   </div>
 
   <!-- Load Templates -->
@@ -39,30 +36,19 @@
       showDropdown: true,
       dropdownItems: [
         {
-          text: 'About Me',
+          text: 'About',
           href: 'about.html',
           icon: '👤'
         },
         {
-          text: 'My Projects',
+          text: 'Projects',
           href: 'projects.html',
           icon: '🚀'
         },
         {
-          text: 'Blog Posts',
-          href: 'blog.html',
-          icon: '📝'
-        },
-        {
-          text: 'Contact',
-          href: 'contact.html',
-          icon: '📧'
-        },
-        {
-          text: 'GitHub',
-          href: 'https://github.com/toleiko',
-          icon: '💻',
-          target: '_blank'
+          text: 'Recipes',
+          href: 'recipes.html',
+          icon: '🍲'
         }
       ]
     });
@@ -101,15 +87,6 @@
           icon: '📧'
         }
       ]
-    });
-
-    // Load a single button example
-    loadTemplate('navButton', 'singleButton', {
-      text: 'Get Started',
-      href: 'getting-started.html',
-      style: 'primary',
-      size: 'large',
-      icon: '⭐'
     });
   </script>
 </body>
