@@ -1,0 +1,33 @@
+{
+  "name": "Panaeng Curry",
+  "duration": 0.5,
+  "tags": ["Dinner", "Chicken", "Pork", "Spicy", "Curry", "Thai"],
+  "servings": 4,
+  "ingredients": [
+    "1 tbsp - Oil",
+    "1 1/2 cup - Chicken or Pork, cut small",
+    "1 can - Coconut Milk with cream",
+    "4 tbsp - Panaeng or red curry paste",
+    "2 tbsp - Palm sugar or brown sugar",
+    "2-3 tbsp - Fish Sauce",
+    "7 leaves - Kaffir Lime Leaves (fresh or dried)",
+    "1/2 cup - Thai Basil Leaves",
+    "1 tbsp - Red Chillies (fresh or dried)"
+  ],
+  "instructions": [
+    "Start cooking rice",
+    "Put oil in pan and heat until shimmering",
+    "Add curry paste, fry for 1-2 minutes",
+    "Add thick cream from coconut milk",
+    "Fry until oil separates",
+    "Add meat, fry until outside is cooked",
+    "Add remaining coconut milk, simmer 3-5 minutes",
+    "Add sugar, fish sauce, and lime leaves",
+    "Just before serving add thai basil leaves",
+    "Serve with rice"
+  ],
+  "additional_context": {
+    "source": "Adapted from Alli's Thai cooking book",
+    "story": "When Isaac was 5, the family went to Thailand for several months. Alli took a cooking class and learned this recipe."
+  }
+}

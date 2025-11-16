@@ -1,0 +1,38 @@
+{
+  "name": "Sticky Chicken",
+  "duration": 3,
+  "tags": ["Chicken", "Dinner"],
+  "servings": 12,
+  "ingredients": {
+    "main": [
+      "12 pieces – Skin-on, Bone-in Chicken Thighs"
+    ],
+    "spices": [
+      "Garlic Powder",
+      "Ginger Powder", 
+      "Paprika",
+      "Salt & Pepper"
+    ],
+    "sauce": [
+      "2/3 cup – Brown Sugar",
+      "1/4 cup – Soya Sauce",
+      "1 tbsp – Worcestershire Sauce"
+    ]
+  },
+  "instructions": [
+    "Preheat oven to 350˚F",
+    "Sprinkle the spices over the chicken thighs (as needed)",
+    "Place in a pan to roast for 1 hour at 300˚F",
+    "Combine the sauce ingredients together and let sit",
+    "After the chicken is done baking, drain the excess fat",
+    "Set the oven to 275˚F (for 2-3 hours), 300˚F (for 0.5 hours)",
+    "Pour the sauce over the chicken and return to oven",
+    "Baste often (every 30 minutes). The more basting, the better the chicken",
+    "Continue baking for the prescribed time"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": "The lower temperature over a longer period of time makes it yummier!"
+  }
+}

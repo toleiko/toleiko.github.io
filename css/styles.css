@@ -543,6 +543,31 @@ body {
   font-weight: 500;
 }
 
+/* Recipe Categories Styles */
+.recipe-categories {
+  margin: 2rem 0;
+}
+
+.category-section {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #2A7B88;
+}
+
+.category-section h3 {
+  color: #2A7B88;
+  margin: 0 0 1.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.category-section .button-group {
+  margin: 0;
+}
+
 /* About Content Styles */
 .about-content {
   margin: 2rem 0;
@@ -577,5 +602,14 @@ body {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+  }
+  
+  .category-section {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .category-section h3 {
+    font-size: 1.25rem;
   }
 }

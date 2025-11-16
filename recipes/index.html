@@ -21,8 +21,39 @@
     <h2>Our Recipe Collection</h2>
     <p>Welcome to Isaac and Tori's kitchen! Here you'll find a collection of our favorite recipes, cooking experiments, and culinary adventures.</p>
     
-    <div class="recipes-grid" id="recipesGrid">
-      <!-- Recipes will be loaded here -->
+    <!-- Recipe Categories -->
+    <div class="recipe-categories">
+      
+      <!-- Meals by Protein -->
+      <div class="category-section">
+        <h3>Meals by Protein</h3>
+        <div id="proteinButtons"></div>
+      </div>
+      
+      <!-- Meals by Type -->
+      <div class="category-section">
+        <h3>Meals by Type</h3>
+        <div id="mealTypeButtons"></div>
+      </div>
+      
+      <!-- Breakfast -->
+      <div class="category-section">
+        <h3>Breakfast</h3>
+        <div id="breakfastButtons"></div>
+      </div>
+      
+      <!-- Desserts -->
+      <div class="category-section">
+        <h3>Desserts</h3>
+        <div id="dessertButtons"></div>
+      </div>
+      
+      <!-- Holiday Themed -->
+      <div class="category-section">
+        <h3>Holiday Themed</h3>
+        <div id="holidayButtons"></div>
+      </div>
+      
     </div>
     
     <!-- Navigation Back Home -->
@@ -52,66 +83,68 @@
       ]
     });
 
-    // Add recipe cards template
-    function createRecipeCard(recipe) {
-      return `
-        <div class="recipe-card">
-          <div class="recipe-image">
-            ${recipe.emoji}
-          </div>
-          <div class="recipe-content">
-            <h3>${recipe.title}</h3>
-            <p class="recipe-description">${recipe.description}</p>
-            <div class="recipe-meta">
-              <span class="prep-time">⏱️ ${recipe.prepTime}</span>
-              <span class="difficulty ${recipe.difficulty}">${recipe.difficulty}</span>
-            </div>
-            <div class="recipe-tags">
-              ${recipe.tags.map(tag => `<span class="recipe-tag">${tag}</span>`).join('')}
-            </div>
-          </div>
-        </div>
-      `;
-    }
+    // Load recipe category buttons
+    
+    // Meals by Protein
+    loadTemplate('buttonGroup', 'proteinButtons', {
+      alignment: 'left',
+      spacing: 'normal',
+      buttons: [
+        { text: 'Chicken', href: '#', style: 'secondary', size: 'medium', icon: '🍗' },
+        { text: 'Beef', href: '#', style: 'secondary', size: 'medium', icon: '🥩' },
+        { text: 'Pork', href: '#', style: 'secondary', size: 'medium', icon: '🐷' },
+        { text: 'Lamb', href: '#', style: 'secondary', size: 'medium', icon: '🐑' },
+        { text: 'Vegetarian', href: '#', style: 'secondary', size: 'medium', icon: '🥬' }
+      ]
+    });
 
-    // Sample recipes data
-    const recipes = [
-      {
-        title: "Perfect Pasta",
-        description: "A simple yet delicious pasta dish that never fails to impress.",
-        emoji: "🍝",
-        prepTime: "20 min",
-        difficulty: "easy",
-        tags: ["Italian", "Quick", "Comfort Food"]
-      },
-      {
-        title: "Hearty Soup",
-        description: "A warming, nutritious soup perfect for any season.",
-        emoji: "🍲",
-        prepTime: "45 min",
-        difficulty: "medium",
-        tags: ["Healthy", "Soup", "One Pot"]
-      },
-      {
-        title: "Fresh Salad",
-        description: "A crisp, refreshing salad with seasonal vegetables.",
-        emoji: "🥗",
-        prepTime: "15 min",
-        difficulty: "easy",
-        tags: ["Healthy", "Fresh", "Vegetarian"]
-      },
-      {
-        title: "Homemade Bread",
-        description: "Nothing beats the aroma and taste of freshly baked bread.",
-        emoji: "🍞",
-        prepTime: "3 hours",
-        difficulty: "hard",
-        tags: ["Baking", "Homemade", "Traditional"]
-      }
-    ];
+    // Meals by Type
+    loadTemplate('buttonGroup', 'mealTypeButtons', {
+      alignment: 'left',
+      spacing: 'normal',
+      buttons: [
+        { text: 'Pasta', href: '#', style: 'secondary', size: 'medium', icon: '🍝' },
+        { text: 'Rice', href: '#', style: 'secondary', size: 'medium', icon: '🍚' },
+        { text: 'Instant Pot', href: '#', style: 'secondary', size: 'medium', icon: '🥘' },
+        { text: 'Soup', href: '#', style: 'secondary', size: 'medium', icon: '🍲' },
+        { text: 'Sides', href: '#', style: 'secondary', size: 'medium', icon: '🥗' }
+      ]
+    });
 
-    // Load recipes into the grid
-    document.getElementById('recipesGrid').innerHTML = recipes.map(createRecipeCard).join('');
+    // Breakfast
+    loadTemplate('buttonGroup', 'breakfastButtons', {
+      alignment: 'left',
+      spacing: 'normal',
+      buttons: [
+        { text: 'Savoury', href: '#', style: 'secondary', size: 'medium', icon: '🍳' },
+        { text: 'Sweet', href: '#', style: 'secondary', size: 'medium', icon: '🥞' }
+      ]
+    });
+
+    // Desserts
+    loadTemplate('buttonGroup', 'dessertButtons', {
+      alignment: 'left',
+      spacing: 'normal',
+      buttons: [
+        { text: 'Cookies', href: '#', style: 'secondary', size: 'medium', icon: '🍪' },
+        { text: 'Bread', href: '#', style: 'secondary', size: 'medium', icon: '🍞' },
+        { text: 'Muffins', href: '#', style: 'secondary', size: 'medium', icon: '🧁' },
+        { text: 'Cake', href: '#', style: 'secondary', size: 'medium', icon: '🎂' }
+      ]
+    });
+
+    // Holiday Themed
+    loadTemplate('buttonGroup', 'holidayButtons', {
+      alignment: 'left',
+      spacing: 'normal',
+      buttons: [
+        { text: 'Christmas', href: '#', style: 'secondary', size: 'medium', icon: '🎄' },
+        { text: 'Passover', href: '#', style: 'secondary', size: 'medium', icon: '✡️' },
+        { text: 'Chanukah', href: '#', style: 'secondary', size: 'medium', icon: '🕎' },
+        { text: 'Easter', href: '#', style: 'secondary', size: 'medium', icon: '🐰' },
+        { text: 'Thanksgiving', href: '#', style: 'secondary', size: 'medium', icon: '🦃' }
+      ]
+    });
 
     // Load back to home button
     loadTemplate('navButton', 'backButton', {
