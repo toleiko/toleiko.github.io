@@ -180,7 +180,7 @@
     // Load all recipes from the database
     async function loadRecipes() {
       const recipeFiles = [
-        'panang-curry.json',
+        'panaeng-curry.json',
         'sticky-chicken.json',
         'teriyaki-chicken-lettuce-wraps.json'
       ];
@@ -266,8 +266,11 @@
 
     // Create a recipe card HTML
     function createRecipeCard(recipe) {
+      // Convert recipe name to filename format (lowercase, hyphens for spaces)
+      const recipeFile = recipe.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+      
       return `
-        <div class="recipe-card">
+        <div class="recipe-card clickable" onclick="openRecipe('${recipeFile}')">
           <div class="recipe-content">
             <h3>${recipe.name}</h3>
             <div class="recipe-meta">
@@ -280,6 +283,11 @@
           </div>
         </div>
       `;
+    }
+
+    // Open recipe detail page
+    function openRecipe(recipeFile) {
+      window.location.href = `recipe.html?recipe=${recipeFile}`;
     }
 
     // Show all categories (back button)
@@ -299,6 +307,7 @@
     // Make functions globally accessible
     window.filterRecipes = filterRecipes;
     window.showAllCategories = showAllCategories;
+    window.openRecipe = openRecipe;
 
     // Load recipes when page loads
     loadRecipes().then(() => {

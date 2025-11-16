@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe - toleiko</title>
+  <meta name="description" content="Recipe details from toleiko's collection">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <!-- Title Section Container -->
+  <div id="titleSection"></div>
+  
+  <!-- Main Content -->
+  <div class="content">
+    <div style="margin-bottom: 2rem;">
+      <button onclick="history.back()" class="nav-button nav-button--outline nav-button--medium">
+        ← Back to Recipes
+      </button>
+    </div>
+
+    <!-- Recipe Details Container -->
+    <div id="recipeDetails">
+      <div class="loading-message">Loading recipe...</div>
+    </div>
+  </div>
+
+  <!-- Load Templates -->
+  <script src="../js/templates.js"></script>
+  <script>
+    // Load the title section
+    loadTemplate('titleSection', 'titleSection', {
+      title: 'Recipe',
+      searchPlaceholder: 'Search recipes...',
+      showSearch: false,
+      showDropdown: true,
+      dropdownItems: [
+        {
+          text: 'Home',
+          href: 'https://toleiko.ca',
+          icon: '🏠'
+        },
+        {
+          text: 'Projects',
+          href: 'https://toleiko.ca/projects',
+          icon: '🚀'
+        },
+        {
+          text: 'Recipes',
+          href: 'https://toleiko.ca/recipes',
+          icon: '🍲'
+        }
+      ]
+    });
+
+    // Get recipe filename from URL parameter
+    function getRecipeFromURL() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('recipe');
+    }
+
+    // Load and display recipe details
+    async function loadRecipeDetails() {
+      const recipeFile = getRecipeFromURL();
+      
+      if (!recipeFile) {
+        document.getElementById('recipeDetails').innerHTML = '<p>No recipe specified.</p>';
+        return;
+      }
+
+      try {
+        const response = await fetch(`database/${recipeFile}.json`);
+        if (!response.ok) {
+          throw new Error(`Recipe not found: ${recipeFile}`);
+        }
+
+        const recipe = await response.json();
+        displayRecipe(recipe);
+      } catch (error) {
+        console.error('Error loading recipe:', error);
+        document.getElementById('recipeDetails').innerHTML = `<p>Error loading recipe: ${error.message}</p>`;
+      }
+    }
+
+    // Display recipe with proper formatting
+    function displayRecipe(recipe) {
+      const container = document.getElementById('recipeDetails');
+      
+      // Update page title
+      document.title = `${recipe.name} - toleiko`;
+      document.querySelector('.page-title').textContent = recipe.name;
+
+      container.innerHTML = `
+        <div class="recipe-detail">
+          <div class="recipe-header">
+            <h1>${recipe.name}</h1>
+            <div class="recipe-meta">
+              <span class="prep-time">⏱️ ${recipe.duration} ${recipe.duration === 1 ? 'hour' : 'hours'}</span>
+              <span class="servings">🍽️ ${recipe.servings} servings</span>
+            </div>
+            ${recipe.tags ? `
+              <div class="recipe-tags">
+                ${recipe.tags.map(tag => `<span class="recipe-tag">${tag}</span>`).join('')}
+              </div>
+            ` : ''}
+          </div>
+
+          <div class="recipe-content">
+            ${formatIngredients(recipe.ingredients)}
+            ${formatInstructions(recipe.instructions)}
+            ${recipe.additional_context ? formatAdditionalContext(recipe.additional_context) : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    // Format ingredients (handle both simple arrays and sectioned objects)
+    function formatIngredients(ingredients) {
+      if (!ingredients) return '';
+
+      if (Array.isArray(ingredients)) {
+        // Simple format: array of strings
+        return `
+          <div class="recipe-section">
+            <h3>Ingredients</h3>
+            <ul class="ingredient-list">
+              ${ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      } else if (typeof ingredients === 'object') {
+        // Complex format: object with sections
+        return `
+          <div class="recipe-section">
+            <h3>Ingredients</h3>
+            ${Object.entries(ingredients).map(([sectionName, items]) => `
+              <div class="ingredient-section">
+                <h4>${sectionName}</h4>
+                <ul class="ingredient-list indented">
+                  ${items.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+      
+      return '';
+    }
+
+    // Format instructions (handle both simple arrays and sectioned objects)
+    function formatInstructions(instructions) {
+      if (!instructions) return '';
+
+      if (Array.isArray(instructions)) {
+        // Simple format: array of strings
+        return `
+          <div class="recipe-section">
+            <h3>Instructions</h3>
+            <ol class="instruction-list">
+              ${instructions.map(instruction => `<li>${instruction}</li>`).join('')}
+            </ol>
+          </div>
+        `;
+      } else if (typeof instructions === 'object') {
+        // Complex format: object with sections
+        return `
+          <div class="recipe-section">
+            <h3>Instructions</h3>
+            ${Object.entries(instructions).map(([sectionName, steps]) => `
+              <div class="instruction-section">
+                <h4>${sectionName}</h4>
+                <ol class="instruction-list indented">
+                  ${steps.map(step => `<li>${step}</li>`).join('')}
+                </ol>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+      
+      return '';
+    }
+
+    // Format additional context
+    function formatAdditionalContext(context) {
+      const sections = [];
+      
+      if (context.source && context.source.trim()) {
+        sections.push(`<p><strong>Source:</strong> ${context.source}</p>`);
+      }
+      
+      if (context.story && context.story.trim()) {
+        sections.push(`<p><strong>Story:</strong> ${context.story}</p>`);
+      }
+      
+      if (context.tips && context.tips.trim()) {
+        sections.push(`<p><strong>Tips:</strong> ${context.tips}</p>`);
+      }
+
+      if (sections.length === 0) return '';
+
+      return `
+        <div class="recipe-section">
+          <h3>Additional Information</h3>
+          <div class="additional-context">
+            ${sections.join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // Load recipe when page loads
+    loadRecipeDetails();
+  </script>
+</body>
+</html>
