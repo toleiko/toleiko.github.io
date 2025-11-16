@@ -197,9 +197,22 @@
               const recipeText = await response.text();
               console.log('Raw response for', file, ':', recipeText.substring(0, 100));
               
-              const recipe = JSON.parse(recipeText);
-              console.log('Parsed recipe:', recipe.name, 'Tags:', recipe.tags);
-              allRecipes.push(recipe);
+              try {
+                const recipe = JSON.parse(recipeText);
+                console.log('Parsed recipe:', recipe.name, 'Tags:', recipe.tags);
+                
+                // Normalize ingredients format for consistency
+                if (recipe.ingredients && typeof recipe.ingredients === 'object' && !Array.isArray(recipe.ingredients)) {
+                  // Complex format - convert to simple format for filtering
+                  recipe.ingredientSections = recipe.ingredients;
+                  recipe.ingredients = Object.values(recipe.ingredients).flat();
+                  console.log('Normalized complex ingredients for:', recipe.name);
+                }
+                
+                allRecipes.push(recipe);
+              } catch (parseError) {
+                console.error('JSON parse error for', file, ':', parseError);
+              }
             } else {
               console.error('Failed to fetch:', file, 'Status:', response.status, response.statusText);
             }
