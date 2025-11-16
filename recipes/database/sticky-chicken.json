@@ -4,16 +4,16 @@
   "tags": ["Chicken", "Dinner"],
   "servings": 12,
   "ingredients": {
-    "main": [
-      "12 pieces – Skin-on, Bone-in Chicken Thighs"
+    "Chicken":[
+      "12 pieces – Skin-on, Bone-in Chicken Thighs",
     ],
-    "spices": [
-      "Garlic Powder",
-      "Ginger Powder", 
-      "Paprika",
+    "Spices": [
+      "1 tbsp – Garlic Powder",
+      "1 tbsp – Ginger Powder",
+      "1 tbsp – Paprika",
       "Salt & Pepper"
     ],
-    "sauce": [
+    "Sauce": [
       "2/3 cup – Brown Sugar",
       "1/4 cup – Soya Sauce",
       "1 tbsp – Worcestershire Sauce"
