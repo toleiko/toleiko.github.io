@@ -189,16 +189,26 @@
       try {
         for (const file of recipeFiles) {
           console.log('Fetching:', `database/${file}`);
-          const response = await fetch(`database/${file}`);
-          if (response.ok) {
-            const recipe = await response.json();
-            console.log('Loaded recipe:', recipe.name);
-            allRecipes.push(recipe);
-          } else {
-            console.error('Failed to fetch:', file, response.status);
+          try {
+            const response = await fetch(`database/${file}`);
+            console.log('Response for', file, ':', response.status, response.ok);
+            
+            if (response.ok) {
+              const recipeText = await response.text();
+              console.log('Raw response for', file, ':', recipeText.substring(0, 100));
+              
+              const recipe = JSON.parse(recipeText);
+              console.log('Parsed recipe:', recipe.name, 'Tags:', recipe.tags);
+              allRecipes.push(recipe);
+            } else {
+              console.error('Failed to fetch:', file, 'Status:', response.status, response.statusText);
+            }
+          } catch (fileError) {
+            console.error('Error loading file', file, ':', fileError);
           }
         }
         console.log('All recipes loaded:', allRecipes.length);
+        console.log('Recipe names:', allRecipes.map(r => r.name));
       } catch (error) {
         console.error('Error loading recipes:', error);
       }
