@@ -44,8 +44,20 @@ templateManager.registerTemplate('titleSection', (data) => {
   return `
     <section class="title-section">
       <div class="title-container">
-        <div class="title-left">
-          <h1 class="page-title">${title}</h1>
+        <h1 class="page-title">${title}</h1>
+        <div class="title-right">
+          ${showSearch ? `
+            <div class="search-container">
+              <input type="text" 
+                     class="search-bar" 
+                     placeholder="${placeholder}"
+                     id="searchInput"
+                     onkeypress="handleSearchKeyPress(event)">
+              <button class="search-button" onclick="performSearch()" aria-label="Search">
+                🔍
+              </button>
+            </div>
+          ` : ''}
           ${showDropdown && dropdownItems.length > 0 ? `
             <div class="dropdown">
               <button class="dropdown-toggle" onclick="toggleDropdown()" aria-label="Menu">
@@ -64,18 +76,6 @@ templateManager.registerTemplate('titleSection', (data) => {
             </div>
           ` : ''}
         </div>
-        ${showSearch ? `
-          <div class="search-container">
-            <input type="text" 
-                   class="search-bar" 
-                   placeholder="${placeholder}"
-                   id="searchInput"
-                   onkeypress="handleSearchKeyPress(event)">
-            <button class="search-button" onclick="performSearch()" aria-label="Search">
-              🔍
-            </button>
-          </div>
-        ` : ''}
       </div>
     </section>
   `;
