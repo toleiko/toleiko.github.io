@@ -55,6 +55,19 @@
       </div>
       
     </div>
+
+    <!-- Filtered Results Section -->
+    <div id="filteredResults" style="display: none;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <h2 id="filterTitle">Filtered Recipes</h2>
+        <button onclick="showAllCategories()" class="nav-button nav-button--outline nav-button--medium">
+          ← Back to Categories
+        </button>
+      </div>
+      <div id="recipeGrid" class="recipes-grid">
+        <!-- Filtered recipes will be displayed here -->
+      </div>
+    </div>
     
   </div>
 
@@ -88,11 +101,11 @@
       alignment: 'left',
       spacing: 'normal',
       buttons: [
-        { text: 'Chicken', href: '#', style: 'secondary', size: 'medium', icon: '🍗' },
-        { text: 'Beef', href: '#', style: 'secondary', size: 'medium', icon: '🥩' },
-        { text: 'Pork', href: '#', style: 'secondary', size: 'medium', icon: '🐷' },
-        { text: 'Lamb', href: '#', style: 'secondary', size: 'medium', icon: '🐑' },
-        { text: 'Vegetarian', href: '#', style: 'secondary', size: 'medium', icon: '🥬' }
+        { text: 'Chicken', href: '#', onclick: 'filterRecipes("chicken")', style: 'secondary', size: 'medium', icon: '🍗' },
+        { text: 'Beef', href: '#', onclick: 'filterRecipes("beef")', style: 'secondary', size: 'medium', icon: '🥩' },
+        { text: 'Pork', href: '#', onclick: 'filterRecipes("pork")', style: 'secondary', size: 'medium', icon: '🐷' },
+        { text: 'Lamb', href: '#', onclick: 'filterRecipes("lamb")', style: 'secondary', size: 'medium', icon: '🐑' },
+        { text: 'Vegetarian', href: '#', onclick: 'filterRecipes("vegetarian")', style: 'secondary', size: 'medium', icon: '🥬' }
       ]
     });
 
@@ -101,11 +114,11 @@
       alignment: 'left',
       spacing: 'normal',
       buttons: [
-        { text: 'Pasta', href: '#', style: 'secondary', size: 'medium', icon: '🍝' },
-        { text: 'Rice', href: '#', style: 'secondary', size: 'medium', icon: '🍚' },
-        { text: 'Instant Pot', href: '#', style: 'secondary', size: 'medium', icon: '🥘' },
-        { text: 'Soup', href: '#', style: 'secondary', size: 'medium', icon: '🍲' },
-        { text: 'Sides', href: '#', style: 'secondary', size: 'medium', icon: '🥗' }
+        { text: 'Pasta', href: '#', onclick: 'filterRecipes("pasta")', style: 'secondary', size: 'medium', icon: '🍝' },
+        { text: 'Rice', href: '#', onclick: 'filterRecipes("rice")', style: 'secondary', size: 'medium', icon: '🍚' },
+        { text: 'Instant Pot', href: '#', onclick: 'filterRecipes("instant pot")', style: 'secondary', size: 'medium', icon: '🥘' },
+        { text: 'Soup', href: '#', onclick: 'filterRecipes("soup")', style: 'secondary', size: 'medium', icon: '🍲' },
+        { text: 'Sides', href: '#', onclick: 'filterRecipes("sides")', style: 'secondary', size: 'medium', icon: '🥗' }
       ]
     });
 
@@ -114,8 +127,8 @@
       alignment: 'left',
       spacing: 'normal',
       buttons: [
-        { text: 'Savoury', href: '#', style: 'secondary', size: 'medium', icon: '🍳' },
-        { text: 'Sweet', href: '#', style: 'secondary', size: 'medium', icon: '🥞' }
+        { text: 'Savoury', href: '#', onclick: 'filterRecipes("savoury")', style: 'secondary', size: 'medium', icon: '🍳' },
+        { text: 'Sweet', href: '#', onclick: 'filterRecipes("sweet")', style: 'secondary', size: 'medium', icon: '🥞' }
       ]
     });
 
@@ -124,10 +137,10 @@
       alignment: 'left',
       spacing: 'normal',
       buttons: [
-        { text: 'Cookies', href: '#', style: 'secondary', size: 'medium', icon: '🍪' },
-        { text: 'Bread', href: '#', style: 'secondary', size: 'medium', icon: '🍞' },
-        { text: 'Muffins', href: '#', style: 'secondary', size: 'medium', icon: '🧁' },
-        { text: 'Cake', href: '#', style: 'secondary', size: 'medium', icon: '🎂' }
+        { text: 'Cookies', href: '#', onclick: 'filterRecipes("cookies")', style: 'secondary', size: 'medium', icon: '🍪' },
+        { text: 'Bread', href: '#', onclick: 'filterRecipes("bread")', style: 'secondary', size: 'medium', icon: '🍞' },
+        { text: 'Muffins', href: '#', onclick: 'filterRecipes("muffins")', style: 'secondary', size: 'medium', icon: '🧁' },
+        { text: 'Cake', href: '#', onclick: 'filterRecipes("cake")', style: 'secondary', size: 'medium', icon: '🎂' }
       ]
     });
 
@@ -136,13 +149,100 @@
       alignment: 'left',
       spacing: 'normal',
       buttons: [
-        { text: 'Christmas', href: '#', style: 'secondary', size: 'medium', icon: '🎄' },
-        { text: 'Passover', href: '#', style: 'secondary', size: 'medium', icon: '✡️' },
-        { text: 'Chanukah', href: '#', style: 'secondary', size: 'medium', icon: '🕎' },
-        { text: 'Easter', href: '#', style: 'secondary', size: 'medium', icon: '🐰' },
-        { text: 'Thanksgiving', href: '#', style: 'secondary', size: 'medium', icon: '🦃' }
+        { text: 'Christmas', href: '#', onclick: 'filterRecipes("christmas")', style: 'secondary', size: 'medium', icon: '🎄' },
+        { text: 'Passover', href: '#', onclick: 'filterRecipes("passover")', style: 'secondary', size: 'medium', icon: '✡️' },
+        { text: 'Chanukah', href: '#', onclick: 'filterRecipes("chanukah")', style: 'secondary', size: 'medium', icon: '🕎' },
+        { text: 'Easter', href: '#', onclick: 'filterRecipes("easter")', style: 'secondary', size: 'medium', icon: '🐰' },
+        { text: 'Thanksgiving', href: '#', onclick: 'filterRecipes("thanksgiving")', style: 'secondary', size: 'medium', icon: '🦃' }
       ]
     });
+
+    // Recipe filtering functionality
+    let allRecipes = [];
+
+    // Load all recipes from the database
+    async function loadRecipes() {
+      const recipeFiles = [
+        'panang-curry.json',
+        'sticky-chicken.json',
+        'teriyaki-chicken-lettuce-wraps.json'
+      ];
+
+      try {
+        for (const file of recipeFiles) {
+          const response = await fetch(`database/${file}`);
+          if (response.ok) {
+            const recipe = await response.json();
+            allRecipes.push(recipe);
+          }
+        }
+      } catch (error) {
+        console.error('Error loading recipes:', error);
+      }
+    }
+
+    // Filter recipes by tag
+    function filterRecipes(tag) {
+      const filteredRecipes = allRecipes.filter(recipe => 
+        recipe.tags && recipe.tags.some(recipeTag => 
+          recipeTag.toLowerCase().includes(tag.toLowerCase())
+        )
+      );
+
+      displayFilteredRecipes(filteredRecipes, tag);
+    }
+
+    // Display filtered recipes
+    function displayFilteredRecipes(recipes, tag) {
+      const categoriesDiv = document.querySelector('.recipe-categories');
+      const filteredDiv = document.getElementById('filteredResults');
+      const filterTitle = document.getElementById('filterTitle');
+      const recipeGrid = document.getElementById('recipeGrid');
+
+      // Hide categories, show filtered results
+      categoriesDiv.style.display = 'none';
+      filteredDiv.style.display = 'block';
+
+      // Update title
+      filterTitle.textContent = `${tag.charAt(0).toUpperCase() + tag.slice(1)} Recipes (${recipes.length})`;
+
+      // Create recipe cards
+      if (recipes.length === 0) {
+        recipeGrid.innerHTML = '<p>No recipes found for this category.</p>';
+      } else {
+        recipeGrid.innerHTML = recipes.map(recipe => createRecipeCard(recipe)).join('');
+      }
+    }
+
+    // Create a recipe card HTML
+    function createRecipeCard(recipe) {
+      return `
+        <div class="recipe-card">
+          <div class="recipe-content">
+            <h3>${recipe.name}</h3>
+            <div class="recipe-meta">
+              <span class="prep-time">⏱️ ${recipe.duration} ${recipe.duration === 1 ? 'hour' : 'hours'}</span>
+              <span class="servings">🍽️ ${recipe.servings} servings</span>
+            </div>
+            <div class="recipe-tags">
+              ${recipe.tags ? recipe.tags.map(tag => `<span class="recipe-tag">${tag}</span>`).join('') : ''}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Show all categories (back button)
+    function showAllCategories() {
+      const categoriesDiv = document.querySelector('.recipe-categories');
+      const filteredDiv = document.getElementById('filteredResults');
+
+      categoriesDiv.style.display = 'block';
+      filteredDiv.style.display = 'none';
+    }
+
+    // Load recipes when page loads
+    loadRecipes();
 
   </script>
 </body>
