@@ -96,16 +96,33 @@
 
     // Load recipe category buttons
     
+    // Add event listeners after buttons are created
+    setTimeout(() => {
+      // Add click handlers to protein buttons
+      const proteinButtons = document.querySelectorAll('#proteinButtons .nav-button');
+      const tags = ['chicken', 'beef', 'pork', 'lamb', 'vegetarian'];
+      
+      proteinButtons.forEach((button, index) => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          console.log('Button clicked:', tags[index]);
+          filterRecipes(tags[index]);
+        });
+      });
+
+      console.log('Event listeners added to', proteinButtons.length, 'buttons');
+    }, 500);
+    
     // Meals by Protein
     loadTemplate('buttonGroup', 'proteinButtons', {
       alignment: 'left',
       spacing: 'normal',
       buttons: [
-        { text: 'Chicken', href: '#', onclick: 'filterRecipes("chicken")', style: 'secondary', size: 'medium', icon: '🍗' },
-        { text: 'Beef', href: '#', onclick: 'filterRecipes("beef")', style: 'secondary', size: 'medium', icon: '🥩' },
-        { text: 'Pork', href: '#', onclick: 'filterRecipes("pork")', style: 'secondary', size: 'medium', icon: '🐷' },
-        { text: 'Lamb', href: '#', onclick: 'filterRecipes("lamb")', style: 'secondary', size: 'medium', icon: '🐑' },
-        { text: 'Vegetarian', href: '#', onclick: 'filterRecipes("vegetarian")', style: 'secondary', size: 'medium', icon: '🥬' }
+        { text: 'Chicken', href: '#', style: 'secondary', size: 'medium', icon: '🍗', tag: 'chicken' },
+        { text: 'Beef', href: '#', style: 'secondary', size: 'medium', icon: '🥩', tag: 'beef' },
+        { text: 'Pork', href: '#', style: 'secondary', size: 'medium', icon: '🐷', tag: 'pork' },
+        { text: 'Lamb', href: '#', style: 'secondary', size: 'medium', icon: '🐑', tag: 'lamb' },
+        { text: 'Vegetarian', href: '#', style: 'secondary', size: 'medium', icon: '🥬', tag: 'vegetarian' }
       ]
     });
 
@@ -114,11 +131,11 @@
       alignment: 'left',
       spacing: 'normal',
       buttons: [
-        { text: 'Pasta', href: '#', onclick: 'filterRecipes("pasta")', style: 'secondary', size: 'medium', icon: '🍝' },
-        { text: 'Rice', href: '#', onclick: 'filterRecipes("rice")', style: 'secondary', size: 'medium', icon: '🍚' },
-        { text: 'Instant Pot', href: '#', onclick: 'filterRecipes("instant pot")', style: 'secondary', size: 'medium', icon: '🥘' },
-        { text: 'Soup', href: '#', onclick: 'filterRecipes("soup")', style: 'secondary', size: 'medium', icon: '🍲' },
-        { text: 'Sides', href: '#', onclick: 'filterRecipes("sides")', style: 'secondary', size: 'medium', icon: '🥗' }
+        { text: 'Pasta', href: '#', style: 'secondary', size: 'medium', icon: '🍝' },
+        { text: 'Rice', href: '#', style: 'secondary', size: 'medium', icon: '🍚' },
+        { text: 'Instant Pot', href: '#', style: 'secondary', size: 'medium', icon: '🥘' },
+        { text: 'Soup', href: '#', style: 'secondary', size: 'medium', icon: '🍲' },
+        { text: 'Sides', href: '#', style: 'secondary', size: 'medium', icon: '🥗' }
       ]
     });
 
@@ -168,14 +185,20 @@
         'teriyaki-chicken-lettuce-wraps.json'
       ];
 
+      console.log('Loading recipes...');
       try {
         for (const file of recipeFiles) {
+          console.log('Fetching:', `database/${file}`);
           const response = await fetch(`database/${file}`);
           if (response.ok) {
             const recipe = await response.json();
+            console.log('Loaded recipe:', recipe.name);
             allRecipes.push(recipe);
+          } else {
+            console.error('Failed to fetch:', file, response.status);
           }
         }
+        console.log('All recipes loaded:', allRecipes.length);
       } catch (error) {
         console.error('Error loading recipes:', error);
       }
@@ -183,12 +206,16 @@
 
     // Filter recipes by tag
     function filterRecipes(tag) {
+      console.log('Filtering recipes for tag:', tag);
+      console.log('All recipes loaded:', allRecipes);
+      
       const filteredRecipes = allRecipes.filter(recipe => 
         recipe.tags && recipe.tags.some(recipeTag => 
           recipeTag.toLowerCase().includes(tag.toLowerCase())
         )
       );
 
+      console.log('Filtered recipes:', filteredRecipes);
       displayFilteredRecipes(filteredRecipes, tag);
     }
 
@@ -241,8 +268,19 @@
       filteredDiv.style.display = 'none';
     }
 
+    // Test function to verify buttons work
+    window.testClick = function() {
+      alert('Button click detected!');
+    };
+
+    // Make functions globally accessible
+    window.filterRecipes = filterRecipes;
+    window.showAllCategories = showAllCategories;
+
     // Load recipes when page loads
-    loadRecipes();
+    loadRecipes().then(() => {
+      console.log('Recipes loaded successfully:', allRecipes.length, 'recipes');
+    });
 
   </script>
 </body>

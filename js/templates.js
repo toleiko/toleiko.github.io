@@ -88,13 +88,11 @@ templateManager.registerTemplate('navButton', (data) => {
   const style = data.style || 'primary';
   const size = data.size || 'medium';
   const icon = data.icon || '';
-  const target = data.target || '_self';
-  
-  return `
-    <a href="${href}" 
+  const target = data.target || '_self';    return `
+    <a href="${data.onclick ? 'javascript:void(0)' : href}" 
        target="${target}"
        class="nav-button nav-button--${style} nav-button--${size}"
-       ${data.onclick ? `onclick="${data.onclick}"` : ''}>
+       ${data.onclick ? `onclick="${data.onclick}; return false;"` : ''}>
       ${icon ? `<span class="button-icon">${icon}</span>` : ''}
       <span class="button-text">${text}</span>
     </a>
