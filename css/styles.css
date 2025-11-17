@@ -649,11 +649,63 @@ body {
   gap: 2rem;
   margin-bottom: 1rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .recipe-detail .recipe-meta span {
   color: #666;
   font-size: 1.1rem;
+}
+
+.servings-control {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.servings-control label {
+  color: #666;
+  font-size: 1rem;
+  margin-right: 0.25rem;
+}
+
+.servings-input-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid #2A7B88;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.serving-btn {
+  background: #2A7B88;
+  color: white;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  min-width: 24px;
+}
+
+.serving-btn:hover {
+  background: #1E5A62;
+}
+
+#servingsInput {
+  border: none;
+  padding: 0.25rem;
+  width: 40px;
+  text-align: center;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.original-servings {
+  color: #999;
+  font-size: 0.9rem;
+  font-style: italic;
 }
 
 .recipe-section {

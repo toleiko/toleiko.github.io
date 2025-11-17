@@ -82,9 +82,17 @@
       }
     }
 
+    // Store original recipe for scaling calculations
+    let originalRecipe = null;
+    let currentServings = null;
+
     // Display recipe with proper formatting
     function displayRecipe(recipe) {
       const container = document.getElementById('recipeDetails');
+      
+      // Store original recipe data
+      originalRecipe = JSON.parse(JSON.stringify(recipe)); // Deep clone
+      currentServings = recipe.servings;
       
       // Update page title
       document.title = `${recipe.name} - toleiko`;
@@ -96,7 +104,15 @@
             <h1>${recipe.name}</h1>
             <div class="recipe-meta">
               <span class="prep-time">⏱️ ${recipe.duration} ${recipe.duration === 1 ? 'hour' : 'hours'}</span>
-              <span class="servings">🍽️ ${recipe.servings} servings</span>
+              <div class="servings-control">
+                <label for="servingsInput">🍽️ Servings:</label>
+                <div class="servings-input-group">
+                  <button onclick="adjustServings(-1)" class="serving-btn">−</button>
+                  <input type="number" id="servingsInput" value="${recipe.servings}" min="1" max="50" onchange="updateServings()">
+                  <button onclick="adjustServings(1)" class="serving-btn">+</button>
+                </div>
+                <span class="original-servings">(Originally ${recipe.servings})</span>
+              </div>
             </div>
             ${recipe.tags ? `
               <div class="recipe-tags">
@@ -106,7 +122,7 @@
           </div>
 
           <div class="recipe-content">
-            ${formatIngredients(recipe.ingredients)}
+            <div id="ingredientsSection">${formatIngredients(recipe.ingredients, currentServings)}</div>
             ${formatInstructions(recipe.instructions)}
             ${recipe.additional_context ? formatAdditionalContext(recipe.additional_context) : ''}
           </div>
@@ -114,9 +130,117 @@
       `;
     }
 
+    // Serving size adjustment functions
+    function adjustServings(change) {
+      const input = document.getElementById('servingsInput');
+      const newValue = Math.max(1, Math.min(50, parseInt(input.value) + change));
+      input.value = newValue;
+      updateServings();
+    }
+
+    function updateServings() {
+      const input = document.getElementById('servingsInput');
+      const newServings = parseInt(input.value);
+      if (newServings && newServings > 0) {
+        currentServings = newServings;
+        // Update ingredients section with scaled amounts
+        document.getElementById('ingredientsSection').innerHTML = formatIngredients(originalRecipe.ingredients, currentServings);
+      }
+    }
+
+    // Parse and scale ingredient quantities
+    function scaleIngredient(ingredient, scaleFactor) {
+      // Regular expressions to match various quantity formats
+      const patterns = [
+        // Fractions: 1/2, 2/3, etc.
+        /^(\d+\/\d+)\s*([–-])\s*(.+)$/,
+        // Decimal numbers: 1.5, 2.25, etc.
+        /^(\d+\.?\d*)\s*([–-])\s*(.+)$/,
+        // Mixed numbers: 1 1/2, 2 3/4, etc.
+        /^(\d+\s+\d+\/\d+)\s*([–-])\s*(.+)$/,
+        // Ranges: 2-3, 4-6, etc.
+        /^(\d+\.?\d*)\s*[-–]\s*(\d+\.?\d*)\s*([–-])\s*(.+)$/,
+        // Simple numbers at start: 2 tbsp, 3 cups, etc.
+        /^(\d+\.?\d*)\s+(.+)$/
+      ];
+
+      for (const pattern of patterns) {
+        const match = ingredient.match(pattern);
+        if (match) {
+          if (pattern.source.includes('[-–].*[-–]')) {
+            // Range pattern (e.g., "2-3 – Onions")
+            const min = parseFloat(match[1]);
+            const max = parseFloat(match[2]);
+            const scaledMin = (min * scaleFactor).toFixed(2).replace(/\.?0+$/, '');
+            const scaledMax = (max * scaleFactor).toFixed(2).replace(/\.?0+$/, '');
+            return `${scaledMin}–${scaledMax} ${match[3]} ${match[4]}`;
+          } else if (match[2] === '–' || match[2] === '-') {
+            // Standard format with dash (e.g., "2 – tbsp Oil")
+            const quantity = parseQuantity(match[1]);
+            const scaledQuantity = formatScaledQuantity(quantity * scaleFactor);
+            return `${scaledQuantity} ${match[2]} ${match[3]}`;
+          } else {
+            // Simple format without dash (e.g., "2 tbsp oil")
+            const quantity = parseQuantity(match[1]);
+            const scaledQuantity = formatScaledQuantity(quantity * scaleFactor);
+            return `${scaledQuantity} ${match[2]}`;
+          }
+        }
+      }
+      
+      // If no pattern matches, return original (for items like "Salt to taste")
+      return ingredient;
+    }
+
+    // Parse various quantity formats to decimal
+    function parseQuantity(quantityStr) {
+      quantityStr = quantityStr.trim();
+      
+      // Handle fractions like "1/2"
+      if (quantityStr.includes('/')) {
+        const parts = quantityStr.split(/\s+/);
+        let total = 0;
+        
+        for (const part of parts) {
+          if (part.includes('/')) {
+            const [num, den] = part.split('/');
+            total += parseInt(num) / parseInt(den);
+          } else {
+            total += parseInt(part);
+          }
+        }
+        return total;
+      }
+      
+      return parseFloat(quantityStr);
+    }
+
+    // Format scaled quantity back to nice fractions when possible
+    function formatScaledQuantity(quantity) {
+      const commonFractions = {
+        0.125: '1/8', 0.25: '1/4', 0.333: '1/3', 0.375: '3/8',
+        0.5: '1/2', 0.625: '5/8', 0.667: '2/3', 0.75: '3/4', 0.875: '7/8'
+      };
+      
+      const wholeNumber = Math.floor(quantity);
+      const decimal = quantity - wholeNumber;
+      
+      // Check if decimal part matches a common fraction
+      for (const [dec, frac] of Object.entries(commonFractions)) {
+        if (Math.abs(decimal - parseFloat(dec)) < 0.01) {
+          return wholeNumber > 0 ? `${wholeNumber} ${frac}` : frac;
+        }
+      }
+      
+      // If no common fraction matches, use decimal (rounded to reasonable precision)
+      return quantity % 1 === 0 ? quantity.toString() : quantity.toFixed(2).replace(/\.?0+$/, '');
+    }
+
     // Format ingredients (handle both simple arrays and sectioned objects)
-    function formatIngredients(ingredients) {
+    function formatIngredients(ingredients, servings = null) {
       if (!ingredients) return '';
+
+      const scaleFactor = servings && originalRecipe ? servings / originalRecipe.servings : 1;
 
       if (Array.isArray(ingredients)) {
         // Simple format: array of strings
@@ -124,7 +248,7 @@
           <div class="recipe-section">
             <h3>Ingredients</h3>
             <ul class="ingredient-list">
-              ${ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+              ${ingredients.map(ingredient => `<li>${scaleIngredient(ingredient, scaleFactor)}</li>`).join('')}
             </ul>
           </div>
         `;
@@ -137,7 +261,7 @@
               <div class="ingredient-section">
                 <h4>${sectionName}</h4>
                 <ul class="ingredient-list indented">
-                  ${items.map(item => `<li>${item}</li>`).join('')}
+                  ${items.map(item => `<li>${scaleIngredient(item, scaleFactor)}</li>`).join('')}
                 </ul>
               </div>
             `).join('')}
