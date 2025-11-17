@@ -1,0 +1,49 @@
+{
+  "name": "Instant Pot Indian Curry",
+  "duration": 0.5,
+  "tags": ["curry", "instant pot", "indian", "chicken", "rice", "spicy"],
+  "servings": 6,
+  "ingredients": [
+    "2 lb – Chicken, boneless, cut into 1-2 inch pieces",
+    "6 tbsp – Oil",
+    "2 small – Green Chili Pepper, chopped",
+    "2 inch – Ginger, finely chopped",
+    "10 cloves – Garlic, finely chopped",
+    "2 medium – Onion, finely chopped",
+    "4 medium – Tomato, finely chopped",
+    "2/3 cup – Water/Broth",
+    "2 tbsp – Lemon Juice",
+    "1/2 cup – Lemon Juice",
+    "250ml – Coconut/heavy cream (optional)",
+    "2 pods – Whole Cardamom",
+    "4 leaves – Whole Bay Leaf",
+    "12 – Whole Cloves",
+    "12 – Whole Black Peppercorns",
+    "1 tsp – Whole Cumin Seeds",
+    "4 tsp – Ground Coriander Powder",
+    "1 tsp – Ground Kashmiri Red Chili Powder",
+    "1 tsp – Ground Garam Masala",
+    "0.5 tsp – Ground Tumeric",
+    "2 tsp – Ground Salt"
+  ],
+  "instructions": [
+    "Start cooking Rice",
+    "Cut chicken into 1-2 inch pieces",
+    "Heat instant pot in saute mode and add oil to it.",
+    "Ad the whole spices and saute for 30 seconds until fragrant",
+    "Add chili, onions, ginger, and garlic to pot and saute for 4 minutes until golden; stir often",
+    "Add tomatoes and ground spices, saute for another 4 minutes; stir often",
+    "Add chicken and saute for 4 minutes",
+    "Add Water/Broth, de-glaze and scrape anything stuck to the pot",
+    "Set the instant pot to manual/pressure cook mode on high for 5 minutes",
+    "Once finished, quick release the pressure manually",
+    "Stir in lemon juice",
+    "Optional: add coconut or heavy cream to thicken the curry",
+    "Garnish with cilantro and serve"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

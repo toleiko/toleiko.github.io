@@ -1,0 +1,37 @@
+{
+  "name": "Anne's Chicken",
+  "duration": 2.5,
+  "tags": ["chicken", "rice"],
+  "servings": 4,
+  "ingredients": [
+    "2 – Chicken Breasts, cubed",
+    "To Taste – Soy Sauce",
+    "To Taste – Chili Garlic Sauce",
+    "3 cloves – Garlic",
+    "1 medium – Onion",
+    "1 head – Broccoli",
+    "1 medium – Green Pepper",
+    "5-6 – Mushrooms",
+    "2-3 Stocks – Celery",
+    "As Needed – Sesame Oil",
+    "As Needed – Oyster Sauce or Sweet Hoisin Sauce",
+    "1-2 tbsp – Cornstarch",
+    "1-2 tbsp – Water",
+    "As Needed – Water Chestnuts"
+  ],
+  "instructions": [
+    "Marinade the chicken pieces in soy sauce and chili garlic sauce for at least 2 hours",
+    "Start the rice",
+    "Cook chicken in oil/butter then set aside",
+    "Saute onion and garlic",
+    "add remaining vegetables to steam cook",
+    "When veggies are done, add back the chicken",
+    "Add sesame oil and oyster/hoisin sauce",
+    "Add cornstarch and water to thicken the sauce"
+  ],
+  "additional_context": {
+    "source": "This is Isaac's Auntie Anne's recipe.",
+    "story": "",
+    "tips": "Marinading longer makes it more flavorful!"
+  }
+}

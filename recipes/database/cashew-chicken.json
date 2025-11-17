@@ -1,0 +1,41 @@
+{
+  "name": "Cashew Chicken",
+  "duration": 1,
+  "tags": ["chicken", "rice", "spicy", "thai"],
+  "servings": 4,
+  "ingredients": {
+    "Curry": [
+      "300g – Chicken Breast, thinly sliced",
+      "120g – deep fried cashew nuts",
+      "45ml – Oil",
+      "8 cloves – Garlic, crushed",
+      "2 small – Onions, sliced",
+      "2 large – Red Chiles, sliced",
+      "125ml – Chicken Stock",
+      "4-8 – spring onions, sliced",
+      "5-15ml Whiskey / Wine "
+    ],
+    "Sauce": [
+      "30ml – Oyster Sauce",
+      "15ml – Soy Sauce",
+      "15ml – Fish Sauce",
+      "20g – Palm Sugar"
+    ]
+  },
+  "instructions": [
+    "Cook rice",
+    "To roast nuts: fry them in 250ml oil over low heat until nuts are brown, then drain",
+    "Put oil in a wok and let heat on medium-high heat",
+    "Add garlic",
+    "Once garlic is brown, add chicken, onions, red chiles and stir-fry for about 3 minutes",
+    "Add stock and stir it in",
+    "Add sauce and stir-fry to combine",
+    "Add cashew nuts and spring onions and stir-fry briefly",
+    "Add wine or whiskey and turn off the heat"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": "Since this recipe is quick, make sure all ingredients are prepped and ready before starting to cook."
+  }
+}

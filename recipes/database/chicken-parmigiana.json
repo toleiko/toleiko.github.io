@@ -1,0 +1,43 @@
+{
+  "name": "Chicken Parmigiana",
+  "duration": 1,
+  "tags": ["chicken", "italian"],
+  "servings": 4,
+  "ingredients": [
+    "4 breasts – Chicken Breasts",
+    "4 tbsp – Mayonnaise",
+    "1/2 cup – Panko Breadcrumbs",
+    "320g – Sweet Bell Pepper",
+    "100g – Shallot",
+    "1 cup – Marinara Sauce",
+    "1/2 cup – Parmesan Cheese",
+    "113g – Baby Spinach",
+    "2 tbsp – Red Wine Vinegar",
+    "1 tbsp – Italian Seasoning",
+    "3 tsp – Dijon Mustard",
+    "1 tsp – sugar",
+    "2-3 tbsp – Oil",
+    "To taste – Salt and Pepper"
+  ],
+  "instructions": [
+    "Preheat oven to broil",
+    "Cut pepper and shallot into 1/4 inch slices",
+    "Season chicken with salt and pepper",
+    "Coat chicken with mayo, all over",
+    "Coat chicken in panko completely",
+    "Heat a pan over medium heat, then add oil",
+    "Fry chicken until golden brown, 3-4 minutes per side; note the chicken won’t be fully cooked until the broiling step",
+    "Place fried chicken on foil-lined baking sheet",
+    "Spoon marinara sauce over chicken and sprinkling parmesan on top",
+    "Broil chicken on middle rack until cheese is golden-brown and cooked through (74˚C/165˚F), 4-6 min",
+    "While chicken broils, toss peppers, shallots, half of the italian seasoning with oil on another baking sheet. Broil on bottom rack until tender, 4-6 minutes",
+    "Meanwhile, whisk mustard, vinegar, 1 tbsp oil, sugar, salt, and pepper",
+    "Toss veggies, spinach, and dressing together",
+    "Serve chicken with veggies"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

@@ -42,10 +42,10 @@
         <div id="breakfastButtons"></div>
       </div>
       
-      <!-- Desserts -->
+      <!-- Baking -->
       <div class="category-section">
-        <h3>Desserts</h3>
-        <div id="dessertButtons"></div>
+        <h3>Baking</h3>
+        <div id="bakingButtons"></div>
       </div>
       
       <!-- Holiday Themed -->
@@ -149,8 +149,8 @@
       ]
     });
 
-    // Desserts
-    loadTemplate('buttonGroup', 'dessertButtons', {
+    // Baking
+    loadTemplate('buttonGroup', 'bakingButtons', {
       alignment: 'left',
       spacing: 'normal',
       buttons: [
@@ -177,10 +177,18 @@
     // Recipe filtering functionality
     let allRecipes = [];
 
-    // Load all recipes from the database
+    // Load all recipes from the database folder
     async function loadRecipes() {
       const recipeFiles = [
+        'annes-chicken.json',
+        'cashew-chicken.json',
+        'chicken-parmigiana.json',
+        'instant-pot-indian-curry.json',
+        'instant-pot-tuscan-chicken.json',
+        'lemon-orzo-chicken.json',
+        'lemon-roast-chicken.json',
         'panaeng-curry.json',
+        'spicy-mushroom-larb.json',
         'sticky-chicken.json',
         'teriyaki-chicken-lettuce-wraps.json'
       ];

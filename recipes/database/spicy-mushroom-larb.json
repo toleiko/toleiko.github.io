@@ -1,0 +1,38 @@
+{
+  "name": "Spicy Mushroom Larb",
+  "duration": 0.5,
+  "tags": ["chicken", "rice", "spicy", "laos", "vegetarian"], 
+  "servings": 4,
+  "ingredients": [
+    "1/2 cup – Peanuts, roasted and skinless",
+    "8 tbsp – Oil",
+    "24 oz – Mushrooms, quartered",
+    "6 – Scallions, thinly sliced",
+    "2 tsp – Garlic, minced",
+    "2 inch – Ginger, grated",
+    "to taste – Salt",
+    "2 – Shallot/Onion, sliced",
+    "2 – Red Chile Pepper (holland, Fresno, Thai)",
+    "2 cup – mint leaves",
+    "2 tbsp – fish sauce",
+    "1/2 head – green cabbage, halved crosswise and leaves separated",
+    "2 – limes, sliced into wedges (for serving)",
+    "2 – Chicken Breasts (optional)"
+  ],
+  "instructions": [
+    "optionally, start rice if this is being served on rice",
+    "Crush/chop peanuts into small pieces, set aside",
+    "heat oil in pan over medium-high until shimmering",
+    "Add mushrooms and cook undisturbed until bottom sides are brown, ~5 minutes",
+    "If using chicken, add chicken slices at this point",
+    "Toss and continue to cook, tossing occasionally and reducing heat as needed to avoid burning until golden all over, ~4 minutes",
+    "add scallions, garlic, ginger and cook until softened and fragrant, ~2 minutes",
+    "Remove from heat, lightly season with salt",
+    "Mix in shallot, chile, mint, fish sauce, and half of peanuts."
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": "Do not even think about stirring, tossing, or shaking mushrooms while cooking to get the best browning!"
+  }
+}

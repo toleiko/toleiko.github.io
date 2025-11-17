@@ -1,0 +1,58 @@
+{
+  "name": "Lemon Orzo Chicken",
+  "duration": 1,
+  "tags": ["chicken", "pasta"],
+  "servings": 6,
+  "ingredients": {
+    "Chicken": [
+      "1 lb – Chicken Breast, bite size pieces",
+      "1/2 tsp – Paprika",
+      "1/2 tsp – Salt",
+      "1/2 tsp – Pepper"
+    ],
+    "Orzo": [
+      "2 tbsp – Butter",
+      "1 small – Onion, diced",
+      "4 cloves – Garlic, minced",
+      "1 1/2 cup – Orzo Pasta, uncooked",
+      "2 medium – Zucchini or yellow squash, grated",
+      "1 12 oz can – Evaporated Milk",
+      "2 tbsp – Cornstarch",
+      "2 3/4 cup – Chicken Broth",
+      "1 large – Lemon, zested and juiced",
+      "1 tsp – Chicken bouillon",
+      "1/2 tsp – Thyme",
+      "1/2 tsp – Salt",
+      "1/2 tsp – Pepper"
+    ],
+    "Toppings" : [  
+      "1/2 cup – Mozzarella, shredded (optional)",
+      "1/4 cup – Feta",
+      "1/4 cup – Basil, chopped",
+      "1 tsp – Dill",
+      "1 tsp Parsley"
+    ]
+  },
+  "instructions": [
+    "Cut chicken into pieces, pat dry, and season with the chicken spices",
+    "Heat olive oil in a Dutch oven over medium-high heat.",
+    "Add chicken adn cook until chicken is almost done, set chicken aside on plate",
+    "Melt butter, then add onions and saute for ~4 minutes",
+    "Add orzo and saute for ~2 minutes",
+    "Add zucchini and garlic to cook for ~2 minutes",
+    "Stir evaporated milk in",
+    "Whisk in chicken broth and cornstarch then add both to the pot",
+    "Add lemon zest/juice, chicken bouillon, thyme, salt and pepper to the pot",
+    "Add chicken back into the pot",
+    "Cover the pot and bring to a simmer until orzo is tender, approx 8-10 minutes",
+    "Stir every few minutes to prevent burning",
+    "Add additional broth if orzo needs more liquid, finished orzo has a risotto consistency",
+    "Stir in the toppings",
+    "Add lemon juice, salt and pepper to taste"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}
