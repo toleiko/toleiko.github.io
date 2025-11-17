@@ -184,32 +184,67 @@
             // New format with unit: quantity + unit + dash + description (e.g., "1 1/2 cup – Chicken")
             const quantity = parseQuantity(match[1]);
             console.log('Parsed quantity:', quantity, 'from:', match[1]);
-            const scaledQuantity = formatScaledQuantity(quantity * scaleFactor);
-            console.log('Scaled quantity:', scaledQuantity);
-            const unit = match[2];
+            const scaledQuantity = quantity * scaleFactor;
+            const unit = match[2].trim();
             const dash = match[3];
             const description = match[4];
-            const result = `${scaledQuantity} ${unit} ${dash} ${description}`;
+            
+            // Apply smart unit conversion
+            const converted = formatScaledQuantityAndUnit(scaledQuantity, unit);
+            console.log('Scaled and converted:', converted);
+            
+            const result = `${converted.quantity} ${converted.unit} ${dash} ${description}`;
             console.log('Unit format result:', result);
             return result;
           } else if (match[2] === '–' || match[2] === '-') {
             // Old format with dash (e.g., "2 – tbsp Oil")
             const quantity = parseQuantity(match[1]);
             console.log('Parsed quantity:', quantity, 'from:', match[1]);
-            const scaledQuantity = formatScaledQuantity(quantity * scaleFactor);
-            console.log('Scaled quantity:', scaledQuantity);
-            const result = `${scaledQuantity} ${match[2]} ${match[3]}`;
-            console.log('Old format result:', result);
-            return result;
+            const scaledQuantity = quantity * scaleFactor;
+            const dash = match[2];
+            const restOfIngredient = match[3].trim();
+            
+            // Try to extract unit from the rest of the ingredient
+            const unitMatch = restOfIngredient.match(/^(\w+)\s+(.+)$/);
+            if (unitMatch) {
+              const unit = unitMatch[1];
+              const description = unitMatch[2];
+              const converted = formatScaledQuantityAndUnit(scaledQuantity, unit);
+              console.log('Scaled and converted:', converted);
+              const result = `${converted.quantity} ${dash} ${converted.unit} ${description}`;
+              console.log('Old format result:', result);
+              return result;
+            } else {
+              // No clear unit separation, use basic formatting
+              const converted = { quantity: formatQuantityOnly(scaledQuantity), unit: '' };
+              const result = `${converted.quantity} ${dash} ${restOfIngredient}`;
+              console.log('Old format result (no unit):', result);
+              return result;
+            }
           } else {
             // Simple format without dash (e.g., "2 tbsp oil")
             const quantity = parseQuantity(match[1]);
             console.log('Parsed quantity:', quantity, 'from:', match[1]);
-            const scaledQuantity = formatScaledQuantity(quantity * scaleFactor);
-            console.log('Scaled quantity:', scaledQuantity);
-            const result = `${scaledQuantity} ${match[2]}`;
-            console.log('Simple result:', result);
-            return result;
+            const scaledQuantity = quantity * scaleFactor;
+            const restOfIngredient = match[2].trim();
+            
+            // Try to extract unit from the rest of the ingredient
+            const unitMatch = restOfIngredient.match(/^(\w+)\s+(.+)$/);
+            if (unitMatch) {
+              const unit = unitMatch[1];
+              const description = unitMatch[2];
+              const converted = formatScaledQuantityAndUnit(scaledQuantity, unit);
+              console.log('Scaled and converted:', converted);
+              const result = `${converted.quantity} ${converted.unit} ${description}`;
+              console.log('Simple result:', result);
+              return result;
+            } else {
+              // No clear unit separation, use basic formatting
+              const converted = { quantity: formatQuantityOnly(scaledQuantity), unit: '' };
+              const result = `${converted.quantity} ${restOfIngredient}`;
+              console.log('Simple result (no unit):', result);
+              return result;
+            }
           }
         }
       }
@@ -252,8 +287,121 @@
       return result;
     }
 
-    // Format scaled quantity back to nice fractions when possible
-    function formatScaledQuantity(quantity) {
+    // Smart unit conversion and quantity formatting
+    function formatScaledQuantityAndUnit(quantity, unit) {
+      const commonFractions = {
+        0.125: '1/8', 0.25: '1/4', 0.333: '1/3', 0.375: '3/8',
+        0.5: '1/2', 0.625: '5/8', 0.667: '2/3', 0.75: '3/4', 0.875: '7/8'
+      };
+
+      // Handle unit conversions based on quantity
+      const unitLower = unit.toLowerCase().trim();
+      
+      // TSP -> TBSP conversion (3 tsp = 1 tbsp)
+      if (unitLower === 'tsp' && quantity >= 3) {
+        const tbsp = quantity / 3;
+        // Only convert to whole or half tbsp
+        if (tbsp >= 1) {
+          const wholeTbsp = Math.floor(tbsp);
+          const remainder = tbsp - wholeTbsp;
+          
+          if (remainder < 0.25) {
+            // Round down to whole tbsp
+            if (wholeTbsp >= 4) {
+              // Convert tbsp to cups if >= 4 tbsp
+              return formatTbspToCup(wholeTbsp);
+            }
+            return { quantity: wholeTbsp.toString(), unit: 'tbsp' };
+          } else if (remainder >= 0.75) {
+            // Round up to next whole tbsp
+            const roundedTbsp = wholeTbsp + 1;
+            if (roundedTbsp >= 4) {
+              return formatTbspToCup(roundedTbsp);
+            }
+            return { quantity: roundedTbsp.toString(), unit: 'tbsp' };
+          } else {
+            // Use half tbsp
+            const halfTbsp = wholeTbsp + 0.5;
+            if (halfTbsp >= 4) {
+              return formatTbspToCup(halfTbsp);
+            }
+            return { quantity: wholeTbsp > 0 ? `${wholeTbsp} 1/2` : '1/2', unit: 'tbsp' };
+          }
+        }
+      }
+      
+      // TBSP -> CUP conversion (4 tbsp = 1/4 cup)
+      if ((unitLower === 'tbsp' || unitLower === 'tablespoon' || unitLower === 'tablespoons') && quantity >= 4) {
+        return formatTbspToCup(quantity);
+      }
+      
+      // TSP -> CUP direct conversion for large quantities
+      if (unitLower === 'tsp' && quantity >= 12) { // 12 tsp = 4 tbsp = 1/4 cup
+        const cups = quantity / 48; // 48 tsp = 1 cup
+        if (cups >= 0.25) {
+          return formatCupQuantity(cups);
+        }
+      }
+      
+      // Default formatting for quantities that don't need unit conversion
+      return { quantity: formatQuantityOnly(quantity), unit: unit };
+    }
+
+    // Helper function to convert tbsp to cups with proper fractions
+    function formatTbspToCup(tbsp) {
+      const cups = tbsp / 16; // 16 tbsp = 1 cup
+      return formatCupQuantity(cups);
+    }
+    
+    // Helper function to format cup quantities with cooking-friendly fractions
+    function formatCupQuantity(cups) {
+      const cookingCupFractions = [
+        { decimal: 0.25, fraction: '1/4' },
+        { decimal: 0.333, fraction: '1/3' },
+        { decimal: 0.5, fraction: '1/2' },
+        { decimal: 0.667, fraction: '2/3' },
+        { decimal: 0.75, fraction: '3/4' },
+        { decimal: 1.0, fraction: '1' }
+      ];
+      
+      if (cups >= 1) {
+        const wholeCups = Math.floor(cups);
+        const remainder = cups - wholeCups;
+        
+        // Find closest cooking fraction for remainder
+        const closestFraction = cookingCupFractions.find(f => 
+          Math.abs(remainder - f.decimal) < 0.05
+        );
+        
+        if (closestFraction && closestFraction.decimal > 0) {
+          if (wholeCups > 0) {
+            return { 
+              quantity: closestFraction.fraction === '1' ? (wholeCups + 1).toString() : `${wholeCups} ${closestFraction.fraction}`, 
+              unit: wholeCups + (closestFraction.decimal === 1 ? 1 : 0) === 1 ? 'cup' : 'cups' 
+            };
+          } else {
+            return { quantity: closestFraction.fraction, unit: 'cup' };
+          }
+        } else if (remainder < 0.05) {
+          return { quantity: wholeCups.toString(), unit: wholeCups === 1 ? 'cup' : 'cups' };
+        }
+      } else {
+        // Less than 1 cup
+        const closestFraction = cookingCupFractions.find(f => 
+          Math.abs(cups - f.decimal) < 0.05
+        );
+        
+        if (closestFraction) {
+          return { quantity: closestFraction.fraction, unit: 'cup' };
+        }
+      }
+      
+      // Fallback to decimal if no good fraction match
+      return { quantity: cups.toFixed(2).replace(/\.?0+$/, ''), unit: cups === 1 ? 'cup' : 'cups' };
+    }
+
+    // Format quantity only (without unit conversion)
+    function formatQuantityOnly(quantity) {
       const commonFractions = {
         0.125: '1/8', 0.25: '1/4', 0.333: '1/3', 0.375: '3/8',
         0.5: '1/2', 0.625: '5/8', 0.667: '2/3', 0.75: '3/4', 0.875: '7/8'
