@@ -1,0 +1,48 @@
+{
+  "name": "Shepard Pie",
+  "duration": 1,
+  "tags": ["beef", "lamb"],
+  "servings": 8,
+  "ingredients": {
+    "Underside": [
+      "2 – Pie Crust"
+    ],
+    "Insides":  [
+      "1 1/2 lb – Ground Meat (Beef or Lamb)",
+      "1 large – Carrot",
+      "1 medium – Onion",
+      "To Taste – Rosemary",
+      "To Taste – Thyme",
+      "To Taste – Salt and Pepper",
+      "Splash – Worcestershire Sauce",
+      "2 tbsp – Tomato Paste",
+      "2 cup – Gravy or 1 cup chicken stock",
+      "1/2 cup – Red Wine"
+    ],
+    "Topping": [
+      "1.5 lb – Potatoes",
+      "1/4 cup – Butter",
+      "1/4 cup – Milk",
+      "To Taste – Salt and Pepper",
+      "1/4 cup – Parmesan Cheese"
+    ]
+  },
+  "instructions": [
+    "Peel the potatoes",
+    "Boil the potatoes until they are fork soft.",
+    "Fry meat until it’s fully cooked on medium heat. Drain oil once finished",
+    "Add salt and pepper",
+    "Grate onion, carrot, garlic onto drained meat",
+    "Add worcestershire sauce, tomato paste, red wine, rosemary, thyme.",
+    "Continue cooking until red wine is evaporated.",
+    "Add stock or gravy",
+    "Mash the potatoes with the butter, milk, salt, pepper, and parmesan",
+    "To Asseble: add meat mixture to pie crust (about 2/3 full), smooth potatoes over top until folly covered. Stab a fork through the potatoes to make holes for steam to escape.",
+    "Optionally, freeze the pie to be eaten later. Reheat at 350F until heated thoroughly."
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

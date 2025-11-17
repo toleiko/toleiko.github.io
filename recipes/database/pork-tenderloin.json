@@ -1,0 +1,32 @@
+{
+  "name": "Pork Tenderloin",
+  "duration": 4,
+  "tags": ["pork"],
+  "servings": 4,
+  "ingredients": [
+    "2 – 4 lb Pork Tenderloin Roast",
+    "6 cloves – Garlic, pressed",
+    "3 tbsp – Oil",
+    "2 tsp – Thyme",
+    "2 tsp – Rosemary",
+    "2 tsp – Sage",
+    "To Taste – Salt and Pepper",
+    "2-3 tbsp – Citrus (lemon, lime, or orange)",
+    "1 tbsp – Hot Mustard",
+    "3 tbsp – Brown Sugar"
+  ],
+  "instructions": [
+    "Mix the garlic, oil, thyme, rosemary, sage, salt, and pepper together to form a marinade",
+    "Mix the marinade and the pork tenderloin together and let sit at room temperature for 3 hours",
+    "After marinading for 3 hours, position the rack to the middle and preheat the oven to 450˚F",
+    "Rub/pat the pork with with the mustard and brown sugar before roasting",
+    "Roast at 450F for 20 minutes or 300˚F for 1 hour, until the internal temperature reaches 145˚F / 63˚C",
+    "Once roasted, let sit for 5 to 10 minutes.",
+    "Make gravy."
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": "1.5-2 lbs of pork tenderloin is sufficient for 4 people. Medium Rare: 145-150˚F / 63-66˚C. Medium: 150-155 / 66-68˚C. Medium Well: 155-160 / 68-71˚C. Well: 160˚F / 72˚C"
+  }
+}

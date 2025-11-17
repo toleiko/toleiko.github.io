@@ -1,0 +1,41 @@
+{
+  "name": "Beef Tenderloin",
+  "duration": 1.5,
+  "tags": ["beef", "roast"],
+  "servings": 4,
+  "ingredients": [
+    "2.5-3 lb – Beef Tenderloin Roast, preferably head piece and trimmed silver skin",
+    "1 tbsp – Extra-Virgin Olive Oil",
+    "To Taste – Salt and Pepper",
+    "4 tbsp – Cold Unsalted Butter",
+    "3 large – Shallots, halved and sliced thinly",
+    "3/4 cup – Dry Red Wine, like a fruity Cabernet Sauvignon",
+    "1 sprig – Fresh Rosemary, chopped",
+    "3/4 cup – Beef Broth"
+  ],
+  "instructions": [
+    "Position the rack to the middle and preheat the oven to 450˚F",
+    "Rub the beef with oil and place in a roasting pan lined in tin foil",
+    "Season beef generously with salt and pepper",
+    "Roast beef until rare or medium rare",
+    "Let the meat rest on a cutting board for 10-15 minutes in foil, note that the meat will rise 5˚F when resting",
+    "While beef is roasting, make the sauce:",
+    "Melt half of the butter in a skillet over medium heat",
+    "Add shallots and cook, stirring often, until they soften and turn golden brown, approximately 8-10 minutes",
+    "Add wine and rosemary sprig",
+    "Bring the mixture to a boil over medium-high heat",
+    "Boil until mixture reduces to 1/2 cup, approximately 3 minutes",
+    "Add broth and continue to boil until mixture reduces to 1 cup, approximately 5 minutes",
+    "Reduce heat to low, remove sprig and stir in chopped rosemary",
+    "Cut the remainder of the butter into cubes",
+    "Add a few cubes at a time, stirring to melt each addition",
+    "Stir in accumulated juices from the resting meat",
+    "Add salt and pepper to taste",
+    "Serve sliced meat with the sauce"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": "Beef should be: 120-125˚F for rare (~25 minutes) or 125-130˚F for medium rare (~30 minutes)"
+  }
+}

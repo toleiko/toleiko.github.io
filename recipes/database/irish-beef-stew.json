@@ -1,0 +1,48 @@
+{
+  "name": "Irish Beef Stew",
+  "duration": 1,
+  "tags": ["beef", "soup"],
+  "servings": 4,
+  "ingredients": [
+    "500 g – Ground Beef",
+    "225 g – Mirepoix (even portions (~75g) of Onion, Celery, Carrot)",
+    "720 g – Red Potato",
+    "4 tbsp – All Purpose Flour",
+    "12 g – Garlic",
+    "14 g – Parsley and Thyme",
+    "4 cans – Beef Broth Concentrate",
+    "4 – Sub Roll",
+    "1 tbsp – Soy Sauce",
+    "2 tbsp – Unsalted Butter",
+    "3 tbsp – Oil",
+    "To taste – Salt and Pepper"
+  ],
+  "instructions": [
+    "Preheat oven to 450˚F",
+    "Cut potatoes into quarters and coat with 1 tbsp oil, salt, and pepper",
+    "Roast potato on a parchment-lined baking sheet on the middle rack until golden-brown, 25-28 minutes",
+    "Strip thyme leaves from stems",
+    "Roughly chop parsley",
+    "Heat Dutch oven on medium-high heat, once hot add 1 tbsp oil, then beef",
+    "Cook beef, breaking it up until no pink remains, 4-5 minutes or until temp is 74˚C/165˚F",
+    "Season with salt and pepper",
+    "Transfer beef to a large bowl and discard the beef fat",
+    "Reduce the heat to medium then add half the butter, mirepoix, thyme, and half the garlic",
+    "Cook and stir occasionally until mirepoix softens slightly, 3-4 minutes",
+    "Add Beef then sprinkle in flour",
+    "Cook, stirring often until flour coats veggies and beef, 1-2 minutes",
+    "Add broth concentrate, soy sauce and 3 cups of water to the dutch oven",
+    "Bring to boil over high heat, once boiling reduce the heat to medium low to simmer",
+    "Stir occasionally until stew thickens and veggies are tender, 10-12 minutes",
+    "While stew cooks, combine remaining garlic and 1 tbsp oil in a bowl",
+    "Half the rolls and arrange them on the baking sheet",
+    "Brush garlic oil and toast in oven on top rack until golden brown, 5-6 minutes",
+    "Stir in potatoes to the stew",
+    "Serve stew with sprinkled parsley, with garlic toast"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

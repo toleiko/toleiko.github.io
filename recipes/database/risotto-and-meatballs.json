@@ -1,0 +1,44 @@
+{
+  "name": "Risotto and Meatballs",
+  "duration": 1,
+  "tags": ["beef", "rice", "italian"],
+  "servings": 4,
+  "ingredients": [
+    "500g – Ground Beef",
+    "1 1/2 Cup – Rice",
+    "113g – Spinach",
+    "340g – Butternut Squash, cubed",
+    "4 cans – Beef Concentrate",
+    "1/2 cup – Parmesan Cheese, shredded",
+    "113g – Yellow Onion",
+    "12g – Garlic",
+    "2 tbsp – Italian Seasoning",
+    "1/2 cup – Italian Breadcrumbs",
+    "4 tbsp – Butter",
+    "2 tbsp – Oil",
+    "To Taste – Salt and Pepper"
+  ],
+  "instructions": [
+    "Preheat oven to 450˚F",
+    "Combine water and broth concentrate in a medium pot, bring to boil over medium heat",
+    "While water comes to a boil, cube squash, toss with 2 tbsp oil, salt, and pepper and place on a parchment lined baking sheet",
+    "Roast squash on top rack for 20-22 minutes",
+    "While squash roasts, mince garlic",
+    "Cut onion into 1/4 inch pieces",
+    "Combine beef breadcrumbs, and italian seasoning in large bowl. Roll mixture into 16 equal-sized balls",
+    "Bake meatballs on another parchment-lined baking sheet on a middle rack until golden brown and cooked (74˚C/165˚F), 8-10 minutes",
+    "Meanwhile, heat butter in a pan over medium heat, add onions and some salt until onions are softened, 2-3 minutes",
+    "Add rice and garlic, cook until fragrant, 1-2 minutes; stir often",
+    "Add 1 cup of broth to pot with rice, stir until all broth has been absorbed",
+    "Continue adding broth 1 cup at a time until liquid is absorbed and texture is creamy, 28-30 minutes; stir often",
+    "When the last bit of broth is absorbed and the rice is tender/creamy, reduce heat to low",
+    "Add spinach and half of the cheese until spinach wilts, 3-4 minutes",
+    "Stir in squash",
+    "Serve risotto and top with meatballs and remaining cheese"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": "Meatballs will be cooked at 74˚C/165˚F"
+  }
+}
