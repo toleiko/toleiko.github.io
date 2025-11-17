@@ -98,19 +98,27 @@
     
     // Add event listeners after buttons are created
     setTimeout(() => {
-      // Add click handlers to protein buttons
-      const proteinButtons = document.querySelectorAll('#proteinButtons .nav-button');
-      const tags = ['chicken', 'beef', 'pork', 'lamb', 'vegetarian'];
-      
-      proteinButtons.forEach((button, index) => {
-        button.addEventListener('click', (e) => {
-          e.preventDefault();
-          console.log('Button clicked:', tags[index]);
-          filterRecipes(tags[index]);
-        });
-      });
+      // Add click handlers to all category buttons
+      const buttonCategories = [
+        { selector: '#proteinButtons', tags: ['chicken', 'beef', 'pork', 'lamb', 'vegetarian'] },
+        { selector: '#mealTypeButtons', tags: ['pasta', 'rice', 'instant pot', 'soup', 'sides'] },
+        { selector: '#breakfastButtons', tags: ['savoury', 'sweet'] },
+        { selector: '#bakingButtons', tags: ['cookies', 'bread', 'muffins', 'cake'] },
+        { selector: '#holidayButtons', tags: ['christmas', 'passover', 'chanukah', 'easter', 'thanksgiving'] }
+      ];
 
-      console.log('Event listeners added to', proteinButtons.length, 'buttons');
+      buttonCategories.forEach(category => {
+        const buttons = document.querySelectorAll(`${category.selector} .nav-button`);
+        buttons.forEach((button, index) => {
+          button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const tag = category.tags[index];
+            console.log('Button clicked:', tag);
+            filterRecipes(tag);
+          });
+        });
+        console.log(`Event listeners added to ${buttons.length} buttons in ${category.selector}`);
+      });
     }, 500);
     
     // Meals by Protein
@@ -144,8 +152,8 @@
       alignment: 'left',
       spacing: 'normal',
       buttons: [
-        { text: 'Savoury', href: '#', onclick: 'filterRecipes("savoury")', style: 'secondary', size: 'medium', icon: '🍳' },
-        { text: 'Sweet', href: '#', onclick: 'filterRecipes("sweet")', style: 'secondary', size: 'medium', icon: '🥞' }
+        { text: 'Savoury', href: '#', style: 'secondary', size: 'medium', icon: '🍳' },
+        { text: 'Sweet', href: '#', style: 'secondary', size: 'medium', icon: '🥞' }
       ]
     });
 
@@ -154,10 +162,10 @@
       alignment: 'left',
       spacing: 'normal',
       buttons: [
-        { text: 'Cookies', href: '#', onclick: 'filterRecipes("cookies")', style: 'secondary', size: 'medium', icon: '🍪' },
-        { text: 'Bread', href: '#', onclick: 'filterRecipes("bread")', style: 'secondary', size: 'medium', icon: '🍞' },
-        { text: 'Muffins', href: '#', onclick: 'filterRecipes("muffins")', style: 'secondary', size: 'medium', icon: '🧁' },
-        { text: 'Cake', href: '#', onclick: 'filterRecipes("cake")', style: 'secondary', size: 'medium', icon: '🎂' }
+        { text: 'Cookies', href: '#', style: 'secondary', size: 'medium', icon: '🍪' },
+        { text: 'Bread', href: '#', style: 'secondary', size: 'medium', icon: '🍞' },
+        { text: 'Muffins', href: '#', style: 'secondary', size: 'medium', icon: '🧁' },
+        { text: 'Cake', href: '#', style: 'secondary', size: 'medium', icon: '🎂' }
       ]
     });
 
@@ -166,11 +174,11 @@
       alignment: 'left',
       spacing: 'normal',
       buttons: [
-        { text: 'Christmas', href: '#', onclick: 'filterRecipes("christmas")', style: 'secondary', size: 'medium', icon: '🎄' },
-        { text: 'Passover', href: '#', onclick: 'filterRecipes("passover")', style: 'secondary', size: 'medium', icon: '✡️' },
-        { text: 'Chanukah', href: '#', onclick: 'filterRecipes("chanukah")', style: 'secondary', size: 'medium', icon: '🕎' },
-        { text: 'Easter', href: '#', onclick: 'filterRecipes("easter")', style: 'secondary', size: 'medium', icon: '🐰' },
-        { text: 'Thanksgiving', href: '#', onclick: 'filterRecipes("thanksgiving")', style: 'secondary', size: 'medium', icon: '🦃' }
+        { text: 'Christmas', href: '#', style: 'secondary', size: 'medium', icon: '🎄' },
+        { text: 'Passover', href: '#', style: 'secondary', size: 'medium', icon: '✡️' },
+        { text: 'Chanukah', href: '#', style: 'secondary', size: 'medium', icon: '🕎' },
+        { text: 'Easter', href: '#', style: 'secondary', size: 'medium', icon: '🐰' },
+        { text: 'Thanksgiving', href: '#', style: 'secondary', size: 'medium', icon: '🦃' }
       ]
     });
 
