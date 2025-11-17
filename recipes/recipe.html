@@ -96,7 +96,6 @@
       
       // Update page title
       document.title = `${recipe.name} - toleiko`;
-      document.querySelector('.page-title').textContent = recipe.name;
 
       container.innerHTML = `
         <div class="recipe-detail">
@@ -150,40 +149,66 @@
 
     // Parse and scale ingredient quantities
     function scaleIngredient(ingredient, scaleFactor) {
-      // Regular expressions to match various quantity formats
+      console.log('Scaling ingredient:', ingredient, 'with factor:', scaleFactor);
+      
+      // Regular expressions to match various quantity formats (order matters!)
       const patterns = [
-        // Fractions: 1/2, 2/3, etc.
-        /^(\d+\/\d+)\s*([–-])\s*(.+)$/,
-        // Decimal numbers: 1.5, 2.25, etc.
-        /^(\d+\.?\d*)\s*([–-])\s*(.+)$/,
-        // Mixed numbers: 1 1/2, 2 3/4, etc.
-        /^(\d+\s+\d+\/\d+)\s*([–-])\s*(.+)$/,
-        // Ranges: 2-3, 4-6, etc.
+        // Mixed numbers with unit and dash: 1 1/2 cup – description, etc.
+        /^(\d+\s+\d+\/\d+)\s+([^–-]+)\s*([–-])\s*(.+)$/,
+        // Simple fractions with unit and dash: 1/2 cup – description, etc.
+        /^(\d+\/\d+)\s+([^–-]+)\s*([–-])\s*(.+)$/,
+        // Decimal numbers with unit and dash: 1.5 cups – description, etc.
+        /^(\d+\.?\d*)\s+([^–-]+)\s*([–-])\s*(.+)$/,
+        // Ranges with dash: 2-3 – onions, etc.
         /^(\d+\.?\d*)\s*[-–]\s*(\d+\.?\d*)\s*([–-])\s*(.+)$/,
-        // Simple numbers at start: 2 tbsp, 3 cups, etc.
+        // Simple numbers without dash: 2 tbsp, 3 cups, etc.
         /^(\d+\.?\d*)\s+(.+)$/
       ];
 
       for (const pattern of patterns) {
         const match = ingredient.match(pattern);
         if (match) {
+          console.log('Pattern matched:', pattern.source, 'Match:', match);
+          
           if (pattern.source.includes('[-–].*[-–]')) {
             // Range pattern (e.g., "2-3 – Onions")
             const min = parseFloat(match[1]);
             const max = parseFloat(match[2]);
             const scaledMin = (min * scaleFactor).toFixed(2).replace(/\.?0+$/, '');
             const scaledMax = (max * scaleFactor).toFixed(2).replace(/\.?0+$/, '');
-            return `${scaledMin}–${scaledMax} ${match[3]} ${match[4]}`;
-          } else if (match[2] === '–' || match[2] === '-') {
-            // Standard format with dash (e.g., "2 – tbsp Oil")
+            const result = `${scaledMin}–${scaledMax} ${match[3]} ${match[4]}`;
+            console.log('Range result:', result);
+            return result;
+          } else if (match.length === 5) {
+            // New format with unit: quantity + unit + dash + description (e.g., "1 1/2 cup – Chicken")
             const quantity = parseQuantity(match[1]);
+            console.log('Parsed quantity:', quantity, 'from:', match[1]);
             const scaledQuantity = formatScaledQuantity(quantity * scaleFactor);
-            return `${scaledQuantity} ${match[2]} ${match[3]}`;
+            console.log('Scaled quantity:', scaledQuantity);
+            const unit = match[2];
+            const dash = match[3];
+            const description = match[4];
+            const result = `${scaledQuantity} ${unit} ${dash} ${description}`;
+            console.log('Unit format result:', result);
+            return result;
+          } else if (match[2] === '–' || match[2] === '-') {
+            // Old format with dash (e.g., "2 – tbsp Oil")
+            const quantity = parseQuantity(match[1]);
+            console.log('Parsed quantity:', quantity, 'from:', match[1]);
+            const scaledQuantity = formatScaledQuantity(quantity * scaleFactor);
+            console.log('Scaled quantity:', scaledQuantity);
+            const result = `${scaledQuantity} ${match[2]} ${match[3]}`;
+            console.log('Old format result:', result);
+            return result;
           } else {
             // Simple format without dash (e.g., "2 tbsp oil")
             const quantity = parseQuantity(match[1]);
+            console.log('Parsed quantity:', quantity, 'from:', match[1]);
             const scaledQuantity = formatScaledQuantity(quantity * scaleFactor);
-            return `${scaledQuantity} ${match[2]}`;
+            console.log('Scaled quantity:', scaledQuantity);
+            const result = `${scaledQuantity} ${match[2]}`;
+            console.log('Simple result:', result);
+            return result;
           }
         }
       }
@@ -195,24 +220,35 @@
     // Parse various quantity formats to decimal
     function parseQuantity(quantityStr) {
       quantityStr = quantityStr.trim();
+      console.log('Parsing quantity:', quantityStr);
       
-      // Handle fractions like "1/2"
-      if (quantityStr.includes('/')) {
-        const parts = quantityStr.split(/\s+/);
-        let total = 0;
-        
-        for (const part of parts) {
-          if (part.includes('/')) {
-            const [num, den] = part.split('/');
-            total += parseInt(num) / parseInt(den);
-          } else {
-            total += parseInt(part);
-          }
-        }
-        return total;
+      // Handle mixed numbers like "1 1/2" (one and a half)
+      const mixedNumberMatch = quantityStr.match(/^(\d+)\s+(\d+)\/(\d+)$/);
+      if (mixedNumberMatch) {
+        console.log('Mixed number match:', mixedNumberMatch);
+        const wholeNumber = parseInt(mixedNumberMatch[1]);
+        const numerator = parseInt(mixedNumberMatch[2]);
+        const denominator = parseInt(mixedNumberMatch[3]);
+        const result = wholeNumber + (numerator / denominator);
+        console.log('Mixed number result:', result);
+        return result;
       }
       
-      return parseFloat(quantityStr);
+      // Handle simple fractions like "1/2"
+      const fractionMatch = quantityStr.match(/^(\d+)\/(\d+)$/);
+      if (fractionMatch) {
+        console.log('Fraction match:', fractionMatch);
+        const numerator = parseInt(fractionMatch[1]);
+        const denominator = parseInt(fractionMatch[2]);
+        const result = numerator / denominator;
+        console.log('Fraction result:', result);
+        return result;
+      }
+      
+      // Handle decimal numbers
+      const result = parseFloat(quantityStr);
+      console.log('Decimal result:', result);
+      return result;
     }
 
     // Format scaled quantity back to nice fractions when possible
@@ -236,6 +272,34 @@
       return quantity % 1 === 0 ? quantity.toString() : quantity.toFixed(2).replace(/\.?0+$/, '');
     }
 
+    // Format individual ingredient with two-column layout
+    function formatIngredientItem(ingredient, scaleFactor) {
+      const scaledIngredient = scaleIngredient(ingredient, scaleFactor);
+      
+      // Split on the dash separator
+      const dashIndex = scaledIngredient.indexOf('–') !== -1 ? scaledIngredient.indexOf('–') : scaledIngredient.indexOf('-');
+      
+      if (dashIndex > 0) {
+        const quantity = scaledIngredient.substring(0, dashIndex).trim();
+        const description = scaledIngredient.substring(dashIndex + 1).trim();
+        
+        return `
+          <div class="ingredient-item">
+            <div class="ingredient-quantity">${quantity}</div>
+            <div class="ingredient-description">${description}</div>
+          </div>
+        `;
+      } else {
+        // If no dash found, display as single item
+        return `
+          <div class="ingredient-item">
+            <div class="ingredient-quantity"></div>
+            <div class="ingredient-description">${scaledIngredient}</div>
+          </div>
+        `;
+      }
+    }
+
     // Format ingredients (handle both simple arrays and sectioned objects)
     function formatIngredients(ingredients, servings = null) {
       if (!ingredients) return '';
@@ -247,9 +311,9 @@
         return `
           <div class="recipe-section">
             <h3>Ingredients</h3>
-            <ul class="ingredient-list">
-              ${ingredients.map(ingredient => `<li>${scaleIngredient(ingredient, scaleFactor)}</li>`).join('')}
-            </ul>
+            <div class="ingredient-list">
+              ${ingredients.map(ingredient => formatIngredientItem(ingredient, scaleFactor)).join('')}
+            </div>
           </div>
         `;
       } else if (typeof ingredients === 'object') {
@@ -260,9 +324,9 @@
             ${Object.entries(ingredients).map(([sectionName, items]) => `
               <div class="ingredient-section">
                 <h4>${sectionName}</h4>
-                <ul class="ingredient-list indented">
-                  ${items.map(item => `<li>${scaleIngredient(item, scaleFactor)}</li>`).join('')}
-                </ul>
+                <div class="ingredient-list indented">
+                  ${items.map(item => formatIngredientItem(item, scaleFactor)).join('')}
+                </div>
               </div>
             `).join('')}
           </div>
@@ -333,6 +397,19 @@
         </div>
       `;
     }
+
+    // Test function for debugging
+    function testScaling() {
+      const testIngredient = "1 1/2 cup – Chicken or Pork, cut small";
+      console.log('Testing ingredient:', testIngredient);
+      const scaledResult = scaleIngredient(testIngredient, 2);
+      console.log('Scaled x2:', scaledResult);
+      const scaledResult3 = scaleIngredient(testIngredient, 3);
+      console.log('Scaled x3:', scaledResult3);
+    }
+    
+    // Make test function available globally
+    window.testScaling = testScaling;
 
     // Load recipe when page loads
     loadRecipeDetails();
