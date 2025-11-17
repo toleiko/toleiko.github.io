@@ -133,7 +133,11 @@
     function adjustServings(change) {
       const input = document.getElementById('servingsInput');
       const currentValue = parseInt(input.value);
-      const newValue = Math.max(1, Math.min(50, currentValue + (change * 2)));
+      
+      // Calculate increment as 50% of original serving size
+      const increment = Math.max(1, Math.round(originalRecipe.servings * 0.5));
+      
+      const newValue = Math.max(1, Math.min(50, currentValue + (change * increment)));
       input.value = newValue;
       updateServings();
     }
