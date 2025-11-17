@@ -132,7 +132,8 @@
     // Serving size adjustment functions
     function adjustServings(change) {
       const input = document.getElementById('servingsInput');
-      const newValue = Math.max(1, Math.min(50, parseInt(input.value) + change));
+      const currentValue = parseInt(input.value);
+      const newValue = Math.max(1, Math.min(50, currentValue + (change * 2)));
       input.value = newValue;
       updateServings();
     }
