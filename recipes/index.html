@@ -68,6 +68,13 @@
         <!-- Filtered recipes will be displayed here -->
       </div>
     </div>
+
+    <!-- View All Recipes Button -->
+    <div class="category-section" style="margin-top: 3rem; text-align: center;">
+      <button onclick="showAllRecipes()" class="nav-button nav-button--primary nav-button--large">
+        📖 View All Recipes (Alphabetical)
+      </button>
+    </div>
     
   </div>
 
@@ -318,6 +325,9 @@
       } else {
         recipeGrid.innerHTML = recipes.map(recipe => createRecipeCard(recipe)).join('');
       }
+
+      // Scroll to top of page
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     // Create a recipe card HTML
@@ -353,6 +363,9 @@
 
       categoriesDiv.style.display = 'block';
       filteredDiv.style.display = 'none';
+
+      // Scroll to top of page
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     // Test function to verify buttons work
@@ -360,9 +373,20 @@
       alert('Button click detected!');
     };
 
+    // Show all recipes in alphabetical order
+    function showAllRecipes() {
+      // Sort recipes alphabetically by name
+      const sortedRecipes = [...allRecipes].sort((a, b) => 
+        a.name.localeCompare(b.name)
+      );
+      
+      displayFilteredRecipes(sortedRecipes, 'All Recipes');
+    }
+
     // Make functions globally accessible
     window.filterRecipes = filterRecipes;
     window.showAllCategories = showAllCategories;
+    window.showAllRecipes = showAllRecipes;
     window.openRecipe = openRecipe;
 
     // Load recipes when page loads
