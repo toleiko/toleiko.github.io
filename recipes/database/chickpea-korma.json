@@ -1,0 +1,39 @@
+{
+  "name": "Chickpea Korma",
+  "duration": 1,
+  "tags": ["vegetarian", "curry", "indian", "rice"],
+  "servings": 4,
+  "ingredients": [
+    "2 tbsp – Vegetable Oil",
+    "1 tbsp – Ginger Root, minced",
+    "4 cloves – Garlic, sliced/minced",
+    "2 cans – Chickpeas, drained",
+    "1 – Jalapeno Pepper, sliced",
+    "3 tbsp – Unsalted Cashews, roughly chopped",
+    "1 can – Tomato Sauce",
+    "2 tsp – Salt",
+    "2 tbsp – Curry Powder",
+    "1 tbsp – Garam Masala",
+    "1 tsp – Cumin",
+    "¼ tsp – Cinnamon",
+    "½ tsp – Sugar",
+    "1 cup – Frozen Green Peas",
+    "1 can – Coconut Milk",
+    "1 bunch – Fresh Cilantro, finely chopped"
+  ],
+  "instructions": [
+    "Start cooking rice",
+    "Blend onion, ginger, and garlic into a paste",
+    "Heat oil in large pan over medium heat, then stir in onion paste and cook for ~1-2 minutes until fragrant ",
+    "Add chickpeas, jalapenos, cashews, and tomato sauce",
+    "Mix all spices together with a little bit of water, to create a paste and add to the pan. Cook for 10 minutes stirring often",
+    "Add green peas and coconut milk. Reduce heat to low and simmer for 10 minutes stirring often  ",
+    "Turn off heat and add cilantro, reserve some for garnish. ",
+    "Serve with rice and garnish with fresh cilantro leaves"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "Tori and Jory lived together in university and Jory taught Tori how to cook on a budget. This was one of our go-to meals that was quick, easy, and delicious!",
+    "tips": "Let the onions cook for longer than you think to make sure the strong onion flavour is cooked away."
+  }
+}

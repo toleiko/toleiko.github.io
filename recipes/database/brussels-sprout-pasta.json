@@ -1,0 +1,35 @@
+{
+  "name": "Brussels Sprout Pasta",
+  "duration": 1,
+  "tags": ["vegetarian", "pasta"],
+  "servings": 4,
+  "ingredients": [
+    "1 – Shallot/Onion",
+    "1 – Lemon",
+    "250g – Brussels Sprouts",
+    "1 clove – Garlic",
+    "100ml – Whipped Cream",
+    "100ml – Broth (Chicken or Vegetable)",
+    "160g – Rotini Pasta",
+    "4 tbsp – Oil",
+    "To taste – Salt and Pepper"
+  ],
+  "instructions": [
+    "Preheat oven to 310˚F",
+    "Clean and thinly slice brussels sprouts",
+    "Mix brussels sprouts with oil, salt, pepper. Place on lined baking sheet and bake for 8 to 10 minutes",
+    "Start cooking pasta",
+    "Meanwhile, chop garlic, and shallot/onion ",
+    "Juice and zest the lemon",
+    "Saute shallot/onion and garlic for 3 minutes, until soft",
+    "Add broth, cream, lemon zest/juice and bring to boil",
+    "Reduce to simmer and fold in noodles and brussels sprouts",
+    "Add salt and pepper to taste",
+    "For extra spice, add red pepper flakes"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

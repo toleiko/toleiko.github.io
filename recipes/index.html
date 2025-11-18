@@ -142,8 +142,9 @@
         { text: 'Pasta', href: '#', style: 'secondary', size: 'medium', icon: '🍝' },
         { text: 'Rice', href: '#', style: 'secondary', size: 'medium', icon: '🍚' },
         { text: 'Instant Pot', href: '#', style: 'secondary', size: 'medium', icon: '🥘' },
+        { text: 'Salad', href: '#', style: 'secondary', size: 'medium', icon: '🥗' },
         { text: 'Soup', href: '#', style: 'secondary', size: 'medium', icon: '🍲' },
-        { text: 'Sides', href: '#', style: 'secondary', size: 'medium', icon: '🥗' }
+        { text: 'Sides', href: '#', style: 'secondary', size: 'medium', icon: '' }
       ]
     });
 
@@ -188,24 +189,55 @@
     // Load all recipes from the database folder
     async function loadRecipes() {
       const recipeFiles = [
+        // A-C
         'annes-chicken.json',
         'beef-tenderloin.json',
+        'brussels-sprout-pasta.json',
         'cashew-chicken.json',
         'chicken-parmigiana.json',
+        'chickpea-korma.json',
+        'chana-masala.json',
+
+        // D-F
+
+        // G-I
+        'greek-lemon-potatoes.json',
         'instant-pot-indian-curry.json',
         'instant-pot-tuscan-chicken.json',
         'irish-beef-stew.json',
+
+        // J-L
+        'koogle.json',
         'lemon-orzo-chicken.json',
         'lemon-roast-chicken.json',
+
+        // M-O
+        'mac-n-cheese.json',
+        'mexican-rice-bowl.json',
+
+        // P-R
         'panaeng-curry.json',
+        'peanut-satay-noodles.json',
+        'popovers-yorkshire-pudding.json',
         'pork-tenderloin.json',
+        'pumpkin-brussels-sprout-tart.json',
+        'quinoa-power-salad.json',
+        'rice-lentil-casserole.json',
         'risotto-and-meatballs.json',
+
+        // S-U
         'shepard-pie.json',
         'spiced-pilaf-beef-and-mushrooms.json',
+        'spiced-pork-freekeh.json',
+        'spicy-roasted-carrots.json',
         'spicy-mushroom-larb.json',
         'spring-rolls.json',
         'sticky-chicken.json',
-        'teriyaki-chicken-lettuce-wraps.json'
+        'teriyaki-chicken-lettuce-wraps.json',
+
+        // V-Z
+        'veggie-pesto-pasta.json'
+
       ];
 
       console.log('Loading recipes...');
@@ -290,7 +322,7 @@
     // Create a recipe card HTML
     function createRecipeCard(recipe) {
       // Convert recipe name to filename format (lowercase, hyphens for spaces)
-      const recipeFile = recipe.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+      const recipeFile = recipe.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-');
       
       return `
         <div class="recipe-card clickable" onclick="openRecipe('${recipeFile}')">

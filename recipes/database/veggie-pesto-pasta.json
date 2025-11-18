@@ -1,0 +1,33 @@
+{
+  "name": "Veggie Pesto Pasta",
+  "duration": 1,
+  "tags": ["vegetarian", "pasta"],
+  "servings": 4,
+  "ingredients": [
+    "1 – Zucchini",
+    "1 – Eggplant",
+    "1 – Red Pepper",
+    "As needed – Salt and Pepper",
+    "2 – Sausage (vegetable or otherwise)",
+    "1 – Onion",
+    "3 cloves – Garlic",
+    "500g – Bowtie Pasta",
+    "1 jar – Pesto",
+    "1/2 cup – Olives (optional)"
+  ],
+  "instructions": [
+    "Preheat oven to 375˚F",
+    "Salt eggplant and let stand for 20 minutes",
+    "Slice eggplant and zucchini thinly (~0.5 cm thick), toss in oil, salt, pepper",
+    "Place eggplant and zucchini on baking tray and bake on top rack for ~30 minutes",
+    "In the meantime, slice onion, sausage, and red pepper",
+    "Heat a pan to medium heat and start a pot of water for the pasta",
+    "Cook vegetables in pan and add pasta to water, cook both for ~8-10 minutes",
+    "Drain pasta and combine all ingredients"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "Tori and Jory lived together in university and Jory taught Tori how to cook on a budget. This was one of our go-to meals that was quick, easy, and delicious!",
+    "tips": ""
+  }
+}

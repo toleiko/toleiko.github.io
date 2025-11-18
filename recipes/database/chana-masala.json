@@ -1,0 +1,33 @@
+{
+  "name": "Chana Masala",
+  "duration": 1,
+  "tags": ["vegetarian", "curry", "indian", "rice"],
+  "servings": 4,
+  "ingredients": [
+    "1 – Onion",
+    "5 cloves – Garlic",
+    "1 cup – Chickpeas (dry)",
+    "1 bunch – Spinach, Chopped",
+    "1 tsp – Whole Cumin Seeds",
+    "1 tsp – Ground Cumin",
+    "1 tbsp – Turmeric",
+    "2 tsp – Cayenne Pepper",
+    "2 tsp – Garam Masala",
+    "1 tsp – Salt",
+    "1 can – Tomato Paste",
+    "1 can – Coconut"
+  ],
+  "instructions": [
+    "Prepare chickpeas (soak overnight, then boil for 1 hour)",
+    "Chop onions and then blend with garlic into a paste.",
+    "Saute with cumin seeds in oil over low-medium heat for a few minutes. Watch for burning.",
+    "Add spices, tomato paste, and chickpeas and cook for 3-4 minutes. Stir often to prevent burning.",
+    "Add coconut (from ~1/2 can to 1 full can) as needed to get the consistency you want. Add in batches and mix well. ",
+    "Add spinach and cook until wilted."
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "Tori and Jory lived together in university and Jory taught Tori how to cook on a budget. This was one of our go-to meals that was quick, easy, and delicious!",
+    "tips": "Let the onions cook for longer than you think to make sure the strong onion flavour is cooked away."
+  }
+}

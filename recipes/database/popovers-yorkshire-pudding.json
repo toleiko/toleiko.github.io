@@ -1,0 +1,27 @@
+{
+  "name": "Popovers / Yorkshire Pudding",
+  "duration": 2,
+  "tags": ["bread", "side dish"],
+  "servings": 12,
+  "ingredients": [
+    "1 cup – Milk",
+    "1 cup – Flour",
+    "3 – Eggs",
+    "1/2 tsp – Salt",
+    "1 tsp – Butter, melted"
+  ],
+  "instructions": [
+    "Add all ingredients to a blender and blend until smooth",
+    "Periodically throughout the day, blitz the blender to add air to the batter",
+    "When ready to cook, preheat the oven to 450˚F",
+    "During the preheating, add oil and butter to coat the bottom of each muffin cup in the muffin tin",
+    "Put muffin tin with oil and butter in oven to heat up until sizzling, it is critical that the oil is hot before the batter goes in",
+    "Pour batter into muffin tin, filling each cup ~half full",
+    "Bake for 15 minutes then reduce to 350˚F for 8-10 minutes"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

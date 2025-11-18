@@ -1,0 +1,28 @@
+{
+  "name": "Koogle",
+  "duration": 2,
+  "tags": ["vegetarian", "pasta", "passover"],
+  "servings": 8,
+  "ingredients": [
+    "1/2 pkg – Broad Noodles, like pappardelle",
+    "1/4 lb – Cream Cheese",
+    "1/8 lb – Butter, melted",
+    "1/2 pt – Sour Cream",
+    "1 – Egg, unbeaten",
+    "To taste – Salt and pepper"
+  ],
+  "instructions": [
+    "Preheat oven to 350˚F",
+    "Break noodles to desired length and boil in salted, boiling water for about 20 minutes",
+    "Drain cooked noodles, pour cold water over noodles, let all water drain off",
+    "Mix in cheese, butter, sour cream and whole egg",
+    "Add salt to taste",
+    "Pour noodley mixture into buttered pyrex dish",
+    "Bake for 1 hour until brown on top"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}
