@@ -1,0 +1,48 @@
+{
+  "name": "Stuffed Popovers",
+  "duration": 2.5,
+  "tags": ["vegetarian", "bread"],
+  "servings": 12,
+  "ingredients": {
+    "Popovers": ["12 popovers – recipe: http://toleiko.ca/recipes/recipe.html?recipe=popovers-yorkshire-pudding"] ,
+    "Stuffing": [
+      "1 – Onion",
+      "6 – Mushrooms",
+      "1 tsp – Garlic",
+      "1/4 cup – Walnuts",
+      "1/4 cup – Pecans",
+      "1/4 cup – Almonds",
+      "1/4 cup – Craisins",
+      "To taste – Salt and Pepper",
+      "As desired – Spices: Rosemary, Thyme, Onion Powder; recommend 1 tsp of each"
+    ], 
+    "Sauces (all optional)": [
+      "Gravy, leftover is great",
+      "Fruit chutney",
+      "Horseradish",
+      "Red Pepper Jelly",
+      "Brie"
+    ]
+  },
+  "instructions": [
+    "Make popovers, while they are cooking do the rest",
+    "Make a gravy",
+    "Caramelize onions and mushrooms in a large pan",
+    "Add garlic, Rosemary and thyme to taste",
+    "Crush the nuts and add to onions and mushrooms",
+    "Add craisins",
+    "Continue to cook on low until popovers and gravy are done",
+    "Mince the garlic",
+    "Mix garlic with the chutney",
+    "Once the popovers are done, allow the too cool slightly",
+    "Fill the popovers with the onion mixture",
+    "Add slices of brie on top and return to the oven until the brie melts",
+    "Top with a heaping teaspoon of the chutney mixture, and your choice of either the horseradish or red pepper jelly",
+    "Add gravy and serve"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": "To make popovers from scratch, see the popover recipe:http://localhost:8000/recipes/recipe.html?recipe=popovers-yorkshire-pudding"
+  }
+}

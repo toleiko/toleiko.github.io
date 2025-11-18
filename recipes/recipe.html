@@ -434,7 +434,10 @@
       
       if (dashIndex > 0) {
         const quantity = scaledIngredient.substring(0, dashIndex).trim();
-        const description = scaledIngredient.substring(dashIndex + 1).trim();
+        let description = scaledIngredient.substring(dashIndex + 1).trim();
+        
+        // Convert URLs and recipe references to clickable links
+        description = convertToLinks(description);
         
         return `
           <div class="ingredient-item">
@@ -444,13 +447,37 @@
         `;
       } else {
         // If no dash found, display as single item
+        let displayText = scaledIngredient;
+        
+        // Convert URLs and recipe references to clickable links
+        displayText = convertToLinks(displayText);
+        
         return `
           <div class="ingredient-item">
             <div class="ingredient-quantity"></div>
-            <div class="ingredient-description">${scaledIngredient}</div>
+            <div class="ingredient-description">${displayText}</div>
           </div>
         `;
       }
+    }
+
+    // Convert URLs and recipe references to clickable links
+    function convertToLinks(text) {
+      // First, convert full URLs to clickable links
+      // Match http://, https://, or www. URLs
+      text = text.replace(/(https?:\/\/[^\s]+)|(www\.[^\s]+)/gi, (match) => {
+        const url = match.startsWith('www.') ? `http://${match}` : match;
+        return `<a href="${url}" class="recipe-link" target="_blank" rel="noopener noreferrer">${match}</a>`;
+      });
+      
+      // Then, convert recipe references like "(see recipe-name)" to clickable links
+      text = text.replace(/\(see ([a-z0-9-]+)\)|\(([a-z0-9-]+)\)/gi, (match, recipeName1, recipeName2) => {
+        const recipeName = recipeName1 || recipeName2;
+        const displayText = recipeName1 ? `see ${recipeName}` : recipeName;
+        return `<a href="recipe.html?recipe=${recipeName}" class="recipe-link">${displayText}</a>`;
+      });
+      
+      return text;
     }
 
     // Format ingredients (handle both simple arrays and sectioned objects)
