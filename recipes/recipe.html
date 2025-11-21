@@ -463,14 +463,23 @@
 
     // Convert URLs and recipe references to clickable links
     function convertToLinks(text) {
-      // First, convert full URLs to clickable links
-      // Match http://, https://, or www. URLs
-      text = text.replace(/(https?:\/\/[^\s]+)|(www\.[^\s]+)/gi, (match) => {
+      // First, check for toleiko.ca recipe URLs and convert them to nice display names
+      text = text.replace(/https?:\/\/toleiko\.ca\/recipes?\/recipe\.html\?recipe=([a-z0-9-]+)/gi, (match, recipeName) => {
+        // Convert recipe filename to display name (e.g., "popovers-yorkshire-pudding" -> "Popovers Yorkshire Pudding")
+        const displayName = recipeName.split('-').map(word => 
+          word.charAt(0).toUpperCase() + word.slice(1)
+        ).join(' ');
+        return `<a href="recipe.html?recipe=${recipeName}" class="recipe-link">${displayName}</a>`;
+      });
+      
+      // Then convert other full URLs to clickable links
+      // Match http://, https://, or www. URLs (but not the ones we already converted)
+      text = text.replace(/(https?:\/\/(?!toleiko\.ca\/recipes?\/recipe\.html)[^\s]+)|(www\.[^\s]+)/gi, (match) => {
         const url = match.startsWith('www.') ? `http://${match}` : match;
         return `<a href="${url}" class="recipe-link" target="_blank" rel="noopener noreferrer">${match}</a>`;
       });
       
-      // Then, convert recipe references like "(see recipe-name)" to clickable links
+      // Finally, convert recipe references like "(see recipe-name)" to clickable links
       text = text.replace(/\(see ([a-z0-9-]+)\)|\(([a-z0-9-]+)\)/gi, (match, recipeName1, recipeName2) => {
         const recipeName = recipeName1 || recipeName2;
         const displayText = recipeName1 ? `see ${recipeName}` : recipeName;
