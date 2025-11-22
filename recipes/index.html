@@ -117,11 +117,11 @@
     setTimeout(() => {
       // Add click handlers to all category buttons
       const buttonCategories = [
-        { selector: '#proteinButtons', tags: ['chicken', 'beef', 'pork', 'lamb', 'vegetarian'] },
+        { selector: '#proteinButtons', tags: ['chicken', 'beef', 'pork', 'lamb', 'fish','vegetarian'] },
         { selector: '#mealTypeButtons', tags: ['pasta', 'rice', 'instant pot', 'salad', 'soup', 'sides'] },
         { selector: '#breakfastButtons', tags: ['savoury', 'sweet'] },
         { selector: '#bakingButtons', tags: ['cookies', 'bread', 'muffins', 'cake'] },
-        { selector: '#holidayButtons', tags: ['christmas', 'passover', 'chanukah', 'easter', 'thanksgiving'] }
+        { selector: '#holidayButtons', tags: ['christmas', 'passover', 'hanukkah', 'easter', 'thanksgiving'] }
       ];
 
       buttonCategories.forEach(category => {
@@ -147,6 +147,7 @@
         { text: 'Beef', href: '#', style: 'secondary', size: 'medium', icon: '🥩', tag: 'beef' },
         { text: 'Pork', href: '#', style: 'secondary', size: 'medium', icon: '🐷', tag: 'pork' },
         { text: 'Lamb', href: '#', style: 'secondary', size: 'medium', icon: '🐑', tag: 'lamb' },
+        { text: 'Fish', href: '#', style: 'secondary', size: 'medium', icon: '🐟', tag: 'fish' },
         { text: 'Vegetarian', href: '#', style: 'secondary', size: 'medium', icon: '🥬', tag: 'vegetarian' }
       ]
     });
@@ -192,11 +193,11 @@
       alignment: 'left',
       spacing: 'normal',
       buttons: [
-        { text: 'Christmas', href: '#', style: 'secondary', size: 'medium', icon: '🎄' },
-        { text: 'Passover', href: '#', style: 'secondary', size: 'medium', icon: '✡️' },
-        { text: 'Chanukah', href: '#', style: 'secondary', size: 'medium', icon: '🕎' },
-        { text: 'Easter', href: '#', style: 'secondary', size: 'medium', icon: '🐰' },
-        { text: 'Thanksgiving', href: '#', style: 'secondary', size: 'medium', icon: '🦃' }
+        { text: 'Christmas', href: '#', style: 'secondary', size: 'medium', icon: '🎄', tag: 'christmas' },
+        { text: 'Passover', href: '#', style: 'secondary', size: 'medium', icon: '<img src="../assets/icons/passover_icon.png" alt="Passover" style="height:1em;width:1em;border-radius:0.3em;vertical-align:middle;object-fit:cover;">', tag: 'passover' },
+        { text: 'Hanukkah', href: '#', style: 'secondary', size: 'medium', icon: '<img src="../assets/icons/minora_icon.jpeg" alt="Hanukkah" style="height:1em;width:1em;border-radius:0.3em;vertical-align:middle;object-fit:cover;">', tag: 'hanukkah' },
+        { text: 'Easter', href: '#', style: 'secondary', size: 'medium', icon: '🐰', tag: 'easter' },
+        { text: 'Thanksgiving', href: '#', style: 'secondary', size: 'medium', icon: '🦃', tag: 'thanksgiving' }
       ]
     });
 
@@ -247,6 +248,7 @@
         'roux.json',
 
         // S-U
+        'salmon-marinade.json',
         'shepard-pie.json',
         'spiced-pilaf-beef-and-mushrooms.json',
         'spiced-pork-freekeh.json',

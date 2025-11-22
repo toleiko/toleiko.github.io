@@ -1,0 +1,32 @@
+{
+  "name": "Salmon Marinade",
+  "duration": 1,
+  "tags": ["fish", "salmon", "asian", "bbq"],
+  "servings": 4,
+  "ingredients": [
+    "1 – 7-8lb salmon",
+    "1/2 cup – Sake (or rice vinegar or white wine)",
+    "1/2 cup – Soy sauce",
+    "1/2 cup – Brown Sugar",
+    "LOTS – Garlic (finely chopped or grated)",
+    "LOTS – Ginger (grated)",
+    "1 tsp – Sesame oil",
+    "1 cup – Chopped green onion",
+    "1-2 tsp – Orange or lemon or pineapple juice",
+    "LOTS – ground pepper"
+  ],
+  "instructions": [
+    "Clean salmon",
+    "Fillet salmon",
+    "Mix together all the ingredients in a bowl",
+    "Add marinade to zip lock bag(s)",
+    "Add salmon to zip lock bags",
+    "Marinade in fridge for 2 hours or at room temp for 1 hour",
+    "BBQ or bake salmon until cooked through "
+  ],
+  "additional_context": {
+    "source": "Dr. Dan gave us this recipe ",
+    "story": "Dr. Dan is Isaac's family friend who joined on many of the family vacations when Isaac was growing up.",
+    "tips": ""
+  }
+}
