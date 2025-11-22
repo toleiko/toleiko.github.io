@@ -1,0 +1,23 @@
+{
+  "name": "Roux",
+  "duration": 0.5,
+  "tags": ["fundamental", "sauce"],
+  "servings": 4,
+  "ingredients": [
+    "1 part – Butter",
+    "1 part – Flour"
+  ],
+  "instructions": [
+    "Melt 1 part butter in a pan over medium low heat",
+    "Sprinkle 1 part flour over the melted butter",
+    "Stir butter and flour constantly with a wooden spoon in a figure-eight motion for even cooking",
+    "Light Roux: continue mixing for 3-5 minutes until roux is puffed slightly",
+    "Brown Roux: continue mixing for 6-7 minutes until roux smells a little nutty and turns pale brown",
+    "Dark Roux: continue mixing for 9-15 minutes until roux is as dark as desired"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

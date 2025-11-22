@@ -24,6 +24,18 @@
     <!-- Recipe Categories -->
     <div class="recipe-categories">
       
+      <!-- View All Recipes Button -->
+      <div class="category-section" style="text-align: center; margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <button onclick="showAllRecipes()" class="nav-button nav-button--secondary nav-button--large">
+            📖 View All Recipes
+          </button>
+          <button onclick="showFundamentalRecipes()" class="nav-button nav-button--secondary nav-button--large">
+            📚 Fundamental Recipes
+          </button>
+        </div>
+      </div>
+      
       <!-- Meals by Protein -->
       <div class="category-section">
         <h3>Meals by Protein</h3>
@@ -60,20 +72,18 @@
     <div id="filteredResults" style="display: none;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
         <h2 id="filterTitle">Filtered Recipes</h2>
-        <button onclick="showAllCategories()" class="nav-button nav-button--outline nav-button--medium">
-          ← Back to Categories
-        </button>
+        <div style="display: flex; gap: 1rem;">
+          <button onclick="showFundamentalRecipes()" class="nav-button nav-button--secondary nav-button--medium" style="display: none;">
+            📚 Fundamental Recipes
+          </button>
+          <button onclick="showAllCategories()" class="nav-button nav-button--outline nav-button--medium">
+            ← Back to Categories
+          </button>
+        </div>
       </div>
       <div id="recipeGrid" class="recipes-grid">
         <!-- Filtered recipes will be displayed here -->
       </div>
-    </div>
-
-    <!-- View All Recipes Button -->
-    <div class="category-section" style="margin-top: 3rem; text-align: center;">
-      <button onclick="showAllRecipes()" class="nav-button nav-button--primary nav-button--large">
-        📖 View All Recipes (Alphabetical)
-      </button>
     </div>
     
   </div>
@@ -199,6 +209,7 @@
         // A-C
         'annes-chicken.json',
         'beef-tenderloin.json',
+        'boiled-eggs.json',
         'brussels-sprout-pasta.json',
         'cashew-chicken.json',
         'chicken-parmigiana.json',
@@ -232,6 +243,7 @@
         'quinoa-power-salad.json',
         'rice-lentil-casserole.json',
         'risotto-and-meatballs.json',
+        'roux.json',
 
         // S-U
         'shepard-pie.json',
@@ -306,15 +318,21 @@
     }
 
     // Display filtered recipes
-    function displayFilteredRecipes(recipes, tag) {
+    function displayFilteredRecipes(recipes, tag, showFundamentalButton = false) {
       const categoriesDiv = document.querySelector('.recipe-categories');
       const filteredDiv = document.getElementById('filteredResults');
       const filterTitle = document.getElementById('filterTitle');
       const recipeGrid = document.getElementById('recipeGrid');
+      // const fundamentalBtn = document.getElementById('fundamentalRecipesBtn');
 
       // Hide categories, show filtered results
       categoriesDiv.style.display = 'none';
       filteredDiv.style.display = 'block';
+
+      // // Show or hide the Fundamental Recipes button
+      // if (fundamentalBtn) {
+      //   fundamentalBtn.style.display = showFundamentalButton ? 'inline-block' : 'none';
+      // }
 
       // Update title
       filterTitle.textContent = `${tag.charAt(0).toUpperCase() + tag.slice(1)} Recipes (${recipes.length})`;
@@ -380,13 +398,31 @@
         a.name.localeCompare(b.name)
       );
       
-      displayFilteredRecipes(sortedRecipes, 'All Recipes');
+      displayFilteredRecipes(sortedRecipes, 'All Recipes', true);
+    }
+
+    // Show fundamental recipes (recipes tagged as fundamental)
+    function showFundamentalRecipes() {
+      // Filter recipes that have the "fundamental" tag
+      const fundamentalRecipes = allRecipes.filter(recipe => 
+        recipe.tags && recipe.tags.some(tag => 
+          tag.toLowerCase() === 'fundamental'
+        )
+      );
+      
+      // Sort alphabetically
+      const sortedRecipes = fundamentalRecipes.sort((a, b) => 
+        a.name.localeCompare(b.name)
+      );
+      
+      displayFilteredRecipes(sortedRecipes, 'Fundamental Recipes', false);
     }
 
     // Make functions globally accessible
     window.filterRecipes = filterRecipes;
     window.showAllCategories = showAllCategories;
     window.showAllRecipes = showAllRecipes;
+    window.showFundamentalRecipes = showFundamentalRecipes;
     window.openRecipe = openRecipe;
 
     // Load recipes when page loads
