@@ -1,0 +1,51 @@
+{
+  "name": "Potato Blintzes",
+  "duration": 1,
+  "tags": ["passover", "hanukkah", "rosh hashanah","vegetarian"],
+  "servings": 12,
+  "ingredients": {
+    "Dough": [
+      "3 Tbsp – Potato Starch",
+      "3 – Eggs (Beaten)",
+      "1 cup – Water",
+      "1/2 tsp – Salt"
+    ],
+    "Filling": [
+      "6-7 – Potatos",
+      "1-1.5 – Onions (Sauted)",
+      "1-2 Tbsp – Oil",
+      "2-3 Eggs",
+      "To taste – Salt, Pepper, Onion Powder, Garlic Powder"
+    ]
+  },
+  "instructions": {
+    "For the making the filling": [
+      " Peel and boil potatoes",
+      " Saute onions over medium heat",
+      " Once potatos are done, drain",
+      " Mash potatoes, onions, oil, eggs, and spices."
+    ],
+    "For the making the dough": [
+      "Combine starch, eggs, water, adn salt in a bowl.",
+      "Use 2-3 small pans to go a bit faster when cooking the dough"
+    ],
+    "For each crepe": [
+      "Wet a paper towel with oil to grease the pan before a new blintz is cooked",
+      "Stir the mixture of batter so the potato starch doesn’t sink to the bottom",
+      "Pour a small amount of batter into a lightly oiled frying pan on med-low heat.",
+      "Don’t flip the blintz’s",
+      "Once golden brown, flop onto a cloth"
+    ],
+    "For filling the crepe with filling": [
+      "Preheat oven to 400˚F",
+      "Drop about 1 Tbsp of filling on dough",
+      "Fold like an envelope & roll",
+      "Spray a cookie sheet with oil, place rolls side-by-side, spray top with oil",
+      "Freeze -> thaw -> bake for 15 minutes at 400˚F"    ]
+  },
+  "additional_context": {
+    "source": "Adapted from Jewish Cooking in America book at the Farm",
+    "story": "",
+    "tips": ""
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "name": "focaccia",
+  "duration": 3,
+  "tags": ["bread"],
+  "servings": 8,
+  "ingredients": {
+    "For the dough": [
+      "4 cups – Bread Flour",
+      "2 ¼ tsp – Instant Yeast",
+      "2 tsp – Kosher Salt",
+      "1 tsp – Sugar",
+      "2 cups – Tap Water, 100-108˚F",
+      "2 tbsp – Extra Virgin Olive Oil"
+    ],
+    "For the pan": [
+      "2 tbsp – Butter",
+      "1 tbsp – Extra Virgin Olive Oil"
+    ],
+    "Topping": [
+      "1 tbsp – Extra Virgin Olive Oil",
+      "1 tsp – Sea Salt/Course Salt",
+      "1 tbsp – Rosemary"
+    ]
+  },
+  "instructions": [
+    "Combine the flour, salt, yeast and sugar in a large bowl (at least 10 cups)",
+    "Stir well with a sturdy spatula or wooden spoon to combine",
+    "Add approximately half of the water (no need to measure) and stir well to incorporate the water; he mixture will be shaggy and dry at this point",
+    "Add most of the remaining water (reserve 2-3 tablespoons) and stir again until the water is well incorporated; if the mixture seems dry add the rest of the water and stir to combine",
+    "Dough should be thick, shaggy, and fluffy; if the dough still seems dry, add a bit more water, a tablespoon at a time until the thick, shaggy consistency (and no pockets of dry flour) is reached",
+    "Add 2 tablespoons of olive oil and stir until most of the olive oil is incorporated",
+    "Oil a separate bowl for rising and place the dough in the oiled bowl with a cover (plastic wrap or towel)",
+    "Let rise for 30 minutes",
+    "Remove the cover; using either a large spatula or slightly wet hands, pick up one side of the dough, stretch it, and then fold it over onto the rest; turn the bowl one-quarter turn and repeat the stretch and fold, repeat the stretch and fold 4-5 more times, turning the bowl one-quarter each time",
+    "Re-cover the dough and let rise for one hour",
+    "Rub the butter and oil all over the interior of a 9×13-inch baking pan (we use a pyrex glass dish)",
+    "Repeat the stretching and folding, then turn the dough into the prepared pan",
+    "Flip the dough over to coat with oil and flatten it out with your hands in the pan; it may not cover the entire pan at this point but flatten it out as much as you can; then cover the pan tightly with the plastic wrap",
+    "Let rise for one hour",
+    "Oil your fingers and start at the center of the dough, dimpling and stretching it towards one end of the pan, trying to evenly fill the pan to the edge and into the corners",
+    "Don’t be afraid to be aggressive with your dimpling, fingers should reach to the bottom of the pan",
+    "Deep dimpling creates the focaccia signature peaks and valleys and prevents the texture from disappearing during the baking time",
+    "If the dough seems resistant at any point, let it rest for a few minutes then try again",
+    "Set the pan aside and preheat oven to 500˚F, set the rack to the center",
+    "Drizzle the dimpled dough with 1 tablespoon extra virgin olive oil and sprinkle of sea salt and rosemary over the top",
+    "Bake for 15-20 minutes or until nicely browned",
+    "After baking remove from pan onto cooling rack and let cool for 10-15 minutes before slicing and devouring"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

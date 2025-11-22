@@ -1,0 +1,44 @@
+{
+  "name": "Latkes",
+  "duration": 1.5,
+  "tags": ["hanukkah", "vegetarian"],
+  "servings": 6,
+  "ingredients": [
+    "2 pounds – Russet (Baking) or Yukon Gold potatoes",
+    "1 – Medium Onion",
+    "½ cup – Chopped Scallions, including the green part",
+    "1 – Large Egg, Beaten",
+    "To Taste – Salt and freshly ground pepper",
+    "As Needed – Vegetable oil for frying"
+
+  ],
+  "instructions": {
+    "Prep the potatoes and onion":
+    [
+      "Peel the potatoes and put them in cold water.",
+      "Using a grater or a food processor, coarsely grate the potatoes and onion.",
+      "Place together in a fine-mesh strainer or tea towel and squeeze out all the water over a bowl.",
+      "The potato starch will settle at the bottom — reserve that starch after carefully pouring off the water."
+    ],
+    "Mix":
+    [
+      "Mix the potato and onion with the reserved potato starch.",
+      "Add the scallions, egg, salt, and pepper."
+    ],
+    "Cook the latkes":
+    [
+      "Heat a griddle or non-stick pan and coat with a thin film of vegetable oil.",
+      "Take about 1/4 cup of the potato mixture in the palm of your hand and flatten as best you can.",
+      "Place the mixture on the griddle, flatten with a large spatula, and fry for a few minutes until golden.",
+      "Do not flatten.",
+      "they will be crispy on the outside and soft in the middle",
+      "Flip the pancake and brown the other side.",
+      "Remove to paper towels to drain. Serve immediately."
+    ]  
+},
+  "additional_context": {
+    "source": "Adapted from Jewish Cooking in America book at the Farm",
+    "story": "Tori requested latkes for Passover once... Isaac told her it was the wrong holiday, but they made latkes together anyways for passover because latkes are delicious any time of year.",
+    "tips": ""
+  }
+}

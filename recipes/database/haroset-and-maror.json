@@ -1,0 +1,31 @@
+{
+  "name": "haroset-and-maror",
+  "duration": 0.25,
+  "tags": ["passover"],
+  "servings": 4,
+  "ingredients": {
+    "Haroset":[
+      "2 – Granny Smith Apples",
+      "1/2 – Lemon Juice",
+      "½ cup – Fresh Mango, peeled and diced",
+      "½ cup – Chopped Toasted Pecans",
+      "½ tsp – Cinnamon",
+      "1 tbsp – Honey",
+      "1 tbsp – Port or Sweet Wine"
+    ],
+    "Maror":[
+      "Horseradish from a jar"
+    ]
+  },
+  "instructions": [
+    "Peel, core, and dice the apples and sprinkle with the lemon juice",
+    "Place all the ingredients in a food processor",
+    "Pulse once or twice just to break up",
+    "Let sit for the flavors to meld"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}
