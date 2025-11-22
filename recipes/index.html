@@ -25,8 +25,8 @@
     <div class="recipe-categories">
       
       <!-- View All Recipes Button -->
-      <div class="category-section" style="text-align: center; margin-bottom: 2rem;">
-        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+      <div class="category-section" style="text-align: left; margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: flex-start; gap: 1rem; flex-wrap: wrap;">
           <button onclick="showAllRecipes()" class="nav-button nav-button--secondary nav-button--large">
             📖 View All Recipes
           </button>
@@ -118,7 +118,7 @@
       // Add click handlers to all category buttons
       const buttonCategories = [
         { selector: '#proteinButtons', tags: ['chicken', 'beef', 'pork', 'lamb', 'fish','vegetarian'] },
-        { selector: '#mealTypeButtons', tags: ['pasta', 'rice', 'instant pot', 'salad', 'soup', 'sides'] },
+        { selector: '#mealTypeButtons', tags: ['pasta', 'rice', 'instant pot', 'salad', 'soup'] },
         { selector: '#breakfastButtons', tags: ['savoury', 'sweet'] },
         { selector: '#bakingButtons', tags: ['cookies', 'bread', 'muffins', 'cake'] },
         { selector: '#holidayButtons', tags: ['christmas', 'passover', 'hanukkah', 'easter', 'thanksgiving'] }
@@ -161,8 +161,7 @@
         { text: 'Rice', href: '#', style: 'secondary', size: 'medium', icon: '🍚' },
         { text: 'Instant Pot', href: '#', style: 'secondary', size: 'medium', icon: '🥘' },
         { text: 'Salad', href: '#', style: 'secondary', size: 'medium', icon: '🥗' },
-        { text: 'Soup', href: '#', style: 'secondary', size: 'medium', icon: '🍲' },
-        { text: 'Sides', href: '#', style: 'secondary', size: 'medium', icon: '' }
+        { text: 'Soup', href: '#', style: 'secondary', size: 'medium', icon: '🍲' }
       ]
     });
 
