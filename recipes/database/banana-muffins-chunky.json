@@ -1,0 +1,37 @@
+{
+  "name": "Banana Muffins Chunky",
+  "duration": 1,
+  "tags": ["sweet", "muffins"],
+  "servings": 12,
+  "ingredients": [
+    "2 cup – Flour",
+    "1 cup – Sugar",
+    "1 tsp – Salt",
+    "1 tsp – Baking Powder",
+    "1/2 tsp – Baking Soda",
+    "1/2 cup – Butter",
+    "2 – Eggs",
+    "3 – Bananas",
+    "1 tbsp – Vanilla",
+    "1/2 cup – Raspberries, optional",
+    "1 cup – Chocolate Chip, optional",
+    "As needed – Banana Chunks, optional",
+    "As needed – Walnuts, optional",
+    "As needed – Cinnamon, optional"
+  ],
+  "instructions": [
+    "Preheat oven to 350˚F",
+    "Mix all the dry (Flour to baking soda) together in a bowl",
+    "Mix dry ingredients (butter, eggs, vanilla) together in a separate bowl",
+    "Combine wet + dry. Then add optional ingredients",
+    "In each muffin tin, add a small amount of butter or oil to coat the baking surface",
+    "Fill each muffin cup approximately half full with muffin batter",
+    "Bake in the oven for 30 minutes until the batter is not mushy on the inside"
+
+  ],
+  "additional_context": {
+    "source": "Vivian (from UBC)",
+    "story": "Vivian is Tori's friend from university. One time in uni, Tori somehow got her hands on a whole box of bananas - like 20 bunches, so she made 150 muffins with this Vivian's recipe to share with friends and classmates.",
+    "tips": ""
+  }
+}

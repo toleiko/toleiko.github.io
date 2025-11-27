@@ -1,0 +1,25 @@
+{
+  "name": "Shortbread Cookies",
+  "duration": 1,
+  "tags": ["cookies", "christmas"],
+  "servings": 24,
+  "ingredients": [
+    "1 lb – Butter at room temperature",
+    "1 cup – Icing Sugar",
+    "1 cup – Cornstarch",
+    "3 cup – White Flour"
+  ],
+  "instructions": [
+    "Preheat to 300˚F",
+    "Whip butter and gradually add icing sugar ",
+    "Gradually add cornstarch and mix well",
+    "Add flour gradually and continue to mix",
+    "Drop spoonfuls (smush batter in fist to make holly shape) onto un-greased cookie sheet",
+    "Bake for 20 minutes"
+  ],
+  "additional_context": {
+    "source": "Leslie (Tori's mom's friend growing up)",
+    "story": "",
+    "tips": ""
+  }
+}

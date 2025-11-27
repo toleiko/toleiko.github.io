@@ -1,0 +1,32 @@
+{
+  "name": "Chocolate Chip Cookies",
+  "duration": 0.5,
+  "tags": ["cookies"],
+  "servings": 12,
+  "ingredients": [
+    "1 cup – Butter",
+    "1/2 cup – Brown Sugar",
+    "1/2 cup – White Sugar",
+    "2 – Eggs",
+    "1 tsp – Vanilla",
+    "2 5/8 cup – Flour",
+    "1/2 tsp – Baking Soda",
+    "1/2 tsp – Salt",
+    "1-12 oz pgk – Chocolate Chips"
+  ],
+  "instructions": [
+    "Preheat oven to 350˚F",
+    "Cream butter and sugars",
+    "Add eggs and vanilla",
+    "Beat the crap out of the mixture…",
+    "Sift and add flour, baking soda, salt",
+    "Add chocolate chips",
+    "Mix until uniform consistency, but do not over mix",
+    "Bake for 11 minutes until edges start to brown"
+  ],
+  "additional_context": {
+    "source": "Lani (who is Dr. Dan's mom). Dr. Dan is Isaac's dad's friend growing up and would often attend family holidays when Isaac was growing up.",
+    "story": "",
+    "tips": "The flour amount used to be 1 1/2 cup of flour but we found that adding more flour makes the cookies less flat and more chewy."
+  }
+}

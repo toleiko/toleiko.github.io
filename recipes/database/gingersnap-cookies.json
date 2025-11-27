@@ -1,0 +1,32 @@
+{
+  "name": "Gingersnap Cookies",
+  "duration": 1,
+  "tags": ["cookies", "christmas"],
+  "servings": 12,
+  "ingredients": [
+    "3/4 cup – Shortening ",
+    "3/4 cup – Fine Sugar",
+    "1/4 cup – Molasses",
+    "1 – egg",
+    "2 cup – Flour",
+    "2 tbsp – Ginger",
+    "2 tsp – Baking Soda",
+    "1 tsp – Cinnamon ",
+    "1/4 tsp – Salt ",
+    "1/8 tsp – Cloves"
+  ],
+  "instructions": [
+    "Preheat oven to 350˚F",
+    "Mix all the dry (Flour to baking soda) together in a bowl",
+    "Mix dry ingredients (butter, eggs, vanilla) together in a separate bowl",
+    "Combine wet + dry. Then add optional ingredients",
+    "In each muffin tin, add a small amount of butter or oil to coat the baking surface",
+    "Fill each muffin cup approximately half full with muffin batter",
+    "Bake in the oven for 30 minutes until the batter is not mushy on the inside"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

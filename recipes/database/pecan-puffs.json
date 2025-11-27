@@ -1,0 +1,28 @@
+{
+  "name": "Pecan Puffs",
+  "duration": 1,
+  "tags": ["cookies", "nuts", "christmas"],
+  "servings": 24,
+  "ingredients": [
+    "1/2 lb – Butter",
+    "1/3 lb / 1 cup – Pecans, chopped to 1-2mm in size, not pre-ground",
+    "5 tbsp – Fruit sugar",
+    "2 cup – Flour",
+    "2 tsp – Vanilla"
+  ],
+  "instructions": [
+    "Preheat oven to 275˚F",
+    "Cream butter",
+    "Add sugar gradually while mixing",
+    "Sift in flour",
+    "Mix in vanilla, and pecans",
+    "Make small round balls",
+    "Sift or roll balls in sugar to coat the surface",
+    "Bake for about 25 minutes, until cookies are pale golden brown"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}
