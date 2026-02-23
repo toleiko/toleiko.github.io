@@ -14,7 +14,7 @@
   <!-- Main Content -->
   <div class="content">
     <div style="margin-bottom: 2rem;">
-      <button onclick="history.back()" class="nav-button nav-button--outline nav-button--medium">
+      <button onclick="goBackToRecipes()" class="nav-button nav-button--outline nav-button--medium">
         ← Back
       </button>
     </div>
@@ -79,6 +79,32 @@
       } catch (error) {
         console.error('Error loading recipe:', error);
         document.getElementById('recipeDetails').innerHTML = `<p>Error loading recipe: ${error.message}</p>`;
+      }
+    }
+
+    function getReturnUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const fromParam = urlParams.get('from');
+      if (!fromParam) return null;
+
+      try {
+        const decoded = decodeURIComponent(fromParam);
+        if (decoded.startsWith('/recipes')) {
+          return decoded;
+        }
+      } catch (error) {
+        console.warn('Invalid return URL:', error);
+      }
+
+      return null;
+    }
+
+    function goBackToRecipes() {
+      const returnUrl = getReturnUrl();
+      if (returnUrl) {
+        window.location.href = returnUrl;
+      } else {
+        history.back();
       }
     }
 

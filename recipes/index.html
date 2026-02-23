@@ -337,8 +337,40 @@
       }
     }
 
+    // Render categories view (no history changes)
+    function renderCategories() {
+      const categoriesDiv = document.querySelector('.recipe-categories');
+      const filteredDiv = document.getElementById('filteredResults');
+
+      categoriesDiv.style.display = 'block';
+      filteredDiv.style.display = 'none';
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Render filtered recipes view (no history changes)
+    function renderFilteredRecipes(recipes, tag, showFundamentalButton = false) {
+      const categoriesDiv = document.querySelector('.recipe-categories');
+      const filteredDiv = document.getElementById('filteredResults');
+      const filterTitle = document.getElementById('filterTitle');
+      const recipeGrid = document.getElementById('recipeGrid');
+
+      categoriesDiv.style.display = 'none';
+      filteredDiv.style.display = 'block';
+
+      filterTitle.textContent = `${tag.charAt(0).toUpperCase() + tag.slice(1)} Recipes (${recipes.length})`;
+
+      if (recipes.length === 0) {
+        recipeGrid.innerHTML = '<p>No recipes found for this category.</p>';
+      } else {
+        recipeGrid.innerHTML = recipes.map(recipe => createRecipeCard(recipe)).join('');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     // Filter recipes by tag
-    function filterRecipes(tag) {
+    function filterRecipes(tag, pushHistory = true) {
       console.log('Filtering recipes for tag:', tag);
       console.log('All recipes loaded:', allRecipes);
       
@@ -349,38 +381,23 @@
       );
 
       console.log('Filtered recipes:', filteredRecipes);
-      displayFilteredRecipes(filteredRecipes, tag);
+      displayFilteredRecipes(filteredRecipes, tag, false, pushHistory, 'filter');
     }
 
-    // Display filtered recipes
-    function displayFilteredRecipes(recipes, tag, showFundamentalButton = false) {
-      const categoriesDiv = document.querySelector('.recipe-categories');
-      const filteredDiv = document.getElementById('filteredResults');
-      const filterTitle = document.getElementById('filterTitle');
-      const recipeGrid = document.getElementById('recipeGrid');
-      // const fundamentalBtn = document.getElementById('fundamentalRecipesBtn');
+    // Display filtered recipes with optional history
+    function displayFilteredRecipes(recipes, tag, showFundamentalButton = false, pushHistory = true, view = 'filter') {
+      renderFilteredRecipes(recipes, tag, showFundamentalButton);
 
-      // Hide categories, show filtered results
-      categoriesDiv.style.display = 'none';
-      filteredDiv.style.display = 'block';
-
-      // // Show or hide the Fundamental Recipes button
-      // if (fundamentalBtn) {
-      //   fundamentalBtn.style.display = showFundamentalButton ? 'inline-block' : 'none';
-      // }
-
-      // Update title
-      filterTitle.textContent = `${tag.charAt(0).toUpperCase() + tag.slice(1)} Recipes (${recipes.length})`;
-
-      // Create recipe cards
-      if (recipes.length === 0) {
-        recipeGrid.innerHTML = '<p>No recipes found for this category.</p>';
-      } else {
-        recipeGrid.innerHTML = recipes.map(recipe => createRecipeCard(recipe)).join('');
+      if (pushHistory) {
+        const hash = view === 'filter'
+          ? `#tag=${encodeURIComponent(tag)}`
+          : view === 'all'
+            ? '#all'
+            : view === 'fundamental'
+              ? '#fundamental'
+              : '';
+        history.pushState({ view, tag }, '', `${window.location.pathname}${hash}`);
       }
-
-      // Scroll to top of page
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     // Create a recipe card HTML
@@ -406,19 +423,17 @@
 
     // Open recipe detail page
     function openRecipe(recipeFile) {
-      window.location.href = `recipe.html?recipe=${recipeFile}`;
+      const returnUrl = encodeURIComponent(`${window.location.pathname}${window.location.search}${window.location.hash}`);
+      window.location.href = `recipe.html?recipe=${recipeFile}&from=${returnUrl}`;
     }
 
     // Show all categories (back button)
-    function showAllCategories() {
-      const categoriesDiv = document.querySelector('.recipe-categories');
-      const filteredDiv = document.getElementById('filteredResults');
+    function showAllCategories(pushHistory = true) {
+      renderCategories();
 
-      categoriesDiv.style.display = 'block';
-      filteredDiv.style.display = 'none';
-
-      // Scroll to top of page
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (pushHistory) {
+        history.pushState({ view: 'categories' }, '', window.location.pathname);
+      }
     }
 
     // Test function to verify buttons work
@@ -427,17 +442,17 @@
     };
 
     // Show all recipes in alphabetical order
-    function showAllRecipes() {
+    function showAllRecipes(pushHistory = true) {
       // Sort recipes alphabetically by name
       const sortedRecipes = [...allRecipes].sort((a, b) => 
         a.name.localeCompare(b.name)
       );
       
-      displayFilteredRecipes(sortedRecipes, 'All Recipes', true);
+      displayFilteredRecipes(sortedRecipes, 'All Recipes', true, pushHistory, 'all');
     }
 
     // Show fundamental recipes (recipes tagged as fundamental)
-    function showFundamentalRecipes() {
+    function showFundamentalRecipes(pushHistory = true) {
       // Filter recipes that have the "fundamental" tag
       const fundamentalRecipes = allRecipes.filter(recipe => 
         recipe.tags && recipe.tags.some(tag => 
@@ -450,7 +465,7 @@
         a.name.localeCompare(b.name)
       );
       
-      displayFilteredRecipes(sortedRecipes, 'Fundamental Recipes', false);
+      displayFilteredRecipes(sortedRecipes, 'Fundamental Recipes', false, pushHistory, 'fundamental');
     }
 
     // Make functions globally accessible
@@ -460,9 +475,61 @@
     window.showFundamentalRecipes = showFundamentalRecipes;
     window.openRecipe = openRecipe;
 
+    function getStateFromHash() {
+      const hash = window.location.hash || '';
+
+      if (hash.startsWith('#tag=')) {
+        const tag = decodeURIComponent(hash.replace('#tag=', ''));
+        return { view: 'filter', tag };
+      }
+
+      if (hash === '#all') {
+        return { view: 'all' };
+      }
+
+      if (hash === '#fundamental') {
+        return { view: 'fundamental' };
+      }
+
+      return { view: 'categories' };
+    }
+
+    function applyState(state, pushHistory = false) {
+      if (!state || state.view === 'categories') {
+        renderCategories();
+        if (pushHistory) {
+          history.pushState({ view: 'categories' }, '', window.location.pathname);
+        }
+        return;
+      }
+
+      if (state.view === 'all') {
+        showAllRecipes(pushHistory);
+        return;
+      }
+
+      if (state.view === 'fundamental') {
+        showFundamentalRecipes(pushHistory);
+        return;
+      }
+
+      if (state.view === 'filter' && state.tag) {
+        filterRecipes(state.tag, pushHistory);
+      }
+    }
+
+    // Handle browser back/forward within the recipes page
+    window.addEventListener('popstate', (event) => {
+      const state = event.state || getStateFromHash();
+      applyState(state, false);
+    });
+
     // Load recipes when page loads
     loadRecipes().then(() => {
       console.log('Recipes loaded successfully:', allRecipes.length, 'recipes');
+      const initialState = getStateFromHash();
+      applyState(initialState, false);
+      history.replaceState(initialState, '', `${window.location.pathname}${window.location.hash}`);
     });
 
   </script>
