@@ -205,6 +205,52 @@
     // Recipe filtering functionality
     let allRecipes = [];
 
+    function slugifyRecipeName(name) {
+      return name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-');
+    }
+
+    function buildRecipeKeywords(recipe) {
+      const ingredientKeywords = (recipe.ingredients || []).flatMap((ingredient) => {
+        const cleaned = ingredient
+          .replace(/^\s*[0-9¼½¾⅓⅔⅛./\-]+\s*/u, '')
+          .replace(/\b(cup|cups|tbsp|tsp|can|cans|cloves|clove|pkg|oz|lb|lbs|bunch)\b/gi, '')
+          .split(/[–,-]/)
+          .map((value) => value.trim())
+          .filter(Boolean);
+
+        return cleaned;
+      });
+
+      return [
+        recipe.name,
+        ...(recipe.tags || []),
+        ...ingredientKeywords
+      ].flatMap((value) => String(value).split('/')).map((value) => value.trim()).filter(Boolean);
+    }
+
+    function setupRecipeSearch() {
+      const searchItems = allRecipes.map((recipe) => {
+        const recipeFile = slugifyRecipeName(recipe.name);
+        return {
+          title: recipe.name,
+          description: recipe.tags ? recipe.tags.join(' • ') : 'Recipe',
+          keywords: buildRecipeKeywords(recipe),
+          href: `recipe.html?recipe=${recipeFile}&from=${encodeURIComponent(`${window.location.pathname}${window.location.search}${window.location.hash}`)}`,
+          onSelect: () => openRecipe(recipeFile)
+        };
+      });
+
+      setSearchItems(searchItems);
+    }
+
+    function searchRecipes(query, pushHistory = true) {
+      const normalizedQuery = query.trim().toLowerCase();
+      const matchedRecipes = allRecipes.filter((recipe) => buildRecipeKeywords(recipe)
+        .some((keyword) => keyword.toLowerCase().includes(normalizedQuery)));
+
+      displayFilteredRecipes(matchedRecipes, `Search: ${query}`, false, pushHistory, 'search', query);
+    }
+
     // Load all recipes from the database folder
     async function loadRecipes() {
       const recipeFiles = [
@@ -330,6 +376,7 @@
             console.error('Error loading file', file, ':', fileError);
           }
         }
+        setupRecipeSearch();
         console.log('All recipes loaded:', allRecipes.length);
         console.log('Recipe names:', allRecipes.map(r => r.name));
       } catch (error) {
@@ -385,7 +432,7 @@
     }
 
     // Display filtered recipes with optional history
-    function displayFilteredRecipes(recipes, tag, showFundamentalButton = false, pushHistory = true, view = 'filter') {
+    function displayFilteredRecipes(recipes, tag, showFundamentalButton = false, pushHistory = true, view = 'filter', query = '') {
       renderFilteredRecipes(recipes, tag, showFundamentalButton);
 
       if (pushHistory) {
@@ -395,15 +442,17 @@
             ? '#all'
             : view === 'fundamental'
               ? '#fundamental'
+              : view === 'search'
+                ? `#search=${encodeURIComponent(query)}`
               : '';
-        history.pushState({ view, tag }, '', `${window.location.pathname}${hash}`);
+        history.pushState({ view, tag, query }, '', `${window.location.pathname}${hash}`);
       }
     }
 
     // Create a recipe card HTML
     function createRecipeCard(recipe) {
       // Convert recipe name to filename format (lowercase, hyphens for spaces)
-      const recipeFile = recipe.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-');
+      const recipeFile = slugifyRecipeName(recipe.name);
       
       return `
         <div class="recipe-card clickable" onclick="openRecipe('${recipeFile}')">
@@ -491,6 +540,11 @@
         return { view: 'fundamental' };
       }
 
+      if (hash.startsWith('#search=')) {
+        const query = decodeURIComponent(hash.replace('#search=', ''));
+        return { view: 'search', query };
+      }
+
       return { view: 'categories' };
     }
 
@@ -513,10 +567,30 @@
         return;
       }
 
+      if (state.view === 'search' && state.query) {
+        searchRecipes(state.query, pushHistory);
+        return;
+      }
+
       if (state.view === 'filter' && state.tag) {
         filterRecipes(state.tag, pushHistory);
       }
     }
+
+    window.performSearch = function() {
+      const searchInput = document.getElementById('searchInput');
+      if (!searchInput) {
+        return;
+      }
+
+      const query = searchInput.value.trim();
+      if (!query) {
+        showAllCategories();
+        return;
+      }
+
+      searchRecipes(query);
+    };
 
     // Handle browser back/forward within the recipes page
     window.addEventListener('popstate', (event) => {
