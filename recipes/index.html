@@ -111,6 +111,16 @@
       ]
     });
 
+    function updateRecipeSearchResults(query) {
+      if (typeof window.handleSearchInput === 'function') {
+        window.handleSearchInput({
+          target: {
+            value: query
+          }
+        });
+      }
+    }
+
     // Load recipe category buttons
     
     // Add event listeners after buttons are created
@@ -241,6 +251,13 @@
       });
 
       setSearchItems(searchItems);
+
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', (event) => {
+          updateRecipeSearchResults(event.target.value);
+        });
+      }
     }
 
     function searchRecipes(query, pushHistory = true) {
@@ -589,6 +606,7 @@
         return;
       }
 
+      updateRecipeSearchResults(query);
       searchRecipes(query);
     };
 
