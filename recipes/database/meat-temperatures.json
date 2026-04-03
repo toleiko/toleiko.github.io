@@ -1,0 +1,32 @@
+{
+  "name": "Meat Temperatures",
+  "duration": 0,
+  "tags": ["fundamental", "beef", "pork", "lamb", "chicken", "turkey"],
+  "servings": 0,
+  "ingredients": [
+    "Instant-read meat thermometer",
+    "Rest cooked meat before slicing"
+  ],
+  "instructions": {
+    "Beef/Lamb (internal temperature)": [
+      "Rare: 120–125°F (49–52°C)",
+      "Medium-Rare: 130–135°F (54–57°C)",
+      "Medium: 140–145°F (60–63°C)",
+      "Medium-Well: 150–155°F (66–68°C)"
+    ],
+    "Pork (internal temperature)": [
+      "Rare: 130–135°F (54–57°C, not recommended)",
+      "Medium-Rare: 140–145°F (60–63°C)",
+      "Medium: 150°F (66°C)",
+      "Medium-Well: 155°F (68°C)"
+    ],
+    "Chicken/Turkey (internal temperature)": [
+      "165°F (74°C)"
+    ]
+  },
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": "Measure in the thickest part of the meat, avoiding bone. Temperatures rise a few degrees while resting. Food safety note: For pork, chicken, and turkey, minimum safe target is 165°F (74°C) for poultry and 145°F (63°C) for whole-cut pork with a 3-minute rest."
+  }
+}

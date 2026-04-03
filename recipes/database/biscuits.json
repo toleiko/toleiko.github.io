@@ -1,0 +1,29 @@
+{
+  "name": "Biscuits",
+  "duration": 0.5,
+  "tags": ["bread", "cheese"],
+  "servings": 12,
+  "ingredients": [
+    "2 cup - Flour",
+    "1/3 cup - Butter",
+    "2 tbsp - Sugar",
+    "4 tsp - Baking Powder",
+    "3/4 cup - Milk",
+    "1 cup - Cheese, grated (optional)"
+  ],
+  "instructions": [
+    "Preheat oven to 450˚F",
+    "Cut butter into dry ingredients",
+    "Add milk and stir, the dough will be dry",
+    "Mix cheese into dough",
+    "Dump onto counter and knead gently until soft",
+    "Roll dough flat, ~1.5 inches thick (when baking, the biscuits increase in height by ~75%, but the edges do not increase significantly)",
+    "Use a cookie cutter to divide into biscuits",
+    "Bake for 11 minutes"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

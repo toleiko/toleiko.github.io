@@ -1,0 +1,29 @@
+{
+  "name": "Sugar Cookies",
+  "duration": 0.5,
+  "tags": ["cookies"],
+  "servings": 16,
+  "ingredients": [
+    "2 1/2 cup - Flour",
+    "1 tsp - Baking Soda",
+    "1 1/2 tsp - Cream of tartar",
+    "1 tsp - Vanilla",
+    "3/4 cup - Butter",
+    "2 - Eggs (well beaten)",
+    "1 cup - Sugar"
+  ],
+  "instructions": [
+    "Preheat oven to 375˚F",
+    "Sift dry ingredients",
+    "Cream butter, gradually add sugar",
+    "Beat in eggs, vanilla, flour (gradually as you may not mix it all in)",
+    "Chill for 10 to 15 minutes",
+    "Roll out to desired thickness 0.5cm to 1cm and use cookie cutter to cut the cookies into shapes",
+    "Bake 5-7 minutes"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

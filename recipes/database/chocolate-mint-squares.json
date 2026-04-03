@@ -1,0 +1,47 @@
+{
+  "name": "Chocolate Mint Squares",
+  "duration": 1,
+  "tags": ["dessert", "chocolate", "mint"],
+  "servings": 4,
+  "ingredients": [
+    "2 squares - Unsweetened Chocolate",
+    "1/2 cup - Butter",
+    "1 tsp - Vanilla",
+    "2 - Eggs",
+    "1 cup - Granulated Sugar", 
+    "1/2 cup - Flour",
+    "1/4 tsp - Baking Powder",
+    "1/2 cup - sliced almonds or chopped walnuts",
+    "1/4 cup - Soft butter",
+    "1 1/2 cup - Sifted icing sugar",
+    "1 tbsp - Cream or Milk",
+    "1/2 tsp - Peppermint Flavouring",
+    "Green - food colouring (optional)",
+    "2 squares - semi-sweet chocolate",
+    "1 tbsp - butter"
+  ],
+  "instructions": [
+    "Preheat oven to 350˚F",
+    "Melt unsweetened chocolate with 1/2 butter over low heat",
+    "Cool slightly",
+    "Add vanilla ",
+    "Beat eggs, then beat in sugar gradually",
+    "Combine flour and baking powder, then stir into egg/sugar mixture",
+    "Stir in chocolate mixture and almonds/walnuts",
+    "Pour batter into a greased 9 inch square cake pan ",
+    "Bake for 25 minutes, until toothpick comes out clean",
+    "Let cake cool",
+    "Meanwhile, blend 1/4 cup butter with icing sugar, cream, flavouring until smooth",
+    "Optional: tint green as desired",
+    "Spread over cooled cake and chill until firm",
+    "Melt semi-sweet chocolate with butter on very low heat or in a double-boiler",
+    "Drizzle over mint layer",
+    "Chill until set",
+    "Cut into squares to serve"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

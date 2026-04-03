@@ -1,0 +1,31 @@
+{
+  "name": "Saucepan Brownies",
+  "duration": 1,
+  "tags": ["cookies"],
+  "servings": 20,
+  "ingredients": [
+    "1/2 lb + 3 tbsp - Butter, unsalted",
+    "2 oz - Semi-Sweet Chocolate",
+    "4 oz - Unsweetened Chocolate",
+    "1 cup - Brown Sugar",
+    "1 cup - Grain Sugar",
+    "1 1/2 tsp - Vanilla",
+    "1 1/2 cup - Flour",
+    "1 tsp - Salt",
+    "2 tsp - Baking Powder",
+    "4 - Eggs"
+  ],
+  "instructions": [
+    "Preheat oven to 350˚F",
+    "Melt butter and chocolate in a saucepan over medium-low heat",
+    "Mix sugar and vanilla to the butter/chocolate mixture",
+    "Add and mix the rest of the ingredients",
+    "Pour batter into a greased pan 9 by 13 inch pan",
+    "Bake for 25 to 30 minutes until toothpick comes out clean"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}
