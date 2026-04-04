@@ -1,0 +1,44 @@
+{
+  "name": "Coconut Cake",
+  "duration": 1,
+  "tags": ["cake"],
+  "servings": 12,
+  "ingredients": {
+  "Cake": [
+      "2 - Eggs",
+      "1 cup - Sugar",
+      "1/2 cup - Milk",
+      "1 heaping tbsp - Butter",
+      "1 cup - Flour",
+      "1/4 tsp - Baking Powder",
+      "1 tsp - Vanilla",
+      "1/4 tsp - Salt"
+    ],
+    "Topping": [
+      "3 tbsp - Butter",
+      "2 tbsp - Cream",
+      "1/3 cup - Brown sugar",
+      "3/4 cup - Coconut, grated",
+      "1/2 tsp - Vanilla"
+    ]
+  },
+  "instructions": [
+    "Preheat oven to 350˚F",
+    "Beat eggs and sugar together",
+    "Scald milk and butter, let cool",
+    "Sift flour, baking powder into milk and butter",
+    "Add vanilla and salt", 
+    "Beat for 5 minutes",
+    "Pour batter unto un-greased pan",
+    "Bake for ~35 minutes",
+    "After baking, don't remove from pan and let cool for 5 minutes",
+    "Turn the oven to broil",
+    "Mix all the topping ingredients together",
+    "Add topping to cake and broil for 5 minutes until brown, watching closely"
+  ],
+  "additional_context": {
+    "source": "this cake comes from Isaac's Grandma Pauli",
+    "story": "",
+    "tips": ""
+  }
+}
