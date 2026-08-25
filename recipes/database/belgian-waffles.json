@@ -1,0 +1,33 @@
+{
+  "name": "Belgian Waffles",
+  "duration": 1,
+  "tags": ["sweet"],
+  "servings": 8,
+  "ingredients": [
+    "2 1/4 cup – All Purpose Flour",
+    "1 tbsp – Baking Powder",
+    "3 tbsp – Sugar",
+    "1/2 tsp – Salt",
+    "1 tsp – Cinnamon",
+    "1 tsp – Cardamom (optional - the Norwegian way...",
+    "2 large – Eggs, separated",
+    "1/2 cup – Vegetable Oil",
+    "2 cup – Milk",
+    "1 tsp – Vanilla Extract "
+  ],
+  "instructions": [
+    "Preheat waffle iron an spray with oil or coat with butter",
+    "In a large bowl, whisk together the flour, baking powder, sugar, salt, and cinnamon",
+    "In a medium bowl, beat egg whites until stiff peaks from",
+    "In another medium bowl, mix together, egg yolks, oil, milk, and vanilla extract",
+    "Add egg yolk mixture to dry ingredients and mix well",
+    "Fold in egg whites",
+    "Pour batter into hot waffle iron and cook until done, as per manufacturer’s directions",
+    "Serve with butter, syrup, powdered sugar, or fruit."
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "Tori's friend from university, Ada, made waffles for everyone and added cardamom which is the norwegian way of waffles! They were delicious!",
+    "tips": ""
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Boiled Eggs",
+  "duration": 0.25,
+  "tags": ["fundamental", "breakfast"],
+  "servings": 4,
+  "ingredients": [
+    "4  – Large Eggs",
+    "Enough – Water (enough to cover eggs by an inch or two)"
+  ],
+  "instructions": [
+    "Boil water first.",
+    "Gently lower in fridge-cold eggs.",
+    "Lower the heat slightly so  eggs don’t crack due to movement but keep water at a gentle boil.",
+    "Start the timer – 6 minutes for runny yolks, 8 minutes for soft boiled, 10 minutes for classic hard boiled, 15 minutes for unpleasant rubbery whites and powdery dry yolks.",
+    "Transfer into a large bowl with ice cold water.",
+    "Once cooled, roll the eggs on a hard surface (before cracking) to release the layer between the egg and the shell (the dutch trick)",
+    "Peel the egg starting at the base"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

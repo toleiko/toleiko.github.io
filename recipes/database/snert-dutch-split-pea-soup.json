@@ -1,0 +1,39 @@
+{
+  "name": "Snert (Dutch Split Pea Soup)",
+  "duration": 6,
+  "tags": ["soup", "dutch", "pork"],
+  "servings": 8,
+  "ingredients": [
+    "2 1/2 cups - Green Split Peas",
+    "3 qts - Water",
+    "1 hock - Smoked Pork Hock (left over ham hock is great)",
+    "2 - Bay leaves",
+    "1 tbsp - Salt",
+    "3 - Leeks",
+    "3 - Celery Stalks",
+    "3 - Carrots", 
+    "1 - Cauliflower Head, cut into pieces",
+    "3 - Smokey's or Bavarian sausage, sliced", 
+    "1 tsp - Maggi Aroma (or use 1 maggi cube), use more for stronger flavour, but taste as you go", 
+    "To Taste - Salt and Pepper"
+  ],
+  "instructions": [
+   "Soak peas overnight for at least 12 hours in cold water",
+   "After soaking, add pork hock, bay leaves, salt to the peas and water",
+   "Bring mixture to boil, then reduce the heat to a simmer",
+   "Cover soup and allow to simmer for 2 hours ",
+   "While simmering, chop leeks, cauliflower into 2cm pieces",
+   "Chop carrots and celery into 1cm pieces",
+   "Slice the sausage into 0.5cm slices",
+   "After the 2 hour simmer, add the veggies and meat to the soup and simmer for another 15 minutes or until tender",
+   "Remove the pork hock from the soup and cut the meat off the hock. Put the meat back in the soup and discard the hock.",
+   "Remove the bay leaves. Add Maggi, salt and pepper to taste. ",
+   "Simmer for another 20-30 minutes to thicken the soup up. If too thick, add water and allow for the sausage to cook through",
+   "The soup is suppose to be thick, not quite thick enough to hold a spoon up."
+  ],
+  "additional_context": {
+    "source": "Cooking Dutch Cookbook, heavily modified by Tori's Oma",
+    "story": "Snert is a traditional Dutch split pea soup that is thick and hearty and perfect for cold weather. Fun fact: snert is a highly contentious meal in Tori's family, approx 50% love it, the other 50% hate it. Luckily Tori and Isaac are both in the love it camp (thank goodness).",
+    "tips": "Serve with bread and butter. Snert is better the next day as the flavours meld together. "
+  }
+}

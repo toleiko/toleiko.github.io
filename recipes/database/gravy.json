@@ -1,0 +1,22 @@
+{
+  "name": "Gravy",
+  "duration": 1,
+  "tags": ["fundamental", "beef", "lamb", "chicken", "vegetarian"],
+  "servings": 4,
+  "ingredients": [
+    "1 tbsp – Flour",
+    "1 tbsp – Bisto (chicken, beef, vegetarian",
+    "1 cup – Water/Broth/Potato water",
+    "1 tbsp – Fat (drippings, oil, bacon fat, butter)"
+  ],
+  "instructions": [
+    "Combine flour, bisto, and a little bit of water to a paste",
+    "Combine paste, water, and fat into a pot, let simmer until well mixed and warm",
+    "Whisk or stir periodically while warming"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

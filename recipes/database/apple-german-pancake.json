@@ -1,0 +1,32 @@
+{
+  "name": "Apple / German Pancake",
+  "duration": 1,
+  "tags": ["savoury", "sweet"],
+  "servings": 6,
+  "ingredients": [
+    "6 – Eggs",
+    "1 cup – Flour",
+    "2 tbsp – White Sugar",
+    "1 1/2 cup – Milk",
+    "1 tsp – Vanilla",
+    "1/2 tsp – Salt",
+    "1/2 cup – Butter",
+    "2 – Apples (Gala or MacIntosh, not Red Delicious or Granny Smith), sliced thinly",
+    "As needed – cinnamon and brown sugar for Apple Pancakes",
+    "As needed – icing sugar and lemon for German Pancakes"
+  ],
+  "instructions": [
+    "Preheat oven to 400˚F",
+    "Mix eggs, flour, sugar, milk, vanilla, and salt in a bowl",
+    "Melt butter in casserole dish in the oven until butter is hot but not burned",
+    "Apple Pancakes: Spread apple slice in hot butter and bake until apples sizzle, ~3 minutes",
+    "Pour a thin layer of batter into casserole, can use more batter if thicker pancakes are desired",
+    "Bake for ~13-15 minutes until a toothpick comes out of the batter clean",
+    "Apple Pancakes: spread cinnamon and brown sugar mixture over the top of pancake"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "While Max and Isaac love apple pancakes, Jackie and Tori prefer German with icing sugar and lemon",
+    "tips": "This optionally makes 'German' Pancakes -- to do so, skip the apple pancake steps."
+  }
+}

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>toleiko/recipes</title>
+  <meta name="description" content="Cooking with Tori and Isaac - Delicious dishes and cooking adventures">
+  <meta property="og:title" content="toleiko - recipes">
+  <meta property="og:description" content="Cooking with Tori and Isaac - Delicious dishes and cooking adventures">
+  <meta property="og:url" content="https://toleiko.ca/recipes">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://toleiko.ca/recipes">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <!-- Title Section Container -->
+  <div id="titleSection"></div>
+  
+  <!-- Main Content -->
+  <div class="content">
+    <h2>Our Recipe Collection</h2>
+    <p>Welcome to Isaac and Tori's kitchen! Here you'll find a collection of our favorite recipes, cooking experiments, and culinary adventures.</p>
+    
+    <!-- Recipe Categories -->
+    <div class="recipe-categories">
+      
+      <!-- View All Recipes Button -->
+      <div class="category-section" style="text-align: left; margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: flex-start; gap: 1rem; flex-wrap: wrap;">
+          <button onclick="showAllRecipes()" class="nav-button nav-button--secondary nav-button--large">
+            📖 View All Recipes
+          </button>
+          <button onclick="showFundamentalRecipes()" class="nav-button nav-button--secondary nav-button--large">
+            📚 Fundamental Recipes
+          </button>
+        </div>
+      </div>
+      
+      <!-- Meals by Protein -->
+      <div class="category-section">
+        <h3>Meals by Protein</h3>
+        <div id="proteinButtons"></div>
+      </div>
+      
+      <!-- Meals by Type -->
+      <div class="category-section">
+        <h3>Meals by Type</h3>
+        <div id="mealTypeButtons"></div>
+      </div>
+      
+      <!-- Breakfast -->
+      <div class="category-section">
+        <h3>Breakfast</h3>
+        <div id="breakfastButtons"></div>
+      </div>
+      
+      <!-- Baking -->
+      <div class="category-section">
+        <h3>Baking</h3>
+        <div id="bakingButtons"></div>
+      </div>
+      
+      <!-- Holiday Themed -->
+      <div class="category-section">
+        <h3>Holiday Themed</h3>
+        <div id="holidayButtons"></div>
+      </div>
+      
+    </div>
+
+    <!-- Filtered Results Section -->
+    <div id="filteredResults" style="display: none;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <h2 id="filterTitle">Filtered Recipes</h2>
+        <div style="display: flex; gap: 1rem;">
+          <button onclick="showFundamentalRecipes()" class="nav-button nav-button--secondary nav-button--medium" style="display: none;">
+            📚 Fundamental Recipes
+          </button>
+          <button onclick="showAllCategories()" class="nav-button nav-button--outline nav-button--medium">
+            ← Back to Categories
+          </button>
+        </div>
+      </div>
+      <div id="recipeGrid" class="recipes-grid">
+        <!-- Filtered recipes will be displayed here -->
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- Load Templates -->
+  <script src="../js/templates.js"></script>
+  <script>
+    // Load the title section with custom data
+    loadTemplate('titleSection', 'titleSection', {
+      title: 'Recipes',
+      searchPlaceholder: 'Search recipes...',
+      showSearch: true,
+      showDropdown: true,
+      dropdownItems: [
+        {
+          text: 'Home',
+          href: 'https://toleiko.ca',
+          icon: '🏠'
+        },
+        {
+          text: 'Projects',
+          href: 'https://toleiko.ca/projects',
+          icon: '🚀'
+        }
+      ]
+    });
+
+    function updateRecipeSearchResults(query) {
+      if (typeof window.handleSearchInput === 'function') {
+        window.handleSearchInput({
+          target: {
+            value: query
+          }
+        });
+      }
+    }
+
+    // Load recipe category buttons
+    
+    // Add event listeners after buttons are created
+    setTimeout(() => {
+      // Add click handlers to all category buttons
+      const buttonCategories = [
+        { selector: '#proteinButtons', tags: ['chicken', 'beef', 'pork', 'lamb', 'fish','vegetarian'] },
+        { selector: '#mealTypeButtons', tags: ['pasta', 'rice', 'instant pot', 'salad', 'soup', 'roast'] },
+        { selector: '#breakfastButtons', tags: ['savoury', 'sweet'] },
+        { selector: '#bakingButtons', tags: ['cookies', 'bread', 'muffins', 'cake'] },
+        { selector: '#holidayButtons', tags: ['passover', 'easter', 'rosh hashanah','thanksgiving', 'hanukkah', 'christmas'] }
+      ];
+
+      buttonCategories.forEach(category => {
+        const buttons = document.querySelectorAll(`${category.selector} .nav-button`);
+        buttons.forEach((button, index) => {
+          button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const tag = category.tags[index];
+            console.log('Button clicked:', tag);
+            filterRecipes(tag);
+          });
+        });
+        console.log(`Event listeners added to ${buttons.length} buttons in ${category.selector}`);
+      });
+    }, 500);
+    
+    // Meals by Protein
+    loadTemplate('buttonGroup', 'proteinButtons', {
+      alignment: 'left',
+      spacing: 'normal',
+      buttons: [
+        { text: 'Chicken', href: '#', style: 'secondary', size: 'medium', icon: '🍗', tag: 'chicken' },
+        { text: 'Beef', href: '#', style: 'secondary', size: 'medium', icon: '🥩', tag: 'beef' },
+        { text: 'Pork', href: '#', style: 'secondary', size: 'medium', icon: '🐷', tag: 'pork' },
+        { text: 'Lamb', href: '#', style: 'secondary', size: 'medium', icon: '🐑', tag: 'lamb' },
+        { text: 'Fish', href: '#', style: 'secondary', size: 'medium', icon: '🐟', tag: 'fish' },
+        { text: 'Vegetarian', href: '#', style: 'secondary', size: 'medium', icon: '🥬', tag: 'vegetarian' }
+      ]
+    });
+
+    // Meals by Type
+    loadTemplate('buttonGroup', 'mealTypeButtons', {
+      alignment: 'left',
+      spacing: 'normal',
+      buttons: [
+        { text: 'Pasta', href: '#', style: 'secondary', size: 'medium', icon: '🍝' },
+        { text: 'Rice', href: '#', style: 'secondary', size: 'medium', icon: '🍚' },
+        { text: 'Instant Pot', href: '#', style: 'secondary', size: 'medium', icon: '🥘' },
+        { text: 'Salad', href: '#', style: 'secondary', size: 'medium', icon: '🥗' },
+        { text: 'Soup', href: '#', style: 'secondary', size: 'medium', icon: '🍲' },
+        { text: 'Roast', href: '#', style: 'secondary', size: 'medium', icon: '🍖' }
+      ]
+    });
+
+    // Breakfast
+    loadTemplate('buttonGroup', 'breakfastButtons', {
+      alignment: 'left',
+      spacing: 'normal',
+      buttons: [
+        { text: 'Savoury', href: '#', style: 'secondary', size: 'medium', icon: '🍳' },
+        { text: 'Sweet', href: '#', style: 'secondary', size: 'medium', icon: '🥞' }
+      ]
+    });
+
+    // Baking
+    loadTemplate('buttonGroup', 'bakingButtons', {
+      alignment: 'left',
+      spacing: 'normal',
+      buttons: [
+        { text: 'Cookies', href: '#', style: 'secondary', size: 'medium', icon: '🍪' },
+        { text: 'Bread', href: '#', style: 'secondary', size: 'medium', icon: '🍞' },
+        { text: 'Muffins', href: '#', style: 'secondary', size: 'medium', icon: '🧁' },
+        { text: 'Cake', href: '#', style: 'secondary', size: 'medium', icon: '🎂' }
+      ]
+    });
+
+    // Holiday Themed
+    loadTemplate('buttonGroup', 'holidayButtons', {
+      alignment: 'left',
+      spacing: 'normal',
+      buttons: [
+        { text: 'Passover', href: '#', style: 'secondary', size: 'medium', icon: '<img src="../assets/icons/passover_icon.png" alt="Passover" style="height:1.5em;width:1.5em;border-radius:0.3em;vertical-align:middle;object-fit:cover;">', tag: 'passover' },
+        { text: 'Easter', href: '#', style: 'secondary', size: 'medium', icon: '🐰', tag: 'easter' },
+        { text: 'Rosh Hashanah', href: '#', style: 'secondary', size: 'medium', icon: '🍏', tag: 'rosh hashanah' },
+        { text: 'Thanksgiving', href: '#', style: 'secondary', size: 'medium', icon: '🦃', tag: 'thanksgiving' },
+        { text: 'Hanukkah', href: '#', style: 'secondary', size: 'medium', icon: '<img src="../assets/icons/minora_icon.jpeg" alt="Hanukkah" style="height:1em;width:1em;border-radius:0.3em;vertical-align:middle;object-fit:cover;">', tag: 'hanukkah' },
+        { text: 'Christmas', href: '#', style: 'secondary', size: 'medium', icon: '🎄', tag: 'christmas' }
+      ]
+    });
+
+    // Recipe filtering functionality
+    let allRecipes = [];
+
+    function slugifyRecipeName(name) {
+      return name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-');
+    }
+
+    function buildRecipeKeywords(recipe) {
+      const ingredientKeywords = (recipe.ingredients || []).flatMap((ingredient) => {
+        const cleaned = ingredient
+          .replace(/^\s*[0-9¼½¾⅓⅔⅛./\-]+\s*/u, '')
+          .replace(/\b(cup|cups|tbsp|tsp|can|cans|cloves|clove|pkg|oz|lb|lbs|bunch)\b/gi, '')
+          .split(/[–,-]/)
+          .map((value) => value.trim())
+          .filter(Boolean);
+
+        return cleaned;
+      });
+
+      return [
+        recipe.name,
+        ...(recipe.tags || []),
+        ...ingredientKeywords
+      ].flatMap((value) => String(value).split('/')).map((value) => value.trim()).filter(Boolean);
+    }
+
+    function setupRecipeSearch() {
+      const searchItems = allRecipes.map((recipe) => {
+        const recipeFile = slugifyRecipeName(recipe.name);
+        return {
+          title: recipe.name,
+          description: recipe.tags ? recipe.tags.join(' • ') : 'Recipe',
+          keywords: buildRecipeKeywords(recipe),
+          href: `recipe.html?recipe=${recipeFile}&from=${encodeURIComponent(`${window.location.pathname}${window.location.search}${window.location.hash}`)}`,
+          onSelect: () => openRecipe(recipeFile)
+        };
+      });
+
+      setSearchItems(searchItems);
+
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', (event) => {
+          updateRecipeSearchResults(event.target.value);
+        });
+      }
+    }
+
+    function searchRecipes(query, pushHistory = true) {
+      const normalizedQuery = query.trim().toLowerCase();
+      const matchedRecipes = allRecipes.filter((recipe) => buildRecipeKeywords(recipe)
+        .some((keyword) => keyword.toLowerCase().includes(normalizedQuery)));
+
+      displayFilteredRecipes(matchedRecipes, `Search: ${query}`, false, pushHistory, 'search', query);
+    }
+
+    // Load all recipes from the database folder
+    async function loadRecipes() {
+      const recipeFiles = [
+        // A-C
+        'almondbanketletter.json',
+        'annes-chicken.json',
+        'apple-crumble.json',
+        'apple-german-pancake.json',
+        'balsamic-roast.json',
+        'banana-muffins-chunky.json',
+        'beef-tenderloin.json',
+        'belgian-waffles.json',
+        'biscuits.json',
+        'boiled-eggs.json',
+        'brussels-sprout-pasta.json',
+        'cashew-chicken.json',
+        'challah.json',
+        'chana-masala.json',
+        'cheesecake-tarts.json',
+        'chicken-parmigiana.json',
+        'chickpea-korma.json',
+        'chocolate-chip-cookies.json',
+        'chocolate-mint-squares.json',
+        'cinnamon-buns-fast.json',
+        'cinnamon-buns-slow.json',
+        'coconut-cake.json',
+        'coconut-macarons.json',
+
+        // D-F
+        'dami-gojeh.json',
+        'french-onion-soup.json',
+        'focaccia.json',
+
+        // G-I
+        'garlic-and-rosemary-lamb-chops.json',
+        'gingersnap-cookies.json',
+        'gravy.json',
+        'greek-lemon-potatoes.json',
+        'greek-roast-lamb-leg.json',
+        'haroset-and-maror.json',
+        'instant-pot-indian-curry.json',
+        'instant-pot-tuscan-chicken.json',
+        'irish-beef-stew.json',
+
+        // J-L
+        'junes-bread.json',
+        'noodle-kugel.json',
+        'lamb-curry-with-peas.json',
+        'lamb-hand-pies.json',
+        'lamb-stuffed-spaghetti-squash.json',
+        'latkes.json',
+        'lemon-and-garlic-lamb-rib-chops.json',
+        'lemon-orzo-chicken.json',
+        'lemon-roast-chicken.json',
+        'london-broil-chops.json',
+
+        // M-O
+        'mac-n-cheese.json',
+        'meat-temperatures.json',
+        'mexican-rice-bowl.json',
+
+        // P-R
+        'panaeng-curry.json',
+        'peanut-satay-noodles.json',
+        'pecan-puffs.json',
+        'popovers-stuffed.json',
+        'popovers.json',
+        'pork-tenderloin.json',
+        'potato-blintzes.json',
+        'pumpkin-brussels-sprout-tart.json',
+        'quinoa-power-salad.json',
+        'rice-lentil-casserole.json',
+        'risotto-and-meatballs.json',
+        'roasted-leg-of-lamb.json',
+        'roux.json',
+
+        // S-U
+        'salmon-marinade.json',
+        'salsa.json',
+        'salted-caramel-cups.json',
+        'saucepan-brownies.json',
+        'scalded-milk.json',
+        'shepard-pie.json',
+        'shortbread-cookies.json',
+        'snert-dutch-split-pea-soup.json',
+        'spiced-pilaf-beef-and-mushrooms.json',
+        'spiced-pork-freekeh.json',
+        'spicy-chorizo-pizza.json',
+        'spicy-roasted-carrots.json',
+        'spicy-mushroom-larb.json',
+        'spicy-sticky-lamb-chops.json',
+        'spinach-mushroom-strata.json',
+        'spring-rolls.json',
+        'sticky-chicken.json',
+        'sugar-cookies.json',
+        'teriyaki-chicken-lettuce-wraps.json',
+        'texas-braised-roast.json',
+        "tortilla.json",
+
+        // V-Z
+        'veggie-pesto-pasta.json'
+
+      ];
+
+      console.log('Loading recipes...');
+      try {
+        for (const file of recipeFiles) {
+          console.log('Fetching:', `database/${file}`);
+          try {
+            const response = await fetch(`database/${file}`);
+            console.log('Response for', file, ':', response.status, response.ok);
+            
+            if (response.ok) {
+              const recipeText = await response.text();
+              console.log('Raw response for', file, ':', recipeText.substring(0, 100));
+              
+              try {
+                const recipe = JSON.parse(recipeText);
+                console.log('Parsed recipe:', recipe.name, 'Tags:', recipe.tags);
+                
+                // Normalize ingredients format for consistency
+                if (recipe.ingredients && typeof recipe.ingredients === 'object' && !Array.isArray(recipe.ingredients)) {
+                  // Complex format - convert to simple format for filtering
+                  recipe.ingredientSections = recipe.ingredients;
+                  recipe.ingredients = Object.values(recipe.ingredients).flat();
+                  console.log('Normalized complex ingredients for:', recipe.name);
+                }
+                
+                allRecipes.push(recipe);
+              } catch (parseError) {
+                console.error('JSON parse error for', file, ':', parseError);
+              }
+            } else {
+              console.error('Failed to fetch:', file, 'Status:', response.status, response.statusText);
+            }
+          } catch (fileError) {
+            console.error('Error loading file', file, ':', fileError);
+          }
+        }
+        setupRecipeSearch();
+        console.log('All recipes loaded:', allRecipes.length);
+        console.log('Recipe names:', allRecipes.map(r => r.name));
+      } catch (error) {
+        console.error('Error loading recipes:', error);
+      }
+    }
+
+    // Render categories view (no history changes)
+    function renderCategories() {
+      const categoriesDiv = document.querySelector('.recipe-categories');
+      const filteredDiv = document.getElementById('filteredResults');
+
+      categoriesDiv.style.display = 'block';
+      filteredDiv.style.display = 'none';
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Render filtered recipes view (no history changes)
+    function renderFilteredRecipes(recipes, tag, showFundamentalButton = false) {
+      const categoriesDiv = document.querySelector('.recipe-categories');
+      const filteredDiv = document.getElementById('filteredResults');
+      const filterTitle = document.getElementById('filterTitle');
+      const recipeGrid = document.getElementById('recipeGrid');
+
+      categoriesDiv.style.display = 'none';
+      filteredDiv.style.display = 'block';
+
+      filterTitle.textContent = `${tag.charAt(0).toUpperCase() + tag.slice(1)} Recipes (${recipes.length})`;
+
+      if (recipes.length === 0) {
+        recipeGrid.innerHTML = '<p>No recipes found for this category.</p>';
+      } else {
+        recipeGrid.innerHTML = recipes.map(recipe => createRecipeCard(recipe)).join('');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Filter recipes by tag
+    function filterRecipes(tag, pushHistory = true) {
+      console.log('Filtering recipes for tag:', tag);
+      console.log('All recipes loaded:', allRecipes);
+      
+      const filteredRecipes = allRecipes.filter(recipe => 
+        recipe.tags && recipe.tags.some(recipeTag => 
+          recipeTag.toLowerCase().includes(tag.toLowerCase())
+        )
+      );
+
+      console.log('Filtered recipes:', filteredRecipes);
+      displayFilteredRecipes(filteredRecipes, tag, false, pushHistory, 'filter');
+    }
+
+    // Display filtered recipes with optional history
+    function displayFilteredRecipes(recipes, tag, showFundamentalButton = false, pushHistory = true, view = 'filter', query = '') {
+      renderFilteredRecipes(recipes, tag, showFundamentalButton);
+
+      if (pushHistory) {
+        const hash = view === 'filter'
+          ? `#tag=${encodeURIComponent(tag)}`
+          : view === 'all'
+            ? '#all'
+            : view === 'fundamental'
+              ? '#fundamental'
+              : view === 'search'
+                ? `#search=${encodeURIComponent(query)}`
+              : '';
+        history.pushState({ view, tag, query }, '', `${window.location.pathname}${hash}`);
+      }
+    }
+
+    // Create a recipe card HTML
+    function createRecipeCard(recipe) {
+      // Convert recipe name to filename format (lowercase, hyphens for spaces)
+      const recipeFile = slugifyRecipeName(recipe.name);
+      
+      return `
+        <div class="recipe-card clickable" onclick="openRecipe('${recipeFile}')">
+          <div class="recipe-content">
+            <h3>${recipe.name}</h3>
+            <div class="recipe-meta">
+              <span class="prep-time">⏱️ ${recipe.duration} ${recipe.duration === 1 ? 'hour' : 'hours'}</span>
+              <span class="servings">🍽️ ${recipe.servings} servings</span>
+            </div>
+            <div class="recipe-tags">
+              ${recipe.tags ? recipe.tags.map(tag => `<span class="recipe-tag">${tag}</span>`).join('') : ''}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Open recipe detail page
+    function openRecipe(recipeFile) {
+      const returnUrl = encodeURIComponent(`${window.location.pathname}${window.location.search}${window.location.hash}`);
+      window.location.href = `recipe.html?recipe=${recipeFile}&from=${returnUrl}`;
+    }
+
+    // Show all categories (back button)
+    function showAllCategories(pushHistory = true) {
+      renderCategories();
+
+      if (pushHistory) {
+        history.pushState({ view: 'categories' }, '', window.location.pathname);
+      }
+    }
+
+    // Test function to verify buttons work
+    window.testClick = function() {
+      alert('Button click detected!');
+    };
+
+    // Show all recipes in alphabetical order
+    function showAllRecipes(pushHistory = true) {
+      // Sort recipes alphabetically by name
+      const sortedRecipes = [...allRecipes].sort((a, b) => 
+        a.name.localeCompare(b.name)
+      );
+      
+      displayFilteredRecipes(sortedRecipes, 'All Recipes', true, pushHistory, 'all');
+    }
+
+    // Show fundamental recipes (recipes tagged as fundamental)
+    function showFundamentalRecipes(pushHistory = true) {
+      // Filter recipes that have the "fundamental" tag
+      const fundamentalRecipes = allRecipes.filter(recipe => 
+        recipe.tags && recipe.tags.some(tag => 
+          tag.toLowerCase() === 'fundamental'
+        )
+      );
+      
+      // Sort alphabetically
+      const sortedRecipes = fundamentalRecipes.sort((a, b) => 
+        a.name.localeCompare(b.name)
+      );
+      
+      displayFilteredRecipes(sortedRecipes, 'Fundamental Recipes', false, pushHistory, 'fundamental');
+    }
+
+    // Make functions globally accessible
+    window.filterRecipes = filterRecipes;
+    window.showAllCategories = showAllCategories;
+    window.showAllRecipes = showAllRecipes;
+    window.showFundamentalRecipes = showFundamentalRecipes;
+    window.openRecipe = openRecipe;
+
+    function getStateFromHash() {
+      const hash = window.location.hash || '';
+
+      if (hash.startsWith('#tag=')) {
+        const tag = decodeURIComponent(hash.replace('#tag=', ''));
+        return { view: 'filter', tag };
+      }
+
+      if (hash === '#all') {
+        return { view: 'all' };
+      }
+
+      if (hash === '#fundamental') {
+        return { view: 'fundamental' };
+      }
+
+      if (hash.startsWith('#search=')) {
+        const query = decodeURIComponent(hash.replace('#search=', ''));
+        return { view: 'search', query };
+      }
+
+      return { view: 'categories' };
+    }
+
+    function applyState(state, pushHistory = false) {
+      if (!state || state.view === 'categories') {
+        renderCategories();
+        if (pushHistory) {
+          history.pushState({ view: 'categories' }, '', window.location.pathname);
+        }
+        return;
+      }
+
+      if (state.view === 'all') {
+        showAllRecipes(pushHistory);
+        return;
+      }
+
+      if (state.view === 'fundamental') {
+        showFundamentalRecipes(pushHistory);
+        return;
+      }
+
+      if (state.view === 'search' && state.query) {
+        searchRecipes(state.query, pushHistory);
+        return;
+      }
+
+      if (state.view === 'filter' && state.tag) {
+        filterRecipes(state.tag, pushHistory);
+      }
+    }
+
+    window.performSearch = function() {
+      const searchInput = document.getElementById('searchInput');
+      if (!searchInput) {
+        return;
+      }
+
+      const query = searchInput.value.trim();
+      if (!query) {
+        showAllCategories();
+        return;
+      }
+
+      updateRecipeSearchResults(query);
+      searchRecipes(query);
+    };
+
+    // Handle browser back/forward within the recipes page
+    window.addEventListener('popstate', (event) => {
+      const state = event.state || getStateFromHash();
+      applyState(state, false);
+    });
+
+    // Load recipes when page loads
+    loadRecipes().then(() => {
+      console.log('Recipes loaded successfully:', allRecipes.length, 'recipes');
+      const initialState = getStateFromHash();
+      applyState(initialState, false);
+      history.replaceState(initialState, '', `${window.location.pathname}${window.location.hash}`);
+    });
+
+  </script>
+</body>
+</html>

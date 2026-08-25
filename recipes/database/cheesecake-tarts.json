@@ -1,0 +1,30 @@
+{
+  "name": "Cheesecake Tarts",
+  "duration": 1,
+  "tags": ["cake", "cookie", "christmas"],
+  "servings": 18,
+  "ingredients": [
+    "2 8oz - Cream Cheese Packages",
+    "2 tsp  -  Lemon Juice",
+    "2  -  Eggs",
+    "3/4 cup  -  Sugar",
+    "1 tsp  -  Vanilla",
+    "Enough  -  Vanilla Wafers",
+    "Enough - Pie Filling/Chocolate Chips/Jam"
+  ],
+  "instructions": [
+    "Preheat oven to 375˚F",
+    "Beat cream cheese using mix master",
+    "Add other ingredients (lemon to vanilla) and mix well",
+    "Line muffin tin with recyclable cups ",
+    "Add 1 vanilla wafer per cup",
+    "Spoon in batter and fill each cup about half way",
+    "Add teaspoon of pie filling or chocolate chips or jam",
+    "Bake for 15 minutes"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

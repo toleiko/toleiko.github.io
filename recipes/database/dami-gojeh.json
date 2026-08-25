@@ -1,0 +1,37 @@
+{
+  "name": "Dami Gojeh",
+  "duration": 1,
+  "tags": ["vegetarian", "spicy", "rice"],
+  "servings": 4,
+  "ingredients": [
+    "1 small – Yellow Onion",
+    "200g – Potatoes",
+    "230g – Tomatoes",
+    "140g – Basmati Rice",
+    "1 tbsp – Olive Oil",
+    "1 tbsp – Tumeric",
+    "1 tsp – Cayenne Pepper",
+    "1 tsp – Salt",
+    "1 tsp – Cumin, ground",
+    "280ml – Water",
+    "500ml – Yogurt",
+    "To Taste – Thyme or Parsley"
+  ],
+  "instructions": [
+    "Peel and finely dice potatoes",
+    "Wash, de-seed, and dice tomatoes",
+    "Peel and dice onion",
+    "heat oil in a pan, then saute onions for 3 minutes",
+    "Add tumeric, cayenne, and cumin to the pan; fry briefly",
+    "Add potatoes and cook for 5 minutes",
+    "Add tomatoes and cook for 2 minutes",
+    "Add rice and water, bring to boil, reduce heat, and let simmer for about 15 minutes",
+    "Season with salt",
+    "Serve with yogurt and fresh herbs (thyme or parsley)"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

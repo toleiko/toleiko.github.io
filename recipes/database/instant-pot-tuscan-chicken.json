@@ -1,0 +1,35 @@
+{
+  "name": "Instant Pot Tuscan Chicken",
+  "duration": 1,
+  "tags": ["chicken", "instant pot", "italian"],
+  "servings": 6,
+  "ingredients": [
+    "1 tbsp – Pesto oil",
+    "1 1/2 cup – Chicken Broth",
+    "1 cup – Long Grain Rice",
+    "1 jar – Classico Pesto",
+    "6 oz – Artichoke Hearts",
+    "1/2 cup – Sun dried Tomato",
+    "1 tbsp – Italian Herbs",
+    "As needed – Fresh Basil Leaves",
+    "680 g – Boneless, Skinless Chicken Thighs"
+  ],
+  "instructions": [
+    "Add oil to pot",
+    "Pre-heat until hot – Saute normal/medium",
+    "Once hot, add chicken thigh to inner pot to brown on all sides, ~4 minutes",
+    "Transfer browned meat to plate and cover loosely with foil",
+    "Add chicken broth to de-glaze with a wooden spoon scraping the brown bits from the bottom of the pot",
+    "Add rice then add chicken back in one even layer",
+    "spread pesto on chicken",
+    "layer with artichoke hears, sun dried tomatoes, and herbs",
+    "Pressure cook on high for 10 minutes",
+    "When time is up, allow for 5 minutes natural release, then quick release the rest of the pressure",
+    "Garnish with fresh basil and serve"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "Tori's Parents love this recipe! It's a great way to make a delicious meal in under an hour with minimal effort.",
+    "tips": "Draining some of the oil from the pesto helps reduce excess oiliness in the final dish."
+  }
+}

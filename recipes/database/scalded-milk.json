@@ -1,0 +1,19 @@
+{
+  "name": "Scalded Milk",
+  "duration": 0.25,
+  "tags": ["fundamental"],
+  "servings": 4,
+  "ingredients": [
+    "As Needed - Milk"
+  ],
+  "instructions": [
+    "Pour milk into a pot/pan on the stove and set temperature to medium-low. This low temperature will keep milk from heating too quickly which also prevents burning; milk should be heated, but not boiling or sticking to the bottom",
+    "Stir frequently until steam and bubbles appear at the edge, ~4-5 minutes. Stirring prevents a film from developing on the surface of the milk and disperses heat evenly.",
+    "After bubbles and steam are seem, remove from heat and let cool to about 41˚C/105˚F, 5-10 minutes"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

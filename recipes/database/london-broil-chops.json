@@ -1,0 +1,28 @@
+{
+  "name": "London Broil Chops",
+  "duration": 4.5,
+  "tags": ["lamb"],
+  "servings": 4,
+  "ingredients": [
+    "2 lb – shoulder chops",
+    "2 Tbsp – wine vinegar",
+    "1⁄2 cup – oil",
+    "1⁄2 cup – soya sauce",
+    "2 Tbsp – honey",
+    "1 large – onion, chopped",
+    "1 1⁄2 tsp – ginger",
+    "1 1⁄2 tsp – garlic powder",
+    "1⁄2 tsp – ground pepper"
+  ],
+  "instructions": [
+   "Combine all ingredients in a plastic bag. Marinade for 3-4 hours on counter or overnight in fridge.",
+   "Remove meat from marinade. Discard marinade.",
+   "BBQ, use medium to high heat and grill about 3 minutes per side. 6-7 minutes total. OR. Bake, set oven to 425˚F and bake for 12-15 minutes or until meat registers 145˚F.",
+   "Serve with rice or potatoes. The marinade has a big flavour so subtle side dishes are best."
+  ],
+  "additional_context": {
+    "source": "Rocking M Farm",
+    "story": "",
+    "tips": ""
+  }
+}

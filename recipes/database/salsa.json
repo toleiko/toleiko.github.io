@@ -1,0 +1,37 @@
+{
+  "name": "Salsa",
+  "duration": 1.5,
+  "tags": ["vegetarian", "sauce"],
+  "servings": 4,
+  "ingredients": [
+    "6 cup – Prepared Tomatoes",
+    "2 – Large Jalapeno Peppers, chopped",
+    "2 – Spanish Onions, chopped",
+    "2 – Yellow Peppers, chopped",
+    "1 cup – Carrots, chopped",
+    "1 cup – Tomato Paste (3 oz)",
+    "1 cup – White Vinegar",
+    "1/3 cup – Brown Sugar",
+    "1 1/2 tbsp – Coarse Salt",
+    "3 cloves – Garlic, minced",
+    "1 tsp – Cumin",
+    "1 tsp – Black Pepper",
+    "1/2 tsp – Paprika"
+  ],
+  "instructions": [
+    "Wash tomatoes and core them",
+    "Pour boiled water from kettle in pot, 4 inches deep and immerse the tomatoes for 1 minute",
+    "Dip in cold water and drain in colander",
+    "Slip off skins and discard",
+    "Coarsely chop tomatoes and place in colander to let drain in sink for 20-30 minutes",
+    "Finely chop the jalapeno, onions, peppers, carrots, garlic", 
+    "Mix together the chopped tomatoes, jalapeno peppers, and onions and boil them for 45 minutes",
+    "After the boiling is done, mix in the rest of the ingredients",
+    "Either can or freeze"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

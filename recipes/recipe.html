@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe - toleiko</title>
+  <meta name="description" content="Recipe details from toleiko's collection">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <!-- Title Section Container -->
+  <div id="titleSection"></div>
+  
+  <!-- Main Content -->
+  <div class="content">
+    <div style="margin-bottom: 2rem;">
+      <button onclick="goBackToRecipes()" class="nav-button nav-button--outline nav-button--medium">
+        ← Back
+      </button>
+    </div>
+
+    <!-- Recipe Details Container -->
+    <div id="recipeDetails">
+      <div class="loading-message">Loading recipe...</div>
+    </div>
+  </div>
+
+  <!-- Load Templates -->
+  <script src="../js/templates.js"></script>
+  <script>
+    // Load the title section
+    loadTemplate('titleSection', 'titleSection', {
+      title: 'Recipe',
+      searchPlaceholder: 'Search recipes...',
+      showSearch: false,
+      showDropdown: true,
+      dropdownItems: [
+        {
+          text: 'Home',
+          href: 'https://toleiko.ca',
+          icon: '🏠'
+        },
+        {
+          text: 'Projects',
+          href: 'https://toleiko.ca/projects',
+          icon: '🚀'
+        },
+        {
+          text: 'Recipes',
+          href: 'https://toleiko.ca/recipes',
+          icon: '🍲'
+        }
+      ]
+    });
+
+    // Get recipe filename from URL parameter
+    function getRecipeFromURL() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('recipe');
+    }
+
+    // Load and display recipe details
+    async function loadRecipeDetails() {
+      const recipeFile = getRecipeFromURL();
+      
+      if (!recipeFile) {
+        document.getElementById('recipeDetails').innerHTML = '<p>No recipe specified.</p>';
+        return;
+      }
+
+      try {
+        const response = await fetch(`database/${recipeFile}.json`);
+        if (!response.ok) {
+          throw new Error(`Recipe not found: ${recipeFile}`);
+        }
+
+        const recipe = await response.json();
+        displayRecipe(recipe);
+      } catch (error) {
+        console.error('Error loading recipe:', error);
+        document.getElementById('recipeDetails').innerHTML = `<p>Error loading recipe: ${error.message}</p>`;
+      }
+    }
+
+    function getReturnUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const fromParam = urlParams.get('from');
+      if (!fromParam) return null;
+
+      try {
+        const decoded = decodeURIComponent(fromParam);
+        if (decoded.startsWith('/recipes')) {
+          return decoded;
+        }
+      } catch (error) {
+        console.warn('Invalid return URL:', error);
+      }
+
+      return null;
+    }
+
+    function goBackToRecipes() {
+      const returnUrl = getReturnUrl();
+      if (returnUrl) {
+        window.location.href = returnUrl;
+      } else {
+        history.back();
+      }
+    }
+
+    // Store original recipe for scaling calculations
+    let originalRecipe = null;
+    let currentServings = null;
+
+    // Display recipe with proper formatting
+    function displayRecipe(recipe) {
+      const container = document.getElementById('recipeDetails');
+      
+      // Store original recipe data
+      originalRecipe = JSON.parse(JSON.stringify(recipe)); // Deep clone
+      currentServings = recipe.servings;
+      
+      // Update page title
+      document.title = `${recipe.name} - toleiko`;
+
+      container.innerHTML = `
+        <div class="recipe-detail">
+          <div class="recipe-header">
+            <h1>${recipe.name}</h1>
+            <div class="recipe-meta">
+              <span class="prep-time">⏱️ ${recipe.duration} ${recipe.duration === 1 ? 'hour' : 'hours'}</span>
+              <div class="servings-control">
+                <label for="servingsInput">🍽️ Servings:</label>
+                <div class="servings-input-group">
+                  <button onclick="adjustServings(-1)" class="serving-btn">−</button>
+                  <input type="number" id="servingsInput" value="${recipe.servings}" min="1" max="50" onchange="updateServings()">
+                  <button onclick="adjustServings(1)" class="serving-btn">+</button>
+                </div>
+                <span class="original-servings">(Originally ${recipe.servings})</span>
+              </div>
+            </div>
+            ${recipe.tags ? `
+              <div class="recipe-tags">
+                ${recipe.tags.map(tag => `<span class="recipe-tag">${tag}</span>`).join('')}
+              </div>
+            ` : ''}
+          </div>
+
+          <div class="recipe-content">
+            <div id="ingredientsSection">${formatIngredients(recipe.ingredients, currentServings)}</div>
+            ${formatInstructions(recipe.instructions)}
+            ${recipe.additional_context ? formatAdditionalContext(recipe.additional_context) : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    // Serving size adjustment functions
+    function adjustServings(change) {
+      const input = document.getElementById('servingsInput');
+      const currentValue = parseInt(input.value);
+      
+      // Calculate increment as 50% of original serving size
+      const increment = Math.max(1, Math.round(originalRecipe.servings * 0.5));
+      
+      const newValue = Math.max(1, Math.min(50, currentValue + (change * increment)));
+      input.value = newValue;
+      updateServings();
+    }
+
+    function updateServings() {
+      const input = document.getElementById('servingsInput');
+      const newServings = parseInt(input.value);
+      if (newServings && newServings > 0) {
+        currentServings = newServings;
+        // Update ingredients section with scaled amounts
+        document.getElementById('ingredientsSection').innerHTML = formatIngredients(originalRecipe.ingredients, currentServings);
+      }
+    }
+
+    // Parse and scale ingredient quantities
+    function scaleIngredient(ingredient, scaleFactor) {
+      console.log('Scaling ingredient:', ingredient, 'with factor:', scaleFactor);
+      
+      // Regular expressions to match various quantity formats (order matters!)
+      const patterns = [
+        // Mixed numbers with unit and dash: 1 1/2 cup – description, etc.
+        /^(\d+\s+\d+\/\d+)\s+([^–-]+)\s*([–-])\s*(.+)$/,
+        // Simple fractions with unit and dash: 1/2 cup – description, etc.
+        /^(\d+\/\d+)\s+([^–-]+)\s*([–-])\s*(.+)$/,
+        // Decimal numbers with unit and dash: 1.5 cups – description, etc.
+        /^(\d+\.?\d*)\s+([^–-]+)\s*([–-])\s*(.+)$/,
+        // Ranges with dash: 2-3 – onions, etc.
+        /^(\d+\.?\d*)\s*[-–]\s*(\d+\.?\d*)\s*([–-])\s*(.+)$/,
+        // Simple numbers without dash: 2 tbsp, 3 cups, etc.
+        /^(\d+\.?\d*)\s+(.+)$/
+      ];
+
+      for (const pattern of patterns) {
+        const match = ingredient.match(pattern);
+        if (match) {
+          console.log('Pattern matched:', pattern.source, 'Match:', match);
+          
+          if (pattern.source.includes('[-–].*[-–]')) {
+            // Range pattern (e.g., "2-3 – Onions")
+            const min = parseFloat(match[1]);
+            const max = parseFloat(match[2]);
+            const scaledMin = (min * scaleFactor).toFixed(2).replace(/\.?0+$/, '');
+            const scaledMax = (max * scaleFactor).toFixed(2).replace(/\.?0+$/, '');
+            const result = `${scaledMin}–${scaledMax} ${match[3]} ${match[4]}`;
+            console.log('Range result:', result);
+            return result;
+          } else if (match.length === 5) {
+            // New format with unit: quantity + unit + dash + description (e.g., "1 1/2 cup – Chicken")
+            const quantity = parseQuantity(match[1]);
+            console.log('Parsed quantity:', quantity, 'from:', match[1]);
+            const scaledQuantity = quantity * scaleFactor;
+            const unit = match[2].trim();
+            const dash = match[3];
+            const description = match[4];
+            
+            // Apply smart unit conversion
+            const converted = formatScaledQuantityAndUnit(scaledQuantity, unit);
+            console.log('Scaled and converted:', converted);
+            
+            const result = `${converted.quantity} ${converted.unit} ${dash} ${description}`;
+            console.log('Unit format result:', result);
+            return result;
+          } else if (match[2] === '–' || match[2] === '-') {
+            // Old format with dash (e.g., "2 – tbsp Oil")
+            const quantity = parseQuantity(match[1]);
+            console.log('Parsed quantity:', quantity, 'from:', match[1]);
+            const scaledQuantity = quantity * scaleFactor;
+            const dash = match[2];
+            const restOfIngredient = match[3].trim();
+            
+            // Try to extract unit from the rest of the ingredient
+            const unitMatch = restOfIngredient.match(/^(\w+)\s+(.+)$/);
+            if (unitMatch) {
+              const unit = unitMatch[1];
+              const description = unitMatch[2];
+              const converted = formatScaledQuantityAndUnit(scaledQuantity, unit);
+              console.log('Scaled and converted:', converted);
+              const result = `${converted.quantity} ${dash} ${converted.unit} ${description}`;
+              console.log('Old format result:', result);
+              return result;
+            } else {
+              // No clear unit separation, use basic formatting
+              const converted = { quantity: formatQuantityOnly(scaledQuantity), unit: '' };
+              const result = `${converted.quantity} ${dash} ${restOfIngredient}`;
+              console.log('Old format result (no unit):', result);
+              return result;
+            }
+          } else {
+            // Simple format without dash (e.g., "2 tbsp oil")
+            const quantity = parseQuantity(match[1]);
+            console.log('Parsed quantity:', quantity, 'from:', match[1]);
+            const scaledQuantity = quantity * scaleFactor;
+            const restOfIngredient = match[2].trim();
+            
+            // Try to extract unit from the rest of the ingredient
+            const unitMatch = restOfIngredient.match(/^(\w+)\s+(.+)$/);
+            if (unitMatch) {
+              const unit = unitMatch[1];
+              const description = unitMatch[2];
+              const converted = formatScaledQuantityAndUnit(scaledQuantity, unit);
+              console.log('Scaled and converted:', converted);
+              const result = `${converted.quantity} ${converted.unit} ${description}`;
+              console.log('Simple result:', result);
+              return result;
+            } else {
+              // No clear unit separation, use basic formatting
+              const converted = { quantity: formatQuantityOnly(scaledQuantity), unit: '' };
+              const result = `${converted.quantity} ${restOfIngredient}`;
+              console.log('Simple result (no unit):', result);
+              return result;
+            }
+          }
+        }
+      }
+      
+      // If no pattern matches, return original (for items like "Salt to taste")
+      return ingredient;
+    }
+
+    // Parse various quantity formats to decimal
+    function parseQuantity(quantityStr) {
+      quantityStr = quantityStr.trim();
+      console.log('Parsing quantity:', quantityStr);
+      
+      // Handle mixed numbers like "1 1/2" (one and a half)
+      const mixedNumberMatch = quantityStr.match(/^(\d+)\s+(\d+)\/(\d+)$/);
+      if (mixedNumberMatch) {
+        console.log('Mixed number match:', mixedNumberMatch);
+        const wholeNumber = parseInt(mixedNumberMatch[1]);
+        const numerator = parseInt(mixedNumberMatch[2]);
+        const denominator = parseInt(mixedNumberMatch[3]);
+        const result = wholeNumber + (numerator / denominator);
+        console.log('Mixed number result:', result);
+        return result;
+      }
+      
+      // Handle simple fractions like "1/2"
+      const fractionMatch = quantityStr.match(/^(\d+)\/(\d+)$/);
+      if (fractionMatch) {
+        console.log('Fraction match:', fractionMatch);
+        const numerator = parseInt(fractionMatch[1]);
+        const denominator = parseInt(fractionMatch[2]);
+        const result = numerator / denominator;
+        console.log('Fraction result:', result);
+        return result;
+      }
+      
+      // Handle decimal numbers
+      const result = parseFloat(quantityStr);
+      console.log('Decimal result:', result);
+      return result;
+    }
+
+    // Smart unit conversion and quantity formatting
+    function formatScaledQuantityAndUnit(quantity, unit) {
+      const commonFractions = {
+        0.125: '1/8', 0.25: '1/4', 0.333: '1/3', 0.375: '3/8',
+        0.5: '1/2', 0.625: '5/8', 0.667: '2/3', 0.75: '3/4', 0.875: '7/8'
+      };
+
+      // Handle unit conversions based on quantity
+      const unitLower = unit.toLowerCase().trim();
+      
+      // TSP -> TBSP conversion (3 tsp = 1 tbsp)
+      if (unitLower === 'tsp' && quantity >= 3) {
+        const tbsp = quantity / 3;
+        // Only convert to whole or half tbsp
+        if (tbsp >= 1) {
+          const wholeTbsp = Math.floor(tbsp);
+          const remainder = tbsp - wholeTbsp;
+          
+          if (remainder < 0.25) {
+            // Round down to whole tbsp
+            if (wholeTbsp >= 4) {
+              // Convert tbsp to cups if >= 4 tbsp
+              return formatTbspToCup(wholeTbsp);
+            }
+            return { quantity: wholeTbsp.toString(), unit: 'tbsp' };
+          } else if (remainder >= 0.75) {
+            // Round up to next whole tbsp
+            const roundedTbsp = wholeTbsp + 1;
+            if (roundedTbsp >= 4) {
+              return formatTbspToCup(roundedTbsp);
+            }
+            return { quantity: roundedTbsp.toString(), unit: 'tbsp' };
+          } else {
+            // Use half tbsp
+            const halfTbsp = wholeTbsp + 0.5;
+            if (halfTbsp >= 4) {
+              return formatTbspToCup(halfTbsp);
+            }
+            return { quantity: wholeTbsp > 0 ? `${wholeTbsp} 1/2` : '1/2', unit: 'tbsp' };
+          }
+        }
+      }
+      
+      // TBSP -> CUP conversion (4 tbsp = 1/4 cup)
+      if ((unitLower === 'tbsp' || unitLower === 'tablespoon' || unitLower === 'tablespoons') && quantity >= 4) {
+        return formatTbspToCup(quantity);
+      }
+      
+      // TSP -> CUP direct conversion for large quantities
+      if (unitLower === 'tsp' && quantity >= 12) { // 12 tsp = 4 tbsp = 1/4 cup
+        const cups = quantity / 48; // 48 tsp = 1 cup
+        if (cups >= 0.25) {
+          return formatCupQuantity(cups);
+        }
+      }
+      
+      // Default formatting for quantities that don't need unit conversion
+      return { quantity: formatQuantityOnly(quantity), unit: unit };
+    }
+
+    // Helper function to convert tbsp to cups with proper fractions
+    function formatTbspToCup(tbsp) {
+      const cups = tbsp / 16; // 16 tbsp = 1 cup
+      return formatCupQuantity(cups);
+    }
+    
+    // Helper function to format cup quantities with cooking-friendly fractions
+    function formatCupQuantity(cups) {
+      const cookingCupFractions = [
+        { decimal: 0.25, fraction: '1/4' },
+        { decimal: 0.333, fraction: '1/3' },
+        { decimal: 0.5, fraction: '1/2' },
+        { decimal: 0.667, fraction: '2/3' },
+        { decimal: 0.75, fraction: '3/4' },
+        { decimal: 1.0, fraction: '1' }
+      ];
+      
+      if (cups >= 1) {
+        const wholeCups = Math.floor(cups);
+        const remainder = cups - wholeCups;
+        
+        // Find closest cooking fraction for remainder
+        const closestFraction = cookingCupFractions.find(f => 
+          Math.abs(remainder - f.decimal) < 0.05
+        );
+        
+        if (closestFraction && closestFraction.decimal > 0) {
+          if (wholeCups > 0) {
+            return { 
+              quantity: closestFraction.fraction === '1' ? (wholeCups + 1).toString() : `${wholeCups} ${closestFraction.fraction}`, 
+              unit: wholeCups + (closestFraction.decimal === 1 ? 1 : 0) === 1 ? 'cup' : 'cups' 
+            };
+          } else {
+            return { quantity: closestFraction.fraction, unit: 'cup' };
+          }
+        } else if (remainder < 0.05) {
+          return { quantity: wholeCups.toString(), unit: wholeCups === 1 ? 'cup' : 'cups' };
+        }
+      } else {
+        // Less than 1 cup
+        const closestFraction = cookingCupFractions.find(f => 
+          Math.abs(cups - f.decimal) < 0.05
+        );
+        
+        if (closestFraction) {
+          return { quantity: closestFraction.fraction, unit: 'cup' };
+        }
+      }
+      
+      // Fallback to decimal if no good fraction match
+      return { quantity: cups.toFixed(2).replace(/\.?0+$/, ''), unit: cups === 1 ? 'cup' : 'cups' };
+    }
+
+    // Format quantity only (without unit conversion)
+    function formatQuantityOnly(quantity) {
+      const commonFractions = {
+        0.125: '1/8', 0.25: '1/4', 0.333: '1/3', 0.375: '3/8',
+        0.5: '1/2', 0.625: '5/8', 0.667: '2/3', 0.75: '3/4', 0.875: '7/8'
+      };
+      
+      const wholeNumber = Math.floor(quantity);
+      const decimal = quantity - wholeNumber;
+      
+      // Check if decimal part matches a common fraction
+      for (const [dec, frac] of Object.entries(commonFractions)) {
+        if (Math.abs(decimal - parseFloat(dec)) < 0.01) {
+          return wholeNumber > 0 ? `${wholeNumber} ${frac}` : frac;
+        }
+      }
+      
+      // If no common fraction matches, use decimal (rounded to reasonable precision)
+      return quantity % 1 === 0 ? quantity.toString() : quantity.toFixed(2).replace(/\.?0+$/, '');
+    }
+
+    // Format individual ingredient with two-column layout
+    function formatIngredientItem(ingredient, scaleFactor) {
+      const scaledIngredient = scaleIngredient(ingredient, scaleFactor);
+      
+      // Split on the dash separator
+      const dashIndex = scaledIngredient.indexOf('–') !== -1 ? scaledIngredient.indexOf('–') : scaledIngredient.indexOf('-');
+      
+      if (dashIndex > 0) {
+        const quantity = scaledIngredient.substring(0, dashIndex).trim();
+        let description = scaledIngredient.substring(dashIndex + 1).trim();
+        
+        // Convert URLs and recipe references to clickable links
+        description = convertToLinks(description);
+        
+        return `
+          <div class="ingredient-item">
+            <div class="ingredient-quantity">${quantity}</div>
+            <div class="ingredient-description">${description}</div>
+          </div>
+        `;
+      } else {
+        // If no dash found, display as single item
+        let displayText = scaledIngredient;
+        
+        // Convert URLs and recipe references to clickable links
+        displayText = convertToLinks(displayText);
+        
+        return `
+          <div class="ingredient-item">
+            <div class="ingredient-quantity"></div>
+            <div class="ingredient-description">${displayText}</div>
+          </div>
+        `;
+      }
+    }
+
+    // Convert URLs and recipe references to clickable links
+    function convertToLinks(text) {
+      // First, check for toleiko.ca recipe URLs and convert them to nice display names
+      text = text.replace(/https?:\/\/toleiko\.ca\/recipes?\/recipe\.html\?recipe=([a-z0-9-]+)/gi, (match, recipeName) => {
+        // Convert recipe filename to display name (e.g., "popovers-yorkshire-pudding" -> "Popovers Yorkshire Pudding")
+        const displayName = recipeName.split('-').map(word => 
+          word.charAt(0).toUpperCase() + word.slice(1)
+        ).join(' ');
+        return `<a href="recipe.html?recipe=${recipeName}" class="recipe-link">${displayName}</a>`;
+      });
+      
+      // Then convert other full URLs to clickable links
+      // Match http://, https://, or www. URLs (but not the ones we already converted)
+      text = text.replace(/(https?:\/\/(?!toleiko\.ca\/recipes?\/recipe\.html)[^\s]+)|(www\.[^\s]+)/gi, (match) => {
+        const url = match.startsWith('www.') ? `http://${match}` : match;
+        return `<a href="${url}" class="recipe-link" target="_blank" rel="noopener noreferrer">${match}</a>`;
+      });
+      
+      // Finally, convert recipe references like "(see recipe-name)" to clickable links
+      text = text.replace(/\(see ([a-z0-9-]+)\)|\(([a-z0-9-]+)\)/gi, (match, recipeName1, recipeName2) => {
+        const recipeName = recipeName1 || recipeName2;
+        const displayText = recipeName1 ? `see ${recipeName}` : recipeName;
+        return `<a href="recipe.html?recipe=${recipeName}" class="recipe-link">${displayText}</a>`;
+      });
+      
+      return text;
+    }
+
+    // Format ingredients (handle both simple arrays and sectioned objects)
+    function formatIngredients(ingredients, servings = null) {
+      if (!ingredients) return '';
+
+      const scaleFactor = servings && originalRecipe ? servings / originalRecipe.servings : 1;
+
+      if (Array.isArray(ingredients)) {
+        // Simple format: array of strings
+        return `
+          <div class="recipe-section">
+            <h3>Ingredients</h3>
+            <div class="ingredient-list">
+              ${ingredients.map(ingredient => formatIngredientItem(ingredient, scaleFactor)).join('')}
+            </div>
+          </div>
+        `;
+      } else if (typeof ingredients === 'object') {
+        // Complex format: object with sections
+        return `
+          <div class="recipe-section">
+            <h3>Ingredients</h3>
+            ${Object.entries(ingredients).map(([sectionName, items]) => `
+              <div class="ingredient-section">
+                <h4>${sectionName}</h4>
+                <div class="ingredient-list indented">
+                  ${items.map(item => formatIngredientItem(item, scaleFactor)).join('')}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+      
+      return '';
+    }
+
+    // Format instructions (handle both simple arrays and sectioned objects)
+    function formatInstructions(instructions) {
+      if (!instructions) return '';
+
+      if (Array.isArray(instructions)) {
+        // Simple format: array of strings
+        return `
+          <div class="recipe-section">
+            <h3>Instructions</h3>
+            <ol class="instruction-list">
+              ${instructions.map(instruction => `<li>${convertToLinks(instruction)}</li>`).join('')}
+            </ol>
+          </div>
+        `;
+      } else if (typeof instructions === 'object') {
+        // Complex format: object with sections
+        return `
+          <div class="recipe-section">
+            <h3>Instructions</h3>
+            ${Object.entries(instructions).map(([sectionName, steps]) => `
+              <div class="instruction-section">
+                <h4>${sectionName}</h4>
+                <ol class="instruction-list indented">
+                  ${steps.map(step => `<li>${convertToLinks(step)}</li>`).join('')}
+                </ol>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+      
+      return '';
+    }
+
+    // Format additional context
+    function formatAdditionalContext(context) {
+      const sections = [];
+      
+      if (context.source && context.source.trim()) {
+        sections.push(`<p><strong>Source:</strong> ${context.source}</p>`);
+      }
+      
+      if (context.story && context.story.trim()) {
+        sections.push(`<p><strong>Story:</strong> ${context.story}</p>`);
+      }
+      
+      if (context.tips && context.tips.trim()) {
+        sections.push(`<p><strong>Tips:</strong> ${context.tips}</p>`);
+      }
+
+      if (sections.length === 0) return '';
+
+      return `
+        <div class="recipe-section">
+          <h3>Additional Information</h3>
+          <div class="additional-context">
+            ${sections.join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // Test function for debugging
+    function testScaling() {
+      const testIngredient = "1 1/2 cup – Chicken or Pork, cut small";
+      console.log('Testing ingredient:', testIngredient);
+      const scaledResult = scaleIngredient(testIngredient, 2);
+      console.log('Scaled x2:', scaledResult);
+      const scaledResult3 = scaleIngredient(testIngredient, 3);
+      console.log('Scaled x3:', scaledResult3);
+    }
+    
+    // Make test function available globally
+    window.testScaling = testScaling;
+
+    // Load recipe when page loads
+    loadRecipeDetails();
+  </script>
+</body>
+</html>

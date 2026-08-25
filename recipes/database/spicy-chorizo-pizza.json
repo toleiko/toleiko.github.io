@@ -1,0 +1,44 @@
+{
+  "name": "Spicy Chorizo Pizza",
+  "duration": 1,
+  "tags": ["pizza", "spicy", "chorizo", "dinner"],
+  "servings": 6,
+  "ingredients": [
+    "500 g - Chorizo Sausage, uncased",
+    "8 tbsp - Tomato Sauce Base",
+    "250 g - Mozzarella",
+    "113 g - Red Onion, sliced",
+    "14 g - Chives",
+    "4 tbsp - Maple Syrup",
+    "2 tbs - Chili Flakes",
+    "320 g - Poblano Pepper",
+    "680 g - Pizza Dough",
+    "8 tbsp - Mayonnaise",
+    "2 tbsp - Smoked Paprika-Garlic Blend",
+    "1 tbsp - Red Wine Vinegar",
+    "4 tbsp - All Purpose Flour",
+    "1 tbsp - Oil",
+    "To taste - Salt and Pepper"
+  ],
+  "instructions": [
+    "Preheat oven to 475˚F",
+    "Heat a non-stick pan over medium-high heat, when hot add oil then chorizo; cook while breaking sausage into bite size pieces until no pink remains, 4-5 minutes or until internal temp is 165˚C/74˚C",
+    "Cut poblano into 1/4 inch pieces",
+    "Thinly slice chives",
+    "Cut onions 1/4 inch pieces ",
+    "Sprinkle flour on both sides of the pizza dough and stretch into a rough oval shape on a parchment-lined baking sheet",
+    "Spread tomato sauce over dough, tear mozzarella over sauce, top with onions, peppers, chili flakes, and chorizo",
+    "Season with salt and pepper",
+    "Bake pizza on middle rack until golden brown and crisp, 14-18 minutes ",
+    "To prepare the paprika aioli, stir together paprika, garlic, salt, pepper, half the vinegar, and mayo to a small bowl",
+    "When pizza is done, let sit for 2-3 minutes, then cut pizza into slices",
+    "Drizzle maple syrup over the top, and sprinkle the chives over pizza",
+    "Add extra chili flakes for more spice if desired",
+    "Serve pizza with the paprika aioli"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

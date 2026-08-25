@@ -1,0 +1,32 @@
+{
+  "name": "Apple Crumble",
+  "duration": 1.5,
+  "tags": ["vegetarian", "dessert"],
+  "servings": 8,
+  "ingredients": [
+    "1 cup - Sifted Flour",
+    "3/4 cup - Rolled Oats",
+    "1 cup - Brown Sugar",
+    "1/2 cup - Melted Margarine / Butter",
+    "1 tsp - Cinnamon",
+    "4 or 5 cups - Sliced Tart Apples",
+    "1/2 to 3/4 cup - Sugar",
+    "2 tbsp - Corn Starch",
+    "1 cup - Water",
+    "1 tsp - Vanilla",
+    "1 Tbsp - Lemon Juice"
+  ],
+  "instructions": [
+    "Mix flour, oats, butter, brown sugar and cinnamon, together",
+    "Press half of mixture into 9 inch greased square pan",
+    "Top with apples ",
+    "Mix remaining ingredients together and boil until thickened. Pour over apples.",
+    "Spread rest of crumbs on top. Press down.",
+    "Bake at 350 F for about 45 min or until apples are tender."
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

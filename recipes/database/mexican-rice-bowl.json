@@ -1,0 +1,45 @@
+{
+  "name": "Mexican Rice Bowl",
+  "duration": 1,
+  "tags": ["vegetarian", "rice", "mexican"],
+  "servings": 4,
+  "ingredients": [
+    "113g – Red Onion",
+    "740ml – Black Beans",
+    "12g – Garlic",
+    "320g – Sweet Bell Pepper",
+    "6 tbsp – Sour Cream",
+    "320g – Roma Tomato",
+    "4 tbsp – Mexican Seasoning",
+    "2 cans – Vegetable Broth Concentrate",
+    "14g – Cilantro",
+    "1 small – Lime",
+    "2 medium – Avocado",
+    "1 1/2 cup – Parboiled Rice",
+    "2 tbsp – oil",
+    "To taste – Salt and Pepper"
+  ],
+  "instructions": [
+    "Cook rice such that it is tender and the liquid is absorbed",
+    "Cut peppers and tomatoes into 1/2 inch piece",
+    "Cut onions onto 1/4 inch pieces",
+    "Drain and rinse beans",
+    "Zest and juice lime",
+    "Roughly chop cilantro",
+    "Mince garlic",
+    "Heat oil in a pan on medium-high heat",
+    "Add onions and peppers and cook until peppers are tender-crisp, 2-3 minutes",
+    "Add garlic and seasoning, stir until fragrant, ~1 minute",
+    "Cook beans, broth concentrate, half of tomatoes, half of lime zest and 1/4 cup water until softened, 4-5 minutes",
+    "Season with salt and pepper",
+    "Peal, pit, and scoop the avocado into a medium bowl then mash it up",
+    "add lime zest, lime juice, half of cilantro, remaining tomatoes",
+    "After rice is done cooking, fluff it up and stir in cilantro",
+    "Serve rice, black bean mixture, guacamole, and sour cream"
+  ],
+  "additional_context": {
+    "source": "",
+    "story": "",
+    "tips": ""
+  }
+}

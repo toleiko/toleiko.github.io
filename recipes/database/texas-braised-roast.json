@@ -1,0 +1,30 @@
+{
+  "name": "Texas Braised Roast",
+  "duration": 6,
+  "tags": ["lamb", "beef", "roast"],
+  "servings": 4,
+  "ingredients": [
+    "3-4 lb - lamb or beef meat (if beef, use brisket, flank or other tough cut of beef)",
+    "1 Tbsp - Salt",
+    "1 Tbsp - Pepper",
+    "1 Tbsp - Garlic powder",
+    "2 Tbsp - Chili powder",
+    "1 Tbsp - Cumin",
+    "1 - thinly sliced medium to large onion",
+    "2 Tbsp - beef bouillon",
+    "1 cup - Dry Red Wine (more use for frozen leftover wine!)",
+    "2-3 cup - Water or Beef Stock"
+  ],
+  "instructions": [
+    "Preheat oven to 250˚F",
+    "Prepare the pan: Select a casserole or roasting pan with a lid that just fits the size of meat you are cooking. If it doesn’t seal well, line the pan with tin foil and seal the foil around the meat.",
+    "Cook: Put all ingredients in casserole dish, cover with tight fitting lid or seal with tin foil. Bake for 3-4 hours or until meat is very tender. It could take longer depending on the size of the meat. After 2 hours, check there is still lots of liquid in the cooking dish.",
+    "Testing for tender: Stab meat with a fork, it should slide in and out. It will ‘stick’ if the meat is not tender enough.",
+    "Serve: Cover meat and keep warm in a low oven. Strain sauce. Make a gravy with the sauce by whisking in a tablespoon of flour or cornstarch mixed with a tablespoon of water"
+  ],
+  "additional_context": {
+    "source": "Adapted from Jewish Cooking in America recipe for beef brisket. Serve sliced or shred with forks for a pulled version on buns.",
+    "story": "",
+    "tips": "Suggested sides: Great as a main dish with rice or potatoes. Or you can ‘pull’ the meat apart and add the gravy or some BBQ sauce and serve on buns."
+  }
+}
