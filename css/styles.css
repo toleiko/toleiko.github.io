@@ -634,6 +634,25 @@ body {
   font-weight: 500;
 }
 
+.recipe-header-image {
+  width: 100%;
+  max-width: 240px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(42, 123, 136, 0.18);
+  background: linear-gradient(135deg, rgba(42, 123, 136, 0.08), rgba(42, 123, 136, 0.02));
+}
+
+.recipe-header-image--empty {
+  width: 100%;
+  max-width: 220px;
+  height: 180px;
+  border-radius: 12px;
+  background: transparent;
+  border: 1px dashed rgba(42, 123, 136, 0.18);
+}
+
 /* Recipe Categories Styles */
 .recipe-categories {
   margin: 2rem 0;
@@ -691,23 +710,66 @@ body {
   border-left: 4px solid #2A7B88;
 }
 
+.recipe-detail .recipe-header-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 2rem;
+  align-items: start;
+}
+
+.recipe-detail .recipe-header-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.recipe-detail .recipe-header-right {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 180px;
+}
+
 .recipe-detail .recipe-header h1 {
-  margin: 0 0 1rem 0;
+  margin: 0;
   color: #2A7B88;
   font-size: 2rem;
 }
 
-.recipe-detail .recipe-meta {
+.recipe-duration {
   display: flex;
-  gap: 2rem;
-  margin-bottom: 0.5rem;
-  flex-wrap: wrap;
   align-items: center;
+  gap: 0.5rem;
+  color: #666;
+  font-size: 1.05rem;
 }
 
-.recipe-detail .prep-time {
-  color: #666;
-  font-size: 1.1rem;
+.duration-icon {
+  font-size: 1.2rem;
+}
+
+.duration-value {
+  color: #333;
+}
+
+.duration-value strong {
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.recipe-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.recipe-divider {
+  width: 90%;
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  margin: 0.15rem 0 0.4rem 0;
 }
 
 .servings-meta {
@@ -715,17 +777,30 @@ body {
   margin-bottom: 0.75rem;
 }
 
+.servings-control-box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: fit-content;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(42, 123, 136, 0.2);
+  border-radius: 10px;
+  background: rgba(42, 123, 136, 0.04);
+}
+
 .servings-control {
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  flex-wrap: wrap;
+  margin-top: 0;
 }
 
 .servings-control label {
-  color: #666;
+  color: #2A7B88;
   font-size: 0.9rem;
   margin-right: 0.25rem;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .servings-input-group {
@@ -755,14 +830,16 @@ body {
 #servingsInput {
   border: none;
   padding: 0.25rem;
-  width: 40px;
+  width: 44px;
   text-align: center;
   font-size: 0.9rem;
   outline: none;
+  display: block;
+  margin: 0 auto;
 }
 
 .original-servings {
-  color: #111827;
+  color: #666;
   font-size: 0.9rem;
   font-style: normal;
   font-weight: 400;

@@ -192,41 +192,54 @@
       container.innerHTML = `
         <div class="recipe-detail">
           <div class="recipe-header">
-            <h1>${recipe.name}</h1>
-            <div class="recipe-meta">
-              <span class="prep-time">⏱️ ${recipe.duration} ${recipe.duration === 1 ? 'hour' : 'hours'}</span>
-            </div>
-            <div class="recipe-meta servings-meta">
-              <div class="servings-control">
-                <label for="servingsInput">Servings:</label>
-                <div class="servings-input-group">
-                  <button onclick="adjustServings(-1)" class="serving-btn">−</button>
-                  <input type="number" id="servingsInput" value="${recipe.servings}" min="1" max="50" onchange="updateServings()">
-                  <button onclick="adjustServings(1)" class="serving-btn">+</button>
+            <div class="recipe-header-grid">
+              <div class="recipe-header-left">
+                <h1>${recipe.name}</h1>
+                <div class="recipe-duration">
+                  <span class="duration-icon">⏱️</span>
+                  <span class="duration-value"><strong>${recipe.duration}</strong> <strong>${recipe.duration === 1 ? 'hour' : 'hours'}</strong></span>
                 </div>
-                <span class="original-servings">(Originally ${recipe.servings})</span>
+                ${recipe.tags ? `
+                  <div class="recipe-tags">
+                    ${recipe.tags.map(tag => `<span class="recipe-tag">${tag}</span>`).join('')}
+                  </div>
+                ` : ''}
+                <hr class="recipe-divider" />
+                <div class="servings-control-box">
+                  <div class="servings-control">
+                    <label for="servingsInput">Servings</label>
+                    <div class="servings-input-group">
+                      <button onclick="adjustServings(-1)" class="serving-btn">−</button>
+                      <input type="number" id="servingsInput" value="${recipe.servings}" min="1" max="50" onchange="updateServings()">
+                      <button onclick="adjustServings(1)" class="serving-btn">+</button>
+                    </div>
+                    <span class="original-servings">(Originally ${recipe.servings})</span>
+                  </div>
+                </div>
+                <div class="screen-lock-control" aria-label="Keep screen on setting">
+                  <label class="screen-lock-label" for="screenLockToggle">
+                    <span class="screen-lock-text">Keep screen on</span>
+                    <span class="screen-lock-switch">
+                      <input type="checkbox" id="screenLockToggle" aria-label="Keep screen on" ${(() => {
+                        try {
+                          return localStorage.getItem('recipe-screen-lock-enabled') === 'true' ? 'checked' : '';
+                        } catch (error) {
+                          return '';
+                        }
+                      })()}>
+                      <span class="screen-lock-slider"></span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <div class="recipe-header-right">
+                ${recipe.image ? `
+                  <img class="recipe-header-image" src="${recipe.image}" alt="${recipe.name}" />
+                ` : `
+                  <div class="recipe-header-image recipe-header-image--empty" aria-hidden="true"></div>
+                `}
               </div>
             </div>
-            <div class="screen-lock-control" aria-label="Keep screen on setting">
-              <label class="screen-lock-label" for="screenLockToggle">
-                <span class="screen-lock-text">Keep screen on</span>
-                <span class="screen-lock-switch">
-                  <input type="checkbox" id="screenLockToggle" aria-label="Keep screen on" ${(() => {
-                    try {
-                      return localStorage.getItem('recipe-screen-lock-enabled') === 'true' ? 'checked' : '';
-                    } catch (error) {
-                      return '';
-                    }
-                  })()}>
-                  <span class="screen-lock-slider"></span>
-                </span>
-              </label>
-            </div>
-            ${recipe.tags ? `
-              <div class="recipe-tags">
-                ${recipe.tags.map(tag => `<span class="recipe-tag">${tag}</span>`).join('')}
-              </div>
-            ` : ''}
           </div>
 
           <div class="recipe-content">
