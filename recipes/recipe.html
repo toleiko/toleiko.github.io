@@ -195,8 +195,10 @@
             <h1>${recipe.name}</h1>
             <div class="recipe-meta">
               <span class="prep-time">⏱️ ${recipe.duration} ${recipe.duration === 1 ? 'hour' : 'hours'}</span>
+            </div>
+            <div class="recipe-meta servings-meta">
               <div class="servings-control">
-                <label for="servingsInput">🍽️ Servings:</label>
+                <label for="servingsInput">Servings:</label>
                 <div class="servings-input-group">
                   <button onclick="adjustServings(-1)" class="serving-btn">−</button>
                   <input type="number" id="servingsInput" value="${recipe.servings}" min="1" max="50" onchange="updateServings()">

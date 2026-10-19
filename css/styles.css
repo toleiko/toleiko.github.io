@@ -700,14 +700,19 @@ body {
 .recipe-detail .recipe-meta {
   display: flex;
   gap: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   flex-wrap: wrap;
   align-items: center;
 }
 
-.recipe-detail .recipe-meta span {
+.recipe-detail .prep-time {
   color: #666;
   font-size: 1.1rem;
+}
+
+.servings-meta {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
 }
 
 .servings-control {
@@ -718,8 +723,9 @@ body {
 
 .servings-control label {
   color: #666;
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-right: 0.25rem;
+  font-weight: 400;
 }
 
 .servings-input-group {
@@ -756,9 +762,10 @@ body {
 }
 
 .original-servings {
-  color: #999;
+  color: #111827;
   font-size: 0.9rem;
-  font-style: italic;
+  font-style: normal;
+  font-weight: 400;
 }
 
 .screen-lock-control {
