@@ -232,13 +232,11 @@
                   </label>
                 </div>
               </div>
-              <div class="recipe-header-right">
-                ${recipe.image ? `
+              ${recipe.image ? `
+                <div class="recipe-header-right">
                   <img class="recipe-header-image" src="${recipe.image}" alt="${recipe.name}" />
-                ` : `
-                  <div class="recipe-header-image recipe-header-image--empty" aria-hidden="true"></div>
-                `}
-              </div>
+                </div>
+              ` : ''}
             </div>
           </div>
 

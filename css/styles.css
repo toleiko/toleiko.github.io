@@ -717,6 +717,14 @@ body {
   align-items: start;
 }
 
+.recipe-detail .recipe-header-grid:has(.recipe-header-right) {
+  grid-template-columns: minmax(0, 1fr) 220px;
+}
+
+.recipe-detail .recipe-header-grid:not(:has(.recipe-header-right)) {
+  grid-template-columns: 1fr;
+}
+
 .recipe-detail .recipe-header-left {
   display: flex;
   flex-direction: column;
