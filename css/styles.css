@@ -1045,11 +1045,64 @@ body {
   }
 
   .recipe-detail .recipe-header {
-    padding: 1.5rem;
+    padding: 1.25rem 1rem 1rem;
+    border-left-width: 3px;
+  }
+
+  .recipe-detail .recipe-header-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .recipe-detail .recipe-header-left,
+  .recipe-detail .recipe-header-right {
+    width: 100%;
   }
 
   .recipe-detail .recipe-header h1 {
-    font-size: 1.75rem;
+    font-size: 2.1rem;
+    line-height: 1.1;
+  }
+
+  .recipe-detail .recipe-header-right {
+    min-height: 0;
+  }
+
+  .recipe-header-image,
+  .recipe-header-image--empty {
+    width: 100%;
+    max-width: 100%;
+    height: 160px;
+  }
+
+  .recipe-duration {
+    font-size: 1rem;
+  }
+
+  .recipe-tag {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.7rem;
+  }
+
+  .recipe-divider {
+    width: 100%;
+    margin: 0.1rem 0 0.5rem;
+  }
+
+  .servings-control-box,
+  .screen-lock-control {
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+  }
+
+  .screen-lock-label {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .screen-lock-text {
+    white-space: normal;
+    font-size: 1rem;
   }
 
   .recipe-section {
