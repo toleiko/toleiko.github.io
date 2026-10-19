@@ -765,21 +765,31 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  width: fit-content;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(42, 123, 136, 0.2);
+  border-radius: 10px;
+  background: rgba(42, 123, 136, 0.04);
 }
 
 .screen-lock-label {
   display: inline-flex;
   align-items: center;
+  justify-content: space-between;
   gap: 0.75rem;
   color: #666;
   font-size: 0.95rem;
   cursor: pointer;
   user-select: none;
+  width: fit-content;
 }
 
 .screen-lock-text {
   white-space: nowrap;
+  font-weight: 600;
+  color: #2A7B88;
 }
 
 .screen-lock-switch {

@@ -204,21 +204,21 @@
                 </div>
                 <span class="original-servings">(Originally ${recipe.servings})</span>
               </div>
-              <div class="screen-lock-control">
-                <label class="screen-lock-label" for="screenLockToggle">
-                  <span class="screen-lock-text">📱 Keep screen on</span>
-                  <span class="screen-lock-switch">
-                    <input type="checkbox" id="screenLockToggle" aria-label="Keep screen on" ${(() => {
-                      try {
-                        return localStorage.getItem('recipe-screen-lock-enabled') === 'true' ? 'checked' : '';
-                      } catch (error) {
-                        return '';
-                      }
-                    })()}>
-                    <span class="screen-lock-slider"></span>
-                  </span>
-                </label>
-              </div>
+            </div>
+            <div class="screen-lock-control" aria-label="Keep screen on setting">
+              <label class="screen-lock-label" for="screenLockToggle">
+                <span class="screen-lock-text">Keep screen on</span>
+                <span class="screen-lock-switch">
+                  <input type="checkbox" id="screenLockToggle" aria-label="Keep screen on" ${(() => {
+                    try {
+                      return localStorage.getItem('recipe-screen-lock-enabled') === 'true' ? 'checked' : '';
+                    } catch (error) {
+                      return '';
+                    }
+                  })()}>
+                  <span class="screen-lock-slider"></span>
+                </span>
+              </label>
             </div>
             ${recipe.tags ? `
               <div class="recipe-tags">
