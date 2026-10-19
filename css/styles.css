@@ -761,6 +761,75 @@ body {
   font-style: italic;
 }
 
+.screen-lock-control {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 0.25rem;
+}
+
+.screen-lock-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #666;
+  font-size: 0.95rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.screen-lock-text {
+  white-space: nowrap;
+}
+
+.screen-lock-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.screen-lock-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.screen-lock-slider {
+  position: absolute;
+  inset: 0;
+  background: #d1d5db;
+  border-radius: 999px;
+  transition: background-color 0.2s ease;
+}
+
+.screen-lock-slider::before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  top: 4px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.screen-lock-switch input:checked + .screen-lock-slider {
+  background: #2A7B88;
+}
+
+.screen-lock-switch input:checked + .screen-lock-slider::before {
+  transform: translateX(22px);
+}
+
+.screen-lock-switch input:focus-visible + .screen-lock-slider {
+  outline: 2px solid rgba(42, 123, 136, 0.4);
+  outline-offset: 2px;
+}
+
 .recipe-section {
   background: white;
   border-radius: 12px;

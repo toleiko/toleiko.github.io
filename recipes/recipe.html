@@ -111,6 +111,72 @@
     // Store original recipe for scaling calculations
     let originalRecipe = null;
     let currentServings = null;
+    let wakeLock = null;
+
+    async function requestWakeLock() {
+      if (!('wakeLock' in navigator)) {
+        return false;
+      }
+
+      try {
+        wakeLock = await navigator.wakeLock.request('screen');
+        wakeLock.addEventListener('release', () => {
+          const toggle = document.getElementById('screenLockToggle');
+          if (toggle) {
+            toggle.checked = false;
+          }
+        });
+        return true;
+      } catch (error) {
+        console.warn('Wake lock request failed:', error);
+        const toggle = document.getElementById('screenLockToggle');
+        if (toggle) {
+          toggle.checked = false;
+        }
+        return false;
+      }
+    }
+
+    async function releaseWakeLock() {
+      if (wakeLock) {
+        try {
+          await wakeLock.release();
+        } catch (error) {
+          console.warn('Wake lock release failed:', error);
+        }
+        wakeLock = null;
+      }
+    }
+
+    async function handleScreenLockToggle() {
+      const toggle = document.getElementById('screenLockToggle');
+      if (!toggle) return;
+
+      if (toggle.checked) {
+        await requestWakeLock();
+      } else {
+        await releaseWakeLock();
+      }
+
+      try {
+        localStorage.setItem('recipe-screen-lock-enabled', String(toggle.checked));
+      } catch (error) {
+        console.warn('Could not persist screen lock preference:', error);
+      }
+    }
+
+    document.addEventListener('visibilitychange', async () => {
+      const toggle = document.getElementById('screenLockToggle');
+      if (!toggle) return;
+
+      if (document.visibilityState === 'visible' && toggle.checked && 'wakeLock' in navigator) {
+        await requestWakeLock();
+      }
+
+      if (document.visibilityState === 'hidden' && wakeLock) {
+        await releaseWakeLock();
+      }
+    });
 
     // Display recipe with proper formatting
     function displayRecipe(recipe) {
@@ -138,6 +204,21 @@
                 </div>
                 <span class="original-servings">(Originally ${recipe.servings})</span>
               </div>
+              <div class="screen-lock-control">
+                <label class="screen-lock-label" for="screenLockToggle">
+                  <span class="screen-lock-text">📱 Keep screen on</span>
+                  <span class="screen-lock-switch">
+                    <input type="checkbox" id="screenLockToggle" aria-label="Keep screen on" ${(() => {
+                      try {
+                        return localStorage.getItem('recipe-screen-lock-enabled') === 'true' ? 'checked' : '';
+                      } catch (error) {
+                        return '';
+                      }
+                    })()}>
+                    <span class="screen-lock-slider"></span>
+                  </span>
+                </label>
+              </div>
             </div>
             ${recipe.tags ? `
               <div class="recipe-tags">
@@ -153,6 +234,19 @@
           </div>
         </div>
       `;
+
+      const screenLockToggle = document.getElementById('screenLockToggle');
+      if (screenLockToggle) {
+        if (!('wakeLock' in navigator)) {
+          screenLockToggle.disabled = true;
+          screenLockToggle.title = 'Screen wake lock is not supported in this browser.';
+        } else {
+          screenLockToggle.addEventListener('change', handleScreenLockToggle);
+          if (screenLockToggle.checked) {
+            handleScreenLockToggle();
+          }
+        }
+      }
     }
 
     // Serving size adjustment functions
